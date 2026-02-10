@@ -2,9 +2,9 @@ name: Zincir Daily Update
 
 on:
   schedule:
-    # Run at 15:30 UTC = 18:30 TR (Piyasa Kapanışı)
+    # Run at 15:30 UTC = 18:30 TR (Market Close)
     - cron: '30 15 * * *'
-  workflow_dispatch: # Elle çalıştırma butonu
+  workflow_dispatch: # Button to run manually
 
 jobs:
   update-data:
@@ -22,7 +22,7 @@ jobs:
           node-version: '18'
 
       - name: Run History Fetcher
-        # fetch_real_history.js dosyasını çalıştırır
+        # Correct path to the script
         run: node API_DOSYALARI/fetch_real_history.js
 
       - name: Commit and Push
