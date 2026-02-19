@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canlı Veri Testi (Direct API)</title>
+    <style>
+        body {
+            font-family: monospace;
+            background: #111;
+            color: #0f0;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #fff;
+            border-bottom: 2px solid #555;
+            padding-bottom: 10px;
+        }
+
+        .container {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .box {
+            border: 1px solid #333;
+            padding: 15px;
+            background: #000;
+            min-width: 300px;
+            flex: 1;
+        }
+
+        h2 {
+            margin-top: 0;
+            color: #ff0;
+            border-bottom: 1px dashed #444;
+        }
+
+        .row {
+            display: flex;
+            justify-content: space-between;
+            padding: 5px 0;
+            border-bottom: 1px solid #222;
+        }
+
+        .row:hover {
+            background: #1a1a1a;
+        }
+
+        .val {
+            font-weight: bold;
+        }
+
+        .up {
+            color: #0f0;
+        }
+
+        .down {
+            color: #f00;
+        }
+
+        .error {
+            color: red;
+            font-weight: bold;
+        }
+
+        #status {
+            margin-bottom: 20px;
+            color: #888;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>📡 Direct API Monitor</h1>
+    <div id="status">Veriler çekiliyor...</div>
+
+    <div class="container">
+        <!-- TRUNCGIL PANEL -->
+        <div class="box">
+            <h2>🥇 Altın & Döviz (Truncgil)</h2>
+            <div id="gold-list"></div>
+        </div>
+
+        <!-- BINANCE PANEL -->
+        <div class="box">
+            <h2>₿ Kripto (Binance)</h2>
+            <div id="crypto-list"></div>
+        </div>
+    </div>
+
+    <script>
+        const TRUNCGIL_URL = 'https://finans.truncgil.com/today.json';
+        const BINANCE_URL = 'https://api.binance.com/api/v3/ticker/24hr';
+        let usdTry = 35.00; // Default fallback
+
+        async function fetchData() {
+            document.getElementById('status').innerText = '⏳ Güncelleniyor... ' + new Date().toLocaleTimeString();
+
+            // --- 1. TRUNCGIL (Altın/Döviz) ---
+            try {
+                // Cache-busting: ?t=TIMESTAMP
+                const res = await fetch(TRUNCGIL_URL + '?t=' + Date.now());
+                const data = await res.json();
+                renderTruncgil(data);
+
+                // USD kurunu yakala (Kripto hesaplama için)
+                if (data['USD']) {
+                    usdTry = parseFloat(data['USD'].Satış.replace(',', '.'));
+                }
+            } catch (e) {
+                document.getElementById('gold-list').innerHTML = `<div class="error">HATA: Truncgil Verisi Çekilemedi.<br>Sebep: ${e.message}<br><small>Olası Sebep: Tarayıcı Güvenliği (CORS).<br>Çözüm: Bu testi "Canlı Sunucu" veya "CORS Unblock" eklentisi ile açın.</small></div>`;
+            }
+
+            // --- 2. BINANCE (Kripto) ---
+            try {
+                const res = await fetch(BINANCE_URL);
+                const data = await res.json();
+                renderBinance(data);
+            } catch (e) {
+                document.getElementById('crypto-list').innerHTML = `<div class="error">HATA: Binance Verisi Çekilemedi.<br>${e.message}</div>`;
+            }
+        }
+
+        function renderTruncgil(data) {
+            const list = document.getElementById('gold-list');
+            list.innerHTML = '';
+
+            // İlgilendiğimiz anahtarlar
+            const keys = ['USD', 'EUR', 'gram-altin', 'ceyrek-altin', 'ons'];
+
+            keys.forEach(key => {
+                if (data[key]) {
+                    const item = data[key];
+                    list.innerHTML += `
+                        <div class="row">
+                            <span>${key.toUpperCase()}</span>
+                            <span class="val">${item.Alış} / ${item.Satış}</span>
+                        </div>`;
+                }
+            });
+
+            // Diğerlerini de ekle (Örnek liste)
+            // Ham veriyi de basabiliriz ama temiz olsun
+        }
+
+        function renderBinance(data) {
+            const list = document.getElementById('crypto-list');
+            list.innerHTML = '';
+
+            // İlgilendiğimiz Coinler
+            const targets = ['BTCUSDT', 'ETHUSDT', 'SOLUSDT', 'AVAXUSDT', 'XRPUSDT'];
+
+            data.filter(c => targets.includes(c.symbol)).forEach(c => {
+                const priceUsd = parseFloat(c.lastPrice);
+                const priceTry = (priceUsd * usdTry).toLocaleString('tr-TR', { maximumFractionDigits: 2 });
+                const change = parseFloat(c.priceChangePercent).toFixed(2);
+
+                list.innerHTML += `
+                    <div class="row">
+                        <span>${c.symbol.replace('USDT', '')}</span>
+                        <span class="val">${priceTry} ₺ <span style="font-size:0.8em; color:#aaa">($${priceUsd.toFixed(2)})</span></span>
+                        <span class="${change >= 0 ? 'up' : 'down'}">%${change}</span>
+                    </div>`;
+            });
+        }
+
+        // Başlat
+        fetchData();
+        setInterval(fetchData, 5000); // 5 saniyede bir yenile
+    </script>
+</body>
+
+</html>
