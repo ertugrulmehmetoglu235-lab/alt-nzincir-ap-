@@ -198,7 +198,11 @@ async function run() {
         const hist = await getYahooHistory(yahooSym);
         if (hist.length > 0) {
             data[key].history = hist;
-            console.log(`${key}: ${hist.length} pts`);
+            const last = hist[hist.length - 1];
+            data[key].current = last;
+            data[key].selling = last;
+            data[key].buying = last;
+            console.log(`${key}: ${hist.length} pts (Last: ${last})`);
         } else {
             console.log(`${key}: No data`);
         }
@@ -213,7 +217,11 @@ async function run() {
             // Convert USD commodity price to TRY
             const histTry = scaleToTRY(histUsd, usdTryHistory);
             data[key].history = histTry;
-            console.log(`${key} (${info.yahooSym}): ${histTry.length} pts`);
+            const last = histTry[histTry.length - 1];
+            data[key].current = last;
+            data[key].selling = last;
+            data[key].buying = last;
+            console.log(`${key} (${info.yahooSym}): ${histTry.length} pts (Last: ${last})`);
         } else {
             console.log(`${key}: No data`);
         }
@@ -226,7 +234,11 @@ async function run() {
         const hist = await getYahooHistory(info.yahooSym);
         if (hist.length > 0) {
             data[key].history = hist;
-            console.log(`${key} (${info.yahooSym}): ${hist.length} pts`);
+            const last = hist[hist.length - 1];
+            data[key].current = last;
+            data[key].selling = last;
+            data[key].buying = last;
+            console.log(`${key} (${info.yahooSym}): ${hist.length} pts (Last: ${last})`);
         } else {
             console.log(`${key}: No data from Yahoo`);
         }
@@ -243,7 +255,11 @@ async function run() {
             // For history we keep raw USDT prices scaled by usdTryHistory
             const finalHist = scaleToTRY(hist, usdTryHistory.slice(-hist.length).length ? usdTryHistory.slice(-hist.length) : hist.map(() => usdTryHistory[usdTryHistory.length - 1] || 35));
             data[key].history = finalHist.map(v => parseFloat(v.toFixed(2)));
-            console.log(`${key} (${symbol}): ${finalHist.length} pts (TRY)`);
+            const last = data[key].history[data[key].history.length - 1];
+            data[key].current = last;
+            data[key].selling = last;
+            data[key].buying = last;
+            console.log(`${key} (${symbol}): ${finalHist.length} pts (TRY) (Last: ${last})`);
         }
     }
 
