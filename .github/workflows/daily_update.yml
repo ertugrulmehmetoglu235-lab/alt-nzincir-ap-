@@ -29,6 +29,6 @@ jobs:
         run: |
           git config --global user.name "Zincir-Bot"
           git config --global user.email "bot@zincir.com"
-          git add API_DOSYALARI/data.json
+          git add data.json
           git commit -m "Daily Data Update: $(date)" || echo "No changes to commit"
           git push
