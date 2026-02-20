@@ -39,9 +39,11 @@ function fetchJson(url) {
 // Parse Turkish number format: "35,18" or "35.018,50" â†’ float
 function parseTR(val) {
     if (val == null) return NaN;
-    const s = String(val).replace(/\s/g, '');
+    // Strip currency symbols and whitespace
+    const s = String(val).replace(/[\s$€£¥]/g, '').replace(/TL/gi, '').trim();
+    if (s === '' || s === '-') return NaN;
     if (s.includes(',') && s.includes('.')) {
-        // "35.018,50" format
+        // "35.018,50" format (TR thousands separator)
         return parseFloat(s.replace(/\./g, '').replace(',', '.'));
     }
     if (s.includes(',')) {
@@ -111,20 +113,19 @@ async function run() {
         data = {};
     }
 
-    // â”€â”€ A. ALTIN (Truncgil) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-    console.log('\n=== A. AltÄ±n (Truncgil) ===');
+    // ── A. ALTIN (Truncgil) ────────────────────────────────────────────
+    console.log('\n=== A. Altın (Truncgil) ===');
     const tData = await fetchJson(TRUNCGIL_URL);
     if (tData) {
         let goldCount = 0;
         Object.entries(TRUNCGIL_MAP).forEach(([tKey, info]) => {
             const row = tData[tKey];
             if (!row) return;
-            const satisKey = Object.keys(row).find(k => k.toLowerCase().includes('sat') || k.toLowerCase() === 'satis');
-            const alisKey = Object.keys(row).find(k => k.toLowerCase() === 'alÄ±ÅŸ' || k.toLowerCase() === 'alis');
-            const degKey = Object.keys(row).find(k => k.toLowerCase().includes('deÄŸ') || k.toLowerCase().includes('deg'));
-            const satis = parseTR(satisKey ? row[satisKey] : row['Satis']);
-            const alis = parseTR(alisKey ? row[alisKey] : row['Alis']);
-            const change = parseTR(String(degKey ? row[degKey] : 0).replace('%', ''));
+            // Truncgil uses Turkish keys: 'Satış', 'Alış', 'Değişim'
+            const satis = parseTR(row['Satış'] || row['Satis']);
+            const alis = parseTR(row['Alış'] || row['Alis']);
+            const degStr = String(row['Değişim'] || row['Degisim'] || '0').replace('%', '').trim();
+            const change = parseTR(degStr);
             if (isNaN(satis) || satis <= 0) return;
 
             seedIfMissing(data, info.key, info.name, info.code, info.type);
