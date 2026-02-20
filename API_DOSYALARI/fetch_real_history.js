@@ -6,9 +6,8 @@ const FILE = './data.json';
 // â”€â”€ API URLs â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 const TRUNCGIL_URL = 'https://finans.truncgil.com/today.json';
 const BINANCE_TICKER = 'https://api.binance.com/api/v3/ticker/24hr';
-const GP_DOVIZ = 'https://api.genelpara.com/json/?list=doviz&sembol=all';
-const GP_HISSE = 'https://api.genelpara.com/json/?list=hisse&sembol=all';
 const GP_EMTIA = 'https://api.genelpara.com/json/?list=emtia&sembol=all';
+
 
 // â”€â”€ HELPERS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function fetchJson(url) {
@@ -139,23 +138,22 @@ async function run() {
             appendHistory(data[info.key], satis);
             goldCount++;
         });
-        console.log(`Truncgil: ${goldCount} altÄ±n kaydedildi`);
+        console.log(`Truncgil: ${goldCount} altın kaydedildi`);
     } else {
-        console.warn('âš ï¸ Truncgil verisi alÄ±namadÄ±');
+        console.warn('⚠️ Truncgil verisi alınamadı');
     }
 
-    // â”€â”€ B. DÃ–VÄ°Z (GenelPara - Node.js, CORS yok) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-    console.log('\n=== B. DÃ¶viz (GenelPara) ===');
-    const gpDovizRaw = await fetchJson(GP_DOVIZ);
-    const gpDoviz = gpDovizRaw?.data || null;
+    // ── B. DÖVİZ (Truncgil) ─────────────────────────────────────────
+    console.log('\n=== B. Döviz (Truncgil) ===');
     let usdTry = data['USD']?.current || 36;
-    if (gpDoviz) {
-        let dvzCount = 0;
-        Object.keys(gpDoviz).forEach(sym => {
-            const row = gpDoviz[sym];
-            const satis = parseTR(row.satis);
-            const alis = parseTR(row.alis);
-            const change = parseTR(String(row.oran || row.degisim || '0').replace('%', ''));
+    let dvzCount = 0;
+    if (tData) {
+        Object.entries(tData).forEach(([sym, row]) => {
+            if (!row || row['Tür'] !== 'Döviz') return;
+            const satis = parseTR(row['Satış'] || row['Satis']);
+            const alis = parseTR(row['Alış'] || row['Alis']);
+            const degStr = String(row['Değişim'] || '0').replace('%', '').trim();
+            const change = parseTR(degStr);
             if (isNaN(satis) || satis <= 0) return;
             const name = CURRENCY_NAMES[sym] || sym;
             seedIfMissing(data, sym, name, sym, 'currency');
@@ -168,35 +166,9 @@ async function run() {
             appendHistory(data[sym], satis);
             dvzCount++;
         });
-        console.log(`GenelPara Döviz: ${dvzCount} döviz kaydedildi`);
-    } else {
-        console.warn('⚠️ GenelPara Döviz verisi alınamadı');
     }
+    console.log(`Truncgil Döviz: ${dvzCount} döviz kaydedildi`);
 
-    // â”€â”€ C. HÄ°SSE (GenelPara - Node.js, CORS yok) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-    console.log('\n=== C. Hisse (GenelPara) ===');
-    const gpHisseRaw = await fetchJson(GP_HISSE);
-    const gpHisse = gpHisseRaw?.data || null;
-    if (gpHisse) {
-        let hisseCount = 0;
-        Object.keys(gpHisse).forEach(sym => {
-            const row = gpHisse[sym];
-            const val = parseTR(row.satis || row.son || row.kapanis || '0');
-            const change = parseTR(String(row.oran || row.degisim || '0').replace('%', ''));
-            if (isNaN(val) || val <= 0) return;
-            const key = 'hisse-' + sym.toLowerCase();
-            seedIfMissing(data, key, data[key]?.name || sym, sym, 'stock');
-            data[key].current = val;
-            data[key].selling = val;
-            data[key].buying = val;
-            data[key].change = !isNaN(change) ? change : 0;
-            appendHistory(data[key], val);
-            hisseCount++;
-        });
-        console.log(`GenelPara Hisse: ${hisseCount} hisse kaydedildi`);
-    } else {
-        console.warn('⚠️ GenelPara Hisse verisi alınamadı');
-    }
 
     // â”€â”€ D. EMTÄ°A (GenelPara - Node.js, CORS yok) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     console.log('\n=== D. Emtia (GenelPara) ===');
