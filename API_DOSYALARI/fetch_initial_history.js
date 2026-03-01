@@ -1,26 +1,26 @@
-﻿/**
+/**
  * fetch_initial_history.js
- * â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
- * TEK SEFERLÄ°K tarihÃ§e yÃ¼kleme scripti.
- * Ã‡alÄ±ÅŸtÄ±r: node API_DOSYALARI/fetch_initial_history.js
+ * ─────────────────────────────────────────────────────────────────
+ * TEK SEFERLİK tarihçe yükleme scripti.
+ * Çalıştır: node API_DOSYALARI/fetch_initial_history.js
  *
  * Kaynaklar:
- *   AltÄ±n       â†’ AltÄ±n.in (deneme) + Yahoo Finance (GC=F â†’ TRY) fallback
- *   DÃ¶viz       â†’ Yahoo Finance (TRY pariteleri)
- *   Kripto      â†’ Binance (klines, 5y)
- *   Hisse/Emtia â†’ Yahoo Finance (.IS ve vadeli iÅŸlem sembolleri)
- * â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+ *   Altın       → Altın.in (deneme) + Yahoo Finance (GC=F → TRY) fallback
+ *   Döviz       → Yahoo Finance (TRY pariteleri)
+ *   Kripto      → Binance (klines, 5y)
+ *   Hisse/Emtia → Yahoo Finance (.IS ve vadeli işlem sembolleri)
+ * ─────────────────────────────────────────────────────────────────
  */
 const fs = require('fs');
 const https = require('https');
 
-const FILE = './data.json';
+const FILE = 'API_DOSYALARI/data.json';
 
-// â”€â”€ API BASES â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── API BASES ─────────────────────────────────────────────────────
 const YAHOO_BASE = 'https://query1.finance.yahoo.com/v8/finance/chart/';
 const BINANCE_BASE = 'https://api.binance.com/api/v3/klines';
 
-// â”€â”€ HELPERS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── HELPERS ──────────────────────────────────────────────────────
 function fetchRaw(url) {
     return new Promise((resolve) => {
         const req = https.get(url, {
@@ -80,8 +80,8 @@ function seedIfMissing(data, key, name, code, type) {
     if (!data[key]) data[key] = { name, code, type, history: [], current: 0, selling: 0, buying: 0, change: 0 };
 }
 
-// â”€â”€ ALTIN.IN GOLD HISTORY â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-// AltÄ±n.in provides historical gram altÄ±n in TRY, which is more accurate than XAUâ†’TRY conversion
+// ── ALTIN.IN GOLD HISTORY ─────────────────────────────────────────
+// Altın.in provides historical gram altın in TRY, which is more accurate than XAU→TRY conversion
 async function getAltinInHistory() {
     // Try various known endpoints
     const endpoints = [
@@ -94,7 +94,7 @@ async function getAltinInHistory() {
         console.log(`  Deneniyor: ${url}`);
         const data = await fetchJson(url);
         if (data) {
-            console.log(`  âœ… AltÄ±n.in verisi alÄ±ndÄ±: ${url}`);
+            console.log(`  ✅ Altın.in verisi alındı: ${url}`);
             return data;
         }
     }
@@ -106,26 +106,21 @@ async function getAltinInHistory() {
         if (match) {
             try {
                 const arr = JSON.parse(match[1]);
-                console.log(`  âœ… AltÄ±n.in HTML'den ${arr.length} veri noktasÄ± alÄ±ndÄ±`);
+                console.log(`  ✅ Altın.in HTML'den ${arr.length} veri noktası alındı`);
                 return { type: 'raw_array', data: arr };
             } catch (e) { }
         }
     }
-    console.log('  âš ï¸ AltÄ±n.in eriÅŸilemedi, Yahoo Finance fallback kullanÄ±lÄ±yor');
+    console.log('  ⚠️ Altın.in erişilemedi, Yahoo Finance fallback kullanılıyor');
     return null;
 }
 
-// â”€â”€ CURRENCY MAP â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── CURRENCY MAP ─────────────────────────────────────────────────
 const CURRENCY_MAP = {
-    'USD': { yahoo: 'TRY=X', name: 'ABD DolarÄ±', code: 'USD' },
+    'USD': { yahoo: 'TRY=X', name: 'ABD Doları', code: 'USD' },
     'EUR': { yahoo: 'EURTRY=X', name: 'Euro', code: 'EUR' },
-    'GBP': { yahoo: 'GBPTRY=X', name: 'Ä°ngiliz Sterlini', code: 'GBP' },
+    'GBP': { yahoo: 'GBPTRY=X', name: 'İngiliz Sterlini', code: 'GBP' },
     'JPY': { yahoo: 'JPYTRY=X', name: 'Japon Yeni', code: 'JPY' },
-    'CHF': { yahoo: 'CHFTRY=X', name: 'Ä°sviÃ§re FrangÄ±', code: 'CHF' },
-    'CAD': { yahoo: 'CADTRY=X', name: 'Kanada DolarÄ±', code: 'CAD' },
-    'AUD': { yahoo: 'AUDTRY=X', name: 'Avustralya DolarÄ±', code: 'AUD' },
-    'NOK': { yahoo: 'NOKTRY=X', name: 'NorveÃ§ Kronu', code: 'NOK' },
-    'SEK': { yahoo: 'SEKTRY=X', name: 'Ä°sveÃ§ Kronu', code: 'SEK' },
     'CHF': { yahoo: 'CHFTRY=X', name: 'İsviçre Frangı', code: 'CHF' },
     'CAD': { yahoo: 'CADTRY=X', name: 'Kanada Doları', code: 'CAD' },
     'AUD': { yahoo: 'AUDTRY=X', name: 'Avustralya Doları', code: 'AUD' },
@@ -136,8 +131,31 @@ const CURRENCY_MAP = {
     'DKK': { yahoo: 'DKKTRY=X', name: 'Danimarka Kronu', code: 'DKK' },
 };
 
+// ── BIST HISSE MAP ────────────────────────────────────────────────
+const HISSE_MAP = {
+    'hisse-thyao': { yahoo: 'THYAO.IS', name: 'Türk Hava Yolları', code: 'THYAO' },
+    'hisse-akbnk': { yahoo: 'AKBNK.IS', name: 'Akbank', code: 'AKBNK' },
+    'hisse-garan': { yahoo: 'GARAN.IS', name: 'Garanti BBVA', code: 'GARAN' },
+    'hisse-isctr': { yahoo: 'ISCTR.IS', name: 'İş Bankası C', code: 'ISCTR' },
+    'hisse-ykbnk': { yahoo: 'YKBNK.IS', name: 'Yapı Kredi', code: 'YKBNK' },
+    'hisse-kchol': { yahoo: 'KCHOL.IS', name: 'Koç Holding', code: 'KCHOL' },
+    'hisse-sahol': { yahoo: 'SAHOL.IS', name: 'Sabancı Holding', code: 'SAHOL' },
+    'hisse-sise': { yahoo: 'SISE.IS', name: 'Şişe Cam', code: 'SISE' },
+    'hisse-eregl': { yahoo: 'EREGL.IS', name: 'Ereğli Demir Çelik', code: 'EREGL' },
+    'hisse-bimas': { yahoo: 'BIMAS.IS', name: 'BİM Mağazaları', code: 'BIMAS' },
+    'hisse-toaso': { yahoo: 'TOASO.IS', name: 'Tofaş Oto', code: 'TOASO' },
+    'hisse-froto': { yahoo: 'FROTO.IS', name: 'Ford Otosan', code: 'FROTO' },
+    'hisse-asels': { yahoo: 'ASELS.IS', name: 'Aselsan', code: 'ASELS' },
+    'hisse-tuprs': { yahoo: 'TUPRS.IS', name: 'Tüpraş', code: 'TUPRS' },
+    'hisse-arclk': { yahoo: 'ARCLK.IS', name: 'Arçelik', code: 'ARCLK' },
+    'hisse-pgsus': { yahoo: 'PGSUS.IS', name: 'Pegasus Havayolları', code: 'PGSUS' },
+    'hisse-kozal': { yahoo: 'KOZAL.IS', name: 'Koza Altın', code: 'KOZAL' },
+    'hisse-enkai': { yahoo: 'ENKAI.IS', name: 'Enka İnşaat', code: 'ENKAI' },
+    'hisse-tkfen': { yahoo: 'TKFEN.IS', name: 'Tekfen Holding', code: 'TKFEN' },
+    'hisse-alark': { yahoo: 'ALARK.IS', name: 'Alarko Holding', code: 'ALARK' },
+};
 
-// ——— EMTIA MAP (USD traded) —————————————————————————————————————————————
+// ── EMTIA MAP (USD traded) ────────────────────────────────────────
 const EMTIA_MAP = {
     'emtia-cl': { yahoo: 'CL=F', name: 'Ham Petrol (WTI)', code: 'CL' },
     'emtia-bz': { yahoo: 'BZ=F', name: 'Brent Petrol', code: 'BZ' },
@@ -148,7 +166,7 @@ const EMTIA_MAP = {
     'emtia-co': { yahoo: 'CC=F', name: 'Kakao', code: 'CO' },
 };
 
-// ——— KRIPTO LIST ————————————————————————————————————————————————————————
+// ── KRIPTO LIST ───────────────────────────────────────────────────
 const CRYPTO_LIST = [
     { key: 'btc', name: 'Bitcoin', code: 'BTC' },
     { key: 'eth', name: 'Ethereum', code: 'ETH' },
@@ -162,7 +180,7 @@ const CRYPTO_LIST = [
     { key: 'ltc', name: 'Litecoin', code: 'LTC' },
 ];
 
-// ——— MAIN ———————————————————————————————————————————————————————————————
+// ── MAIN ─────────────────────────────────────────────────────────
 async function run() {
     let data = {};
     try {
@@ -173,13 +191,13 @@ async function run() {
         data = {};
     }
 
-    // ——— 1. BASE: USD/TRY for scaling ————————————————————————————————————
+    // ── 1. BASE: USD/TRY for scaling ─────────────────────────────
     console.log('=== [1] USD/TRY Tarihçesi ===');
     const usdTryHistory = await getYahooHistory('TRY=X');
     const lastUsdTry = usdTryHistory[usdTryHistory.length - 1] || 36;
     console.log(`USD/TRY: ${usdTryHistory.length} veri noktası | Son: ${lastUsdTry}`);
 
-    // ——— 2. ALTIN (Altın.in → fallback Yahoo Finance) ————————————————————
+    // ── 2. ALTIN (Altın.in → fallback Yahoo Finance) ──────────────
     console.log('\n=== [2] Altın Tarihçesi ===');
     console.log('Altın.in deneniyor...');
     const altinInData = await getAltinInHistory();
@@ -252,7 +270,7 @@ async function run() {
         console.log(`  gram-platin: ${data['gram-platin'].history.length} veri noktası`);
     }
 
-    // ——— 3. DÖVİZ (Yahoo Finance) ————————————————————————————————————————
+    // ── 3. DÖVİZ (Yahoo Finance) ──────────────────────────────────
     console.log('\n=== [3] Döviz Tarihçesi (Yahoo Finance) ===');
     for (const [sym, info] of Object.entries(CURRENCY_MAP)) {
         seedIfMissing(data, sym, info.name, info.code, 'currency');
@@ -268,7 +286,22 @@ async function run() {
         }
     }
 
-    // ——— 5. EMTİA (Yahoo Finance, USD → TRY) ————————————————————————————
+    // ── 4. HİSSE (Yahoo Finance .IS) ──────────────────────────────
+    console.log('\n=== [4] Hisse Tarihçesi (Yahoo Finance) ===');
+    for (const [key, info] of Object.entries(HISSE_MAP)) {
+        seedIfMissing(data, key, info.name, info.code, 'stock');
+        const hist = await getYahooHistory(info.yahoo);
+        if (hist.length > 0) {
+            data[key].history = hist;
+            const last = hist[hist.length - 1];
+            data[key].current = last; data[key].selling = last; data[key].buying = last;
+            console.log(`  ${key}: ${hist.length} veri noktası | Son: ${last}`);
+        } else {
+            console.log(`  ${key}: ⚠️ Veri alınamadı`);
+        }
+    }
+
+    // ── 5. EMTİA (Yahoo Finance, USD → TRY) ──────────────────────
     console.log('\n=== [5] Emtia Tarihçesi (Yahoo Finance) ===');
     for (const [key, info] of Object.entries(EMTIA_MAP)) {
         seedIfMissing(data, key, info.name, info.code, 'commodity');
@@ -278,14 +311,14 @@ async function run() {
             data[key].history = histTry;
             const last = histTry[histTry.length - 1];
             data[key].current = last; data[key].selling = last;
-            console.log(`  ${key}: ${histTry.length} veri noktasÄ± | Son: â‚º${last}`);
+            console.log(`  ${key}: ${histTry.length} veri noktası | Son: ₺${last}`);
         } else {
-            console.log(`  ${key}: âš ï¸ Veri alÄ±namadÄ±`);
+            console.log(`  ${key}: ⚠️ Veri alınamadı`);
         }
     }
 
-    // â”€â”€ 6. KRÄ°PTO (Binance klines) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-    console.log('\n=== [6] Kripto TarihÃ§esi (Binance) ===');
+    // ── 6. KRİPTO (Binance klines) ────────────────────────────────
+    console.log('\n=== [6] Kripto Tarihçesi (Binance) ===');
     for (const crypto of CRYPTO_LIST) {
         const key = crypto.key;
         seedIfMissing(data, key, crypto.name, crypto.code, 'crypto');
@@ -295,20 +328,19 @@ async function run() {
             data[key].history = histTry.map(v => parseFloat(v.toFixed(2)));
             const last = data[key].history[data[key].history.length - 1];
             data[key].current = last; data[key].selling = last;
-            console.log(`  ${key}: ${histTry.length} veri noktasÄ± | Son: â‚º${last}`);
+            console.log(`  ${key}: ${histTry.length} veri noktası | Son: ₺${last}`);
         } else {
-            console.log(`  ${key}: âš ï¸ Veri alÄ±namadÄ±`);
+            console.log(`  ${key}: ⚠️ Veri alınamadı`);
         }
     }
 
-    // â”€â”€ SAVE â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    // ── SAVE ─────────────────────────────────────────────────────
     fs.writeFileSync(FILE, JSON.stringify(data, null, 2), 'utf8');
-    console.log(`\nâœ… TAMAMLANDI! data.json kaydedildi (${Object.keys(data).length} varlÄ±k)`);
-    console.log('ArtÄ±k gÃ¼nlÃ¼k gÃ¼ncellemeler iÃ§in fetch_real_history.js Ã§alÄ±ÅŸacak.');
+    console.log(`\n✅ TAMAMLANDI! data.json kaydedildi (${Object.keys(data).length} varlık)`);
+    console.log('Artık günlük güncellemeler için fetch_real_history.js çalışacak.');
 }
 
 run().catch(err => {
-    console.error('âŒ Script hatasÄ±:', err);
+    console.error('❌ Script hatası:', err);
     process.exit(1);
 });
-
