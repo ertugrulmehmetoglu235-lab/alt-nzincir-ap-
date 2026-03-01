@@ -502,14 +502,11 @@
             <button class="menu-btn" onclick="setCat('fav', this)"><i class="fas fa-star"></i> Favoriler</button>
             <div style="height:1px; background:var(--border); margin:0.5rem 0;"></div>
             <button class="menu-btn" onclick="setCat('gold', this)"><i class="fas fa-gem"></i> Altın</button>
+            <button class="menu-btn" onclick="setCat('currency', this)"><i class="fas fa-money-bill"></i> Döviz</button>
+            <button class="menu-btn" onclick="setCat('crypto', this)"><i class="fab fa-bitcoin"></i> Kripto</button>
             <button class="menu-btn" onclick="setCat('commodity', this)"><i class="fas fa-boxes-stacked"></i>
                 Emtia</button>
-            <button class="menu-btn" onclick="setCat('currency', this)"><i class="fas fa-money-bill"></i> Döviz
-                Kurları</button>
-            <button class="menu-btn" onclick="setCat('crypto', this)"><i class="fab fa-bitcoin"></i> Kripto
-                Para</button>
-            <button class="menu-btn" onclick="setCat('stock', this)"><i class="fas fa-chart-line"></i> Hisse
-                Senetleri</button>
+
         </aside>
 
         <main>
@@ -618,12 +615,7 @@
             98000, 96000, 95000, 97000, 99000, 102000, 103000 // Bull run
         ];
 
-        // 4. STOCK TREND (Ref: BIST100) - Volatile rise
-        const STOCK_TREND = [
-            8000, 8200, 8500, 8800, 9000, 9200, 9100, 9000, 8900, 9100, 9300, 9500, 9800, 10000, 10200, 10500, 10800, 11000,
-            10800, 10600, 10500, 10400, 10200, 10300, 10500, 10700, 10900, 11100, 11200, 11100, 11000, 10900, 10800, 10700,
-            10500, 10300, 10000, 9800, 9500, 9200, 9400, 9600, 9800, 9900, 10000, 10200, 10300, 10500 // Recent recovery
-        ];
+
 
 
         let market = [];
@@ -729,10 +721,6 @@
                 else if (val.type === 'currency') {
                     displayType = 'currency';
                 }
-                // 4. Hisse (Stock)
-                else if (val.type === 'stock' || key.startsWith('hisse-')) {
-                    displayType = 'stock';
-                }
                 // 5. Kripto
                 else if (val.type === 'crypto') {
                     displayType = 'crypto';
@@ -759,7 +747,6 @@
             console.log('Commodity:', market.filter(x => x.type === 'commodity').length);
             console.log('Currency:', market.filter(x => x.type === 'currency').length);
             console.log('Crypto:', market.filter(x => x.type === 'crypto').length);
-            console.log('Stock:', market.filter(x => x.type === 'stock').length); // Added for debug
         }
 
         function parseLocaleNumber(str) {
@@ -905,12 +892,16 @@
             if (i.type.includes('gold') || i.type === 'metal') return 'background:#FFD700; color:#000;';
             if (i.type === 'currency') return 'background:var(--bg-secondary); color:var(--text-primary); border:1px solid var(--border);';
             if (i.type === 'crypto') return 'background:#f7931a; color:#fff;';
-            return 'background:#555;';
+            if (i.type === 'stock') return 'background:#1a56db; color:#fff; font-size:10px; font-weight:800;';
+            if (i.type === 'commodity') return 'background:#0e9f6e; color:#fff; font-size:11px;';
+            return 'background:#555; color:#fff;';
         }
         function getIconContent(i) {
             if (i.type.includes('gold') || i.type === 'metal') return (i.name || '').charAt(0).toUpperCase();
-            if (i.type === 'currency') return i.code === 'USD' ? '$' : (i.code === 'EUR' ? '€' : i.code.charAt(0));
+            if (i.type === 'currency') return i.code === 'USD' ? '$' : (i.code === 'EUR' ? '€' : (i.code === 'GBP' ? '£' : i.code.charAt(0)));
             if (i.type === 'crypto') return i.code.charAt(0);
+            if (i.type === 'stock') return (i.code || '').substring(0, 3);
+            if (i.type === 'commodity') return (i.code || '').substring(0, 2);
             return '?';
         }
 
@@ -939,17 +930,8 @@
                 card.onclick = () => openModal(item);
                 const up = item.change >= 0;
                 let iconHTML = '', style = '';
-                if (item.type === 'stock') {
-                    // Logolar için daha güvenli yapı (Resim yoksa harf göster)
-                    iconHTML = `<div class="stock-logo-container">
-                <img src="${item.logo}" style="width:100%; height:100%; object-fit:contain;" 
-                onerror="handleImageError(this, '${item.code}')">
-            </div>`;
-                    style = 'background:transparent; padding:0;';
-                } else {
-                    style = getIconStyle(item);
-                    iconHTML = getIconContent(item);
-                }
+                style = getIconStyle(item);
+                iconHTML = getIconContent(item);
                 let isUsd = (item.type === 'gold-ons');
                 let currencySym = isUsd ? '$' : '₺';
 
@@ -1004,13 +986,8 @@
             document.getElementById('mChange').innerHTML = `<span style="color:${up ? 'var(--accent-green)' : 'var(--accent-red)'}">%${chg.toFixed(2)}</span>`;
 
             const iconBox = document.getElementById('mIcon');
-            if (item.type === 'stock') {
-                iconBox.style = 'background:#fff;';
-                iconBox.innerHTML = `<img src="${item.logo}" onerror="this.src='https://via.placeholder.com/64'">`;
-            } else {
-                iconBox.style = getIconStyle(item);
-                iconBox.innerHTML = getIconContent(item);
-            }
+            iconBox.style = getIconStyle(item);
+            iconBox.innerHTML = getIconContent(item);
             updateChart('1Y', document.querySelectorAll('.tf-btn')[3]);
         }
         function closeModal() { document.getElementById('detailModal').classList.remove('active'); if (chartInstance) chartInstance.destroy(); }
@@ -1136,84 +1113,8 @@
                 debugLog('OK Truncgil (Alt\u0131n/Emtia): y\u00fcklendi');
             } catch (e) { debugLog('ERR Truncgil Hatas\u0131: ' + e.message); }
 
-            // ========================
-            // B. GENELPARA -- Döviz, Emtia, Hisse
-            // ========================
-            const gpBase = 'https://api.genelpara.com/json/';
+            // (GenelPara Removed)
 
-            // B1. Döviz (Currency)
-            try {
-                const res = await fetch(gpBase + '?list=doviz&sembol=all');
-                const data = await res.json();
-                Object.keys(data).forEach(sym => {
-                    const row = data[sym];
-                    const val = parseNum(row.satis);
-                    const buyVal = parseNum(row.alis);
-                    const change = parseNum(row.yuzde);
-                    if (isNaN(val) || val <= 0) return;
-                    const history = globalCatalog[sym]?.history || [];
-                    const currNames = {
-                        'USD': 'ABD Dolar\u0131', 'EUR': 'Euro', 'GBP': '\u0130ngiliz Sterlini',
-                        'JPY': 'Japon Yeni', 'CHF': '\u0130svi\u00e7re Frang\u0131', 'CAD': 'Kanada Dolar\u0131',
-                        'AUD': 'Avustralya Dolar\u0131', 'SAR': 'Suudi Riyali', 'RUB': 'Rus Rublesi',
-                        'KWD': 'Kuveyt Dinar\u0131', 'AZN': 'Azerbaycan Manat\u0131', 'BGN': 'Bulgar Levas\u0131'
-                    };
-                    globalCatalog[sym] = {
-                        ...globalCatalog[sym],
-                        id: sym, name: currNames[sym] || globalCatalog[sym]?.name || sym,
-                        code: sym, type: 'currency', history,
-                        current: val, selling: val,
-                        buying: buyVal > 0 ? buyVal : val * 0.99,
-                        change
-                    };
-                    if (sym === 'USD') usdTry = val;
-                });
-                debugLog('OK GenelPara D\u00f6viz: ' + Object.keys(data).length + ' veri');
-            } catch (e) { debugLog('WARN GenelPara D\u00f6viz Hatas\u0131: ' + e.message); }
-
-            // B2. Emtia (Commodities not from Truncgil)
-            try {
-                const res = await fetch(gpBase + '?list=emtia&sembol=all');
-                const data = await res.json();
-                Object.keys(data).forEach(sym => {
-                    const row = data[sym];
-                    const val = parseNum(row.satis);
-                    const change = parseNum(row.yuzde);
-                    if (isNaN(val) || val <= 0) return;
-                    const sl = sym.toLowerCase();
-                    if (sl.includes('altin') || sl.includes('gumus') || sl === 'xau' || sl === 'xag') return;
-                    const key = 'emtia-' + sl;
-                    const history = globalCatalog[key]?.history || [];
-                    globalCatalog[key] = {
-                        ...globalCatalog[key],
-                        id: key, name: globalCatalog[key]?.name || sym,
-                        code: sym, type: 'commodity', history,
-                        current: val, selling: val, buying: val * 0.99, change
-                    };
-                });
-                debugLog('OK GenelPara Emtia: ' + Object.keys(data).length + ' veri');
-            } catch (e) { debugLog('WARN GenelPara Emtia Hatas\u0131: ' + e.message); }
-
-            // B3. Hisse (BIST Stocks)
-            try {
-                const res = await fetch(gpBase + '?list=hisse&sembol=all');
-                const data = await res.json();
-                Object.keys(data).forEach(sym => {
-                    const row = data[sym];
-                    const val = parseNum(row.satis || row.son || row.kapanis);
-                    const change = parseNum(row.yuzde);
-                    if (isNaN(val) || val <= 0) return;
-                    const key = 'hisse-' + sym.toLowerCase();
-                    const history = globalCatalog[key]?.history || [];
-                    globalCatalog[key] = {
-                        ...globalCatalog[key],
-                        id: key, name: globalCatalog[key]?.name || sym,
-                        code: sym, type: 'stock', history,
-                        current: val, selling: val, buying: val, change
-                    };
-                });
-                debugLog('OK GenelPara Hisse: ' + Object.keys(data).length + ' veri');
-            } catch (e) { debugLog('WARN GenelPara Hisse Hatas\u0131: ' + e.message); }
 
             // ========================
             // C. BINANCE -- Crypto only
