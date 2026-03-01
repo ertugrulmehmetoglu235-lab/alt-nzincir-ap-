@@ -1,26 +1,31 @@
 /**
- * fetch_initial_history.js
- * ─────────────────────────────────────────────────────────────────
- * TEK SEFERLİK tarihçe yükleme scripti.
+ * fetch_initial_history.js — TEK SEFERLİK tarihsel veri yükleme
+ * ──────────────────────────────────────────────────────────────────
  * Çalıştır: node API_DOSYALARI/fetch_initial_history.js
  *
- * Kaynaklar:
- *   Altın       → Altın.in (deneme) + Yahoo Finance (GC=F → TRY) fallback
+ * Kaynak Hiyerarşisi:
+ *   Altın       → Yahoo Finance GC=F × TRY=X / 31.1035 → Truncgil'e kalibre et
  *   Döviz       → Yahoo Finance (TRY pariteleri)
  *   Kripto      → Binance (klines, 5y)
- *   Hisse/Emtia → Yahoo Finance (.IS ve vadeli işlem sembolleri)
- * ─────────────────────────────────────────────────────────────────
+ *   Emtia       → Yahoo Finance (vadeli fiyatlar, USD→TRY)
+ *
+ * Kalibrasyon Mantığı:
+ *   Truncgil'den bugünkü gram altın fiyatını al.
+ *   Yahoo Finance formülünden bugünkü gram altın fiyatını hesapla.
+ *   Oran = Truncgil / Yahoo → tüm geçmiş verilere uygula.
+ *   Bu sayede grafik, gerçek Türkiye piyasa fiyatıyla hizalı olur.
  */
 const fs = require('fs');
 const https = require('https');
 
 const FILE = 'API_DOSYALARI/data.json';
 
-// ── API BASES ─────────────────────────────────────────────────────
+// ── API BASES ─────────────────────────────────────────────────────────────────
 const YAHOO_BASE = 'https://query1.finance.yahoo.com/v8/finance/chart/';
 const BINANCE_BASE = 'https://api.binance.com/api/v3/klines';
+const TRUNCGIL_URL = 'https://finans.truncgil.com/today.json';
 
-// ── HELPERS ──────────────────────────────────────────────────────
+// ── HELPERS ───────────────────────────────────────────────────────────────────
 function fetchRaw(url) {
     return new Promise((resolve) => {
         const req = https.get(url, {
@@ -45,6 +50,15 @@ async function fetchJson(url) {
     const raw = await fetchRaw(url);
     if (!raw || raw.trimStart().startsWith('<')) return null;
     try { return JSON.parse(raw); } catch (e) { return null; }
+}
+
+function parseTR(val) {
+    if (val == null) return NaN;
+    const s = String(val).replace(/[\s$€£¥]/g, '').replace(/TL/gi, '').trim();
+    if (s === '' || s === '-') return NaN;
+    if (s.includes(',') && s.includes('.')) return parseFloat(s.replace(/\./g, '').replace(',', '.'));
+    if (s.includes(',')) return parseFloat(s.replace(',', '.'));
+    return parseFloat(s);
 }
 
 async function getYahooHistory(symbol, range = '5y', interval = '1d') {
@@ -80,42 +94,7 @@ function seedIfMissing(data, key, name, code, type) {
     if (!data[key]) data[key] = { name, code, type, history: [], current: 0, selling: 0, buying: 0, change: 0 };
 }
 
-// ── ALTIN.IN GOLD HISTORY ─────────────────────────────────────────
-// Altın.in provides historical gram altın in TRY, which is more accurate than XAU→TRY conversion
-async function getAltinInHistory() {
-    // Try various known endpoints
-    const endpoints = [
-        'https://data.altin.in/json/altin-fiyatlari',
-        'https://altin.in/api/historical',
-        'https://altin.in/json/history',
-        'https://api.altin.in/historical/gram-altin'
-    ];
-    for (const url of endpoints) {
-        console.log(`  Deneniyor: ${url}`);
-        const data = await fetchJson(url);
-        if (data) {
-            console.log(`  ✅ Altın.in verisi alındı: ${url}`);
-            return data;
-        }
-    }
-    // Try HTML page and look for embedded JSON
-    const html = await fetchRaw('https://altin.in');
-    if (html) {
-        // Look for JSON data embedded in script tags
-        const match = html.match(/gramAltin['":\s]+(\[[\d.,\s]+\])/);
-        if (match) {
-            try {
-                const arr = JSON.parse(match[1]);
-                console.log(`  ✅ Altın.in HTML'den ${arr.length} veri noktası alındı`);
-                return { type: 'raw_array', data: arr };
-            } catch (e) { }
-        }
-    }
-    console.log('  ⚠️ Altın.in erişilemedi, Yahoo Finance fallback kullanılıyor');
-    return null;
-}
-
-// ── CURRENCY MAP ─────────────────────────────────────────────────
+// ── CURRENCY MAP ──────────────────────────────────────────────────────────────
 const CURRENCY_MAP = {
     'USD': { yahoo: 'TRY=X', name: 'ABD Doları', code: 'USD' },
     'EUR': { yahoo: 'EURTRY=X', name: 'Euro', code: 'EUR' },
@@ -131,31 +110,7 @@ const CURRENCY_MAP = {
     'DKK': { yahoo: 'DKKTRY=X', name: 'Danimarka Kronu', code: 'DKK' },
 };
 
-// ── BIST HISSE MAP ────────────────────────────────────────────────
-const HISSE_MAP = {
-    'hisse-thyao': { yahoo: 'THYAO.IS', name: 'Türk Hava Yolları', code: 'THYAO' },
-    'hisse-akbnk': { yahoo: 'AKBNK.IS', name: 'Akbank', code: 'AKBNK' },
-    'hisse-garan': { yahoo: 'GARAN.IS', name: 'Garanti BBVA', code: 'GARAN' },
-    'hisse-isctr': { yahoo: 'ISCTR.IS', name: 'İş Bankası C', code: 'ISCTR' },
-    'hisse-ykbnk': { yahoo: 'YKBNK.IS', name: 'Yapı Kredi', code: 'YKBNK' },
-    'hisse-kchol': { yahoo: 'KCHOL.IS', name: 'Koç Holding', code: 'KCHOL' },
-    'hisse-sahol': { yahoo: 'SAHOL.IS', name: 'Sabancı Holding', code: 'SAHOL' },
-    'hisse-sise': { yahoo: 'SISE.IS', name: 'Şişe Cam', code: 'SISE' },
-    'hisse-eregl': { yahoo: 'EREGL.IS', name: 'Ereğli Demir Çelik', code: 'EREGL' },
-    'hisse-bimas': { yahoo: 'BIMAS.IS', name: 'BİM Mağazaları', code: 'BIMAS' },
-    'hisse-toaso': { yahoo: 'TOASO.IS', name: 'Tofaş Oto', code: 'TOASO' },
-    'hisse-froto': { yahoo: 'FROTO.IS', name: 'Ford Otosan', code: 'FROTO' },
-    'hisse-asels': { yahoo: 'ASELS.IS', name: 'Aselsan', code: 'ASELS' },
-    'hisse-tuprs': { yahoo: 'TUPRS.IS', name: 'Tüpraş', code: 'TUPRS' },
-    'hisse-arclk': { yahoo: 'ARCLK.IS', name: 'Arçelik', code: 'ARCLK' },
-    'hisse-pgsus': { yahoo: 'PGSUS.IS', name: 'Pegasus Havayolları', code: 'PGSUS' },
-    'hisse-kozal': { yahoo: 'KOZAL.IS', name: 'Koza Altın', code: 'KOZAL' },
-    'hisse-enkai': { yahoo: 'ENKAI.IS', name: 'Enka İnşaat', code: 'ENKAI' },
-    'hisse-tkfen': { yahoo: 'TKFEN.IS', name: 'Tekfen Holding', code: 'TKFEN' },
-    'hisse-alark': { yahoo: 'ALARK.IS', name: 'Alarko Holding', code: 'ALARK' },
-};
-
-// ── EMTIA MAP (USD traded) ────────────────────────────────────────
+// ── EMTİA MAP ─────────────────────────────────────────────────────────────────
 const EMTIA_MAP = {
     'emtia-cl': { yahoo: 'CL=F', name: 'Ham Petrol (WTI)', code: 'CL' },
     'emtia-bz': { yahoo: 'BZ=F', name: 'Brent Petrol', code: 'BZ' },
@@ -166,7 +121,7 @@ const EMTIA_MAP = {
     'emtia-co': { yahoo: 'CC=F', name: 'Kakao', code: 'CO' },
 };
 
-// ── KRIPTO LIST ───────────────────────────────────────────────────
+// ── KRİPTO LİST ──────────────────────────────────────────────────────────────
 const CRYPTO_LIST = [
     { key: 'btc', name: 'Bitcoin', code: 'BTC' },
     { key: 'eth', name: 'Ethereum', code: 'ETH' },
@@ -180,129 +135,136 @@ const CRYPTO_LIST = [
     { key: 'ltc', name: 'Litecoin', code: 'LTC' },
 ];
 
-// ── MAIN ─────────────────────────────────────────────────────────
+// ── ALTIN ÇEKİRDEK MAP (gram altına göre çarpanlar) ─────────────────────────
+const GOLD_SEEDS = {
+    'gram-altin': { name: 'Gram Altın', code: 'GRAM', multiplier: 1.000 },
+    'ons': { name: 'Ons Altın', code: 'ONS', multiplier: 31.1035 },
+    'ceyrek-altin': { name: 'Çeyrek Altın', code: 'CEYREK', multiplier: 1.702 },
+    'yarim-altin': { name: 'Yarım Altın', code: 'YARIM', multiplier: 3.403 },
+    'tam-altin': { name: 'Tam Altın', code: 'TAM', multiplier: 6.787 },
+    'cumhuriyet-altini': { name: 'Cumhuriyet Altını', code: 'CUMHUR', multiplier: 7.002 },
+    'ata-altin': { name: 'Ata Altın', code: 'ATAALT', multiplier: 7.037 },
+    'resat-altin': { name: 'Reşat Altın', code: 'RESAT', multiplier: 7.037 },
+    'hamit-altin': { name: 'Hamit Altın', code: 'HAMIT', multiplier: 7.037 },
+    'besli-altin': { name: 'Beşli Altın', code: 'BESLI', multiplier: 34.35 },
+    'gremse-altin': { name: 'Gremse Altın', code: 'GREMSE', multiplier: 17.02 },
+    'ikibucuk-altin': { name: 'İkibuçuk Altın', code: 'IKIBUC', multiplier: 16.90 },
+    'gram-has-altin': { name: 'Gram Has Altın', code: 'HAS', multiplier: 0.995 },
+    '14-ayar-altin': { name: '14 Ayar Altın', code: '14AYAR', multiplier: 0.583 },
+    '18-ayar-altin': { name: '18 Ayar Altın', code: '18AYAR', multiplier: 0.750 },
+    '22-ayar-bilezik': { name: '22 Ayar Bilezik', code: '22AYAR', multiplier: 0.916 },
+};
+
+// ── MAIN ──────────────────────────────────────────────────────────────────────
 async function run() {
     let data = {};
     try {
         data = JSON.parse(fs.readFileSync(FILE, 'utf8'));
         console.log(`✅ Mevcut data.json yüklendi (${Object.keys(data).length} varlık)\n`);
     } catch (e) {
-        console.log('data.json bulunamadı, yeniden oluşturuluyor...\n');
+        console.log('data.json bulunamadı, sıfırdan oluşturuluyor...\n');
         data = {};
     }
 
-    // ── 1. BASE: USD/TRY for scaling ─────────────────────────────
-    console.log('=== [1] USD/TRY Tarihçesi ===');
+    // ── [1] USD/TRY BAZI ─────────────────────────────────────────────────────
+    console.log('=== [1] USD/TRY Tarihçesi (Yahoo Finance) ===');
     const usdTryHistory = await getYahooHistory('TRY=X');
     const lastUsdTry = usdTryHistory[usdTryHistory.length - 1] || 36;
     console.log(`USD/TRY: ${usdTryHistory.length} veri noktası | Son: ${lastUsdTry}`);
 
-    // ── 2. ALTIN (Altın.in → fallback Yahoo Finance) ──────────────
-    console.log('\n=== [2] Altın Tarihçesi ===');
-    console.log('Altın.in deneniyor...');
-    const altinInData = await getAltinInHistory();
+    // ── [2] TRUNCGIL KALİBRASYON DEĞERI ─────────────────────────────────────
+    console.log('\n=== [2] Truncgil Kalibrasyon Fiyatı ===');
+    const tData = await fetchJson(TRUNCGIL_URL);
+    let truncgilGramAltin = null;
+    if (tData && tData['gram-altin']) {
+        const row = tData['gram-altin'];
+        const satisKey = Object.keys(row).find(k => k.toLowerCase().includes('sat'));
+        const val = parseTR(satisKey ? row[satisKey] : null);
+        if (!isNaN(val) && val > 0) {
+            truncgilGramAltin = val;
+            console.log(`  Truncgil Gram Altın (bugün): ₺${truncgilGramAltin}`);
+        }
+    }
+
+    // ── [3] ALTIN TARİHÇESİ (Yahoo GC=F × TRY=X → kalibre) ─────────────────
+    console.log('\n=== [3] Altın Tarihçesi (Yahoo Finance + Truncgil Kalibrasyon) ===');
+    const xauHistory = await getYahooHistory('GC=F');
     let gramAltinHistory = [];
 
-    if (altinInData) {
-        // Parse Altın.in response (structure depends on their API)
-        if (altinInData.type === 'raw_array') {
-            gramAltinHistory = altinInData.data;
-        } else if (Array.isArray(altinInData)) {
-            gramAltinHistory = altinInData.map(d => typeof d === 'object' ? (d.price || d.kapanis || d.value) : d).filter(Boolean);
-        } else if (altinInData.data) {
-            gramAltinHistory = Array.isArray(altinInData.data) ? altinInData.data : [];
+    if (xauHistory.length > 0 && usdTryHistory.length > 0) {
+        const len = Math.min(xauHistory.length, usdTryHistory.length);
+        // Ham formula: XAU_USD × USD_TRY / 31.1035
+        const rawHistory = xauHistory.slice(-len).map((xau, i) =>
+            parseFloat(((xau * usdTryHistory.slice(-len)[i]) / 31.1035).toFixed(2))
+        );
+
+        // Kalibrasyon: Truncgil fiyatına göre ölçekle
+        const lastRaw = rawHistory[rawHistory.length - 1];
+        let calibrationRatio = 1.0;
+        if (truncgilGramAltin && lastRaw && lastRaw > 0) {
+            calibrationRatio = truncgilGramAltin / lastRaw;
+            console.log(`  Ham (Yahoo formül) son değer: ₺${lastRaw}`);
+            console.log(`  Truncgil gerçek değer: ₺${truncgilGramAltin}`);
+            console.log(`  Kalibrasyon oranı: ${calibrationRatio.toFixed(4)}x`);
+        } else {
+            console.log('  ⚠️ Truncgil verisi alınamadı, kalibrasyon uygulanmıyor (oran: 1.0)');
         }
+
+        gramAltinHistory = rawHistory.map(v => parseFloat((v * calibrationRatio).toFixed(2)));
+        console.log(`  Kalibre edilmiş gram altın geçmişi: ${gramAltinHistory.length} veri noktası`);
+        console.log(`  İlk: ₺${gramAltinHistory[0]} | Son: ₺${gramAltinHistory[gramAltinHistory.length - 1]}`);
+    } else {
+        console.warn('  ⚠️ XAU veya USD/TRY verisi alınamadı!');
     }
 
-    // Fallback: Yahoo Finance GC=F × USD/TRY / 31.1035
-    if (gramAltinHistory.length < 100) {
-        console.log('Altın.in yeterli veri yok, Yahoo Finance kullanılıyor...');
-        const xauHistory = await getYahooHistory('GC=F');
-        if (xauHistory.length > 0 && usdTryHistory.length > 0) {
-            const len = Math.min(xauHistory.length, usdTryHistory.length);
-            gramAltinHistory = xauHistory.slice(-len).map((xau, i) =>
-                parseFloat(((xau * usdTryHistory.slice(-len)[i]) / 31.1035).toFixed(2))
-            );
-            console.log(`Yahoo GC=F: ${gramAltinHistory.length} veri noktası`);
-        }
-    }
-
-    // Seed gold items
-    const goldSeeds = {
-        'gram-altin': { name: 'Gram Altın', code: 'GRAM', multiplier: 1.000 },
-        'ons': { name: 'Ons Altın', code: 'ONS', multiplier: 31.1035, usd: true },
-        'ceyrek-altin': { name: 'Çeyrek Altın', code: 'CEYREK', multiplier: 1.702 },
-        'yarim-altin': { name: 'Yarım Altın', code: 'YARIM', multiplier: 3.403 },
-        'tam-altin': { name: 'Tam Altın', code: 'TAM', multiplier: 6.787 },
-        'cumhuriyet-altini': { name: 'Cumhuriyet Altını', code: 'CUMHUR', multiplier: 7.002 },
-        'ata-altin': { name: 'Ata Altın', code: 'ATAALT', multiplier: 7.037 },
-        'resat-altin': { name: 'Reşat Altın', code: 'RESAT', multiplier: 7.037 },
-        'hamit-altin': { name: 'Hamit Altın', code: 'HAMIT', multiplier: 7.037 },
-        'besli-altin': { name: 'Beşli Altın', code: 'BESLI', multiplier: 34.35 },
-        'gremse-altin': { name: 'Gremse Altın', code: 'GREMSE', multiplier: 17.02 },
-        'ikibucuk-altin': { name: 'İkibuçuk Altın', code: 'IKIBUC', multiplier: 16.90 },
-        'gram-has-altin': { name: 'Gram Has Altın', code: 'HAS', multiplier: 0.995 },
-        '14-ayar-altin': { name: '14 Ayar Altın', code: '14AYAR', multiplier: 0.583 },
-        '18-ayar-altin': { name: '18 Ayar Altın', code: '18AYAR', multiplier: 0.750 },
-        '22-ayar-bilezik': { name: '22 Ayar Bilezik', code: '22AYAR', multiplier: 0.916 },
-    };
-
-    Object.entries(goldSeeds).forEach(([key, seed]) => {
+    // Gram altın tarihçesini tüm altın varlıkları için hesapla
+    Object.entries(GOLD_SEEDS).forEach(([key, seed]) => {
         seedIfMissing(data, key, seed.name, seed.code, 'gold');
+        data[key].name = seed.name;
+        data[key].code = seed.code;
         if (gramAltinHistory.length > 0) {
             data[key].history = gramAltinHistory.map(g => parseFloat((g * seed.multiplier).toFixed(2)));
             const last = data[key].history[data[key].history.length - 1];
-            data[key].current = last; data[key].selling = last;
+            data[key].current = last;
+            data[key].selling = last;
         }
-        console.log(`  ${key}: ${data[key].history.length} veri noktası`);
+        console.log(`  ${key}: ${data[key].history.length} nokta | Son: ₺${data[key].history[data[key].history.length - 1]}`);
     });
 
-    // Gümüş ve platin ayrı Yahoo'dan
+    // Gümüş ve platin (USD → TRY, gram bazlı)
+    console.log('\n  [Gümüş / Platin]');
     const gumusUsd = await getYahooHistory('SI=F');
     const platinUsd = await getYahooHistory('PL=F');
-    ['gumus', 'gram-platin', 'gram-paladyum'].forEach(k => seedIfMissing(data, k, k, k.toUpperCase(), 'commodity'));
+    ['gumus', 'gram-platin', 'gram-paladyum'].forEach(k =>
+        seedIfMissing(data, k, k, k.toUpperCase(), 'commodity')
+    );
     if (gumusUsd.length > 0) {
         data['gumus'].history = scaleToTRY(gumusUsd, usdTryHistory).map(v => parseFloat((v / 32.1507).toFixed(2)));
-        console.log(`  gumus: ${data['gumus'].history.length} veri noktası`);
+        console.log(`  gumus: ${data['gumus'].history.length} nokta`);
     }
     if (platinUsd.length > 0) {
         data['gram-platin'].history = scaleToTRY(platinUsd, usdTryHistory).map(v => parseFloat((v / 32.1507).toFixed(2)));
-        console.log(`  gram-platin: ${data['gram-platin'].history.length} veri noktası`);
+        console.log(`  gram-platin: ${data['gram-platin'].history.length} nokta`);
     }
 
-    // ── 3. DÖVİZ (Yahoo Finance) ──────────────────────────────────
-    console.log('\n=== [3] Döviz Tarihçesi (Yahoo Finance) ===');
+    // ── [4] DÖVİZ TARİHÇESİ ─────────────────────────────────────────────────
+    console.log('\n=== [4] Döviz Tarihçesi (Yahoo Finance) ===');
     for (const [sym, info] of Object.entries(CURRENCY_MAP)) {
         seedIfMissing(data, sym, info.name, info.code, 'currency');
         const hist = await getYahooHistory(info.yahoo);
         if (hist.length > 0) {
             data[sym].history = hist;
             const last = hist[hist.length - 1];
-            data[sym].current = last; data[sym].selling = last;
-            if (sym === 'USD') { /* usdTry already set */ }
-            console.log(`  ${sym}: ${hist.length} veri noktası | Son: ${last}`);
+            data[sym].current = last;
+            data[sym].selling = last;
+            console.log(`  ${sym}: ${hist.length} nokta | Son: ${last}`);
         } else {
             console.log(`  ${sym}: ⚠️ Veri alınamadı`);
         }
     }
 
-    // ── 4. HİSSE (Yahoo Finance .IS) ──────────────────────────────
-    console.log('\n=== [4] Hisse Tarihçesi (Yahoo Finance) ===');
-    for (const [key, info] of Object.entries(HISSE_MAP)) {
-        seedIfMissing(data, key, info.name, info.code, 'stock');
-        const hist = await getYahooHistory(info.yahoo);
-        if (hist.length > 0) {
-            data[key].history = hist;
-            const last = hist[hist.length - 1];
-            data[key].current = last; data[key].selling = last; data[key].buying = last;
-            console.log(`  ${key}: ${hist.length} veri noktası | Son: ${last}`);
-        } else {
-            console.log(`  ${key}: ⚠️ Veri alınamadı`);
-        }
-    }
-
-    // ── 5. EMTİA (Yahoo Finance, USD → TRY) ──────────────────────
-    console.log('\n=== [5] Emtia Tarihçesi (Yahoo Finance) ===');
+    // ── [5] EMTİA TARİHÇESİ ─────────────────────────────────────────────────
+    console.log('\n=== [5] Emtia Tarihçesi (Yahoo Finance, USD→TRY) ===');
     for (const [key, info] of Object.entries(EMTIA_MAP)) {
         seedIfMissing(data, key, info.name, info.code, 'commodity');
         const histUsd = await getYahooHistory(info.yahoo);
@@ -310,14 +272,15 @@ async function run() {
             const histTry = scaleToTRY(histUsd, usdTryHistory);
             data[key].history = histTry;
             const last = histTry[histTry.length - 1];
-            data[key].current = last; data[key].selling = last;
-            console.log(`  ${key}: ${histTry.length} veri noktası | Son: ₺${last}`);
+            data[key].current = last;
+            data[key].selling = last;
+            console.log(`  ${key}: ${histTry.length} nokta | Son: ₺${last}`);
         } else {
             console.log(`  ${key}: ⚠️ Veri alınamadı`);
         }
     }
 
-    // ── 6. KRİPTO (Binance klines) ────────────────────────────────
+    // ── [6] KRİPTO TARİHÇESİ ────────────────────────────────────────────────
     console.log('\n=== [6] Kripto Tarihçesi (Binance) ===');
     for (const crypto of CRYPTO_LIST) {
         const key = crypto.key;
@@ -327,14 +290,15 @@ async function run() {
             const histTry = scaleToTRY(histUsdt, usdTryHistory);
             data[key].history = histTry.map(v => parseFloat(v.toFixed(2)));
             const last = data[key].history[data[key].history.length - 1];
-            data[key].current = last; data[key].selling = last;
-            console.log(`  ${key}: ${histTry.length} veri noktası | Son: ₺${last}`);
+            data[key].current = last;
+            data[key].selling = last;
+            console.log(`  ${key}: ${histTry.length} nokta | Son: ₺${last}`);
         } else {
             console.log(`  ${key}: ⚠️ Veri alınamadı`);
         }
     }
 
-    // ── SAVE ─────────────────────────────────────────────────────
+    // ── KAYDET ────────────────────────────────────────────────────────────────
     fs.writeFileSync(FILE, JSON.stringify(data, null, 2), 'utf8');
     console.log(`\n✅ TAMAMLANDI! data.json kaydedildi (${Object.keys(data).length} varlık)`);
     console.log('Artık günlük güncellemeler için fetch_real_history.js çalışacak.');
