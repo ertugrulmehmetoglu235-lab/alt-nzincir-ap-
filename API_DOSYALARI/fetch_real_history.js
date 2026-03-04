@@ -117,7 +117,7 @@ function seedIfMissing(data, key, name, code, type) {
 // ── TRUNCGIL KEY MAP ──────────────────────────────────────────────────────────
 const TRUNCGIL_MAP = {
     'gram-altin': { key: 'gram-altin', name: 'Gram Altın', code: 'GRAM', type: 'gold', gramMultiplier: 1.000 },
-    'ons': { key: 'ons', name: 'Ons Altın', code: 'ONS', type: 'gold', gramMultiplier: 31.1035 },
+    'ons': { key: 'ons', name: 'Ons Altın', code: 'ONS', type: 'gold', gramMultiplier: 31.1035, isUSD: true },
     'ceyrek-altin': { key: 'ceyrek-altin', name: 'Çeyrek Altın', code: 'CEYREK', type: 'gold', gramMultiplier: 1.702 },
     'yarim-altin': { key: 'yarim-altin', name: 'Yarım Altın', code: 'YARIM', type: 'gold', gramMultiplier: 3.403 },
     'tam-altin': { key: 'tam-altin', name: 'Tam Altın', code: 'TAM', type: 'gold', gramMultiplier: 6.787 },
@@ -185,6 +185,15 @@ async function run() {
     // ── A. ALTIN (Truncgil — birincil) ────────────────────────────────────────
     console.log('\n=== A. Altın (Truncgil + Yahoo çapraz doğrulama) ===');
     const tData = await fetchJson(TRUNCGIL_URL);
+
+    // USD/TRY'yi erken al — ons fiyatı USD cinsinden geldiğinden önce gerekiyor
+    let usdTryEarly = data['USD']?.current || 36;
+    if (tData?.['USD']) {
+        const usdSatis = parseTR(tData['USD']['Satış'] || tData['USD']['Satis']);
+        if (!isNaN(usdSatis) && usdSatis > 0) usdTryEarly = usdSatis;
+    }
+    console.log(`  USD/TRY (erken): ${usdTryEarly}`);
+
     if (tData) {
         let goldCount = 0;
         Object.entries(TRUNCGIL_MAP).forEach(([tKey, info]) => {
@@ -193,10 +202,15 @@ async function run() {
             const satisKey = Object.keys(row).find(k => k.toLowerCase().includes('sat'));
             const alisKey = Object.keys(row).find(k => k.toLowerCase().includes('al') && !k.toLowerCase().includes('sat'));
             const degKey = Object.keys(row).find(k => k.toLowerCase().includes('değ') || k.toLowerCase().includes('deg'));
-            const satis = parseTR(satisKey ? row[satisKey] : row['Satis']);
+            let satis = parseTR(satisKey ? row[satisKey] : row['Satis']);
             const alis = parseTR(alisKey ? row[alisKey] : row['Alis']);
             const change = parseTR(String(degKey ? row[degKey] : 0).replace('%', ''));
             if (isNaN(satis) || satis <= 0) return;
+
+            // Ons Truncgil'den USD cinsinden geliyor → TRY'ye çevir
+            if (info.isUSD) {
+                satis = parseFloat((satis * usdTryEarly).toFixed(2));
+            }
 
             seedIfMissing(data, info.key, info.name, info.code, info.type);
             data[info.key].name = info.name;
