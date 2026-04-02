@@ -1,0 +1,38 @@
+name: Tarihsel Veri Rollup (1 saat)
+
+on:
+  schedule:
+    # Her saatin başında çalışır
+    - cron: '0 * * * *'
+  workflow_dispatch:
+
+jobs:
+  build-history:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Kodu Al
+        uses: actions/checkout@v4
+        with:
+          # Son commit'i al — prices workflow'u az önce güncellemiş olabilir
+          fetch-depth: 1
+          ref: main
+
+      - name: Node.js Kur
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: History Rollup'ı Çalıştır
+        run: node scripts/build_history.js
+
+      - name: Değişikliği Commit & Push Et
+        run: |
+          git config --global user.name  "AltinZincir-Bot"
+          git config --global user.email "bot@altinzincir.app"
+          git add data/history.json
+          git diff --cached --quiet && echo "History değişikliği yok" && exit 0
+          git commit -m "tarih: $(date -u '+%Y-%m-%d %H:00 UTC')"
+          git push

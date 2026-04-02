@@ -1,0 +1,34 @@
+name: Canlı Fiyat Güncellemesi (5 dk)
+
+on:
+  schedule:
+    # Her 5 dakikada bir — GitHub'ın minimum desteklediği aralık
+    - cron: '*/5 * * * *'
+  workflow_dispatch: # Manuel tetikleme butonu
+
+jobs:
+  fetch-prices:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Kodu Al
+        uses: actions/checkout@v4
+
+      - name: Node.js Kur
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Anlık Fiyatları Çek
+        run: node scripts/fetch_current.js
+
+      - name: Değişikliği Commit & Push Et
+        run: |
+          git config --global user.name  "AltinZincir-Bot"
+          git config --global user.email "bot@altinzincir.app"
+          git add data/current.json
+          git diff --cached --quiet && echo "Fiyat değişikliği yok" && exit 0
+          git commit -m "fiyat: $(date -u '+%H:%M UTC')"
+          git push

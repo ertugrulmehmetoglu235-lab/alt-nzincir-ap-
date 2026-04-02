@@ -622,8 +622,9 @@
         let curCat = 'all';
         let favs = JSON.parse(localStorage.getItem('favs') || '[]');
         let selectedItem = null;
-        const TRUNCGIL_URL = 'https://finans.truncgil.com/today.json';
-        const BINANCE_URL = 'https://api.binance.com/api/v3/ticker/24hr';
+        const GITHUB_BASE = 'https://ertugrulmehmetoglu235-lab.github.io/alt-nzincir-ap-';
+        const CURRENT_URL = GITHUB_BASE + '/data/current.json';
+        const HISTORY_URL = GITHUB_BASE + '/data/history.json';
         let chartInstance = null;
 
         let _appInitialized = false;
@@ -654,37 +655,32 @@
         }
 
         async function initApp() {
-            const CATALOG_URL = 'https://ertugrulmehmetoglu235-lab.github.io/alt-nzincir-ap-/data.json';
-
             debugLog("🚀 AltınZincir v3.0 Başlatılıyor...");
 
-            // 1. FETCH HISTORY from GitHub (chart data only — prices come from Truncgil)
+            // 1. FETCH HISTORY from GitHub (chart data)
             try {
                 debugLog("📊 GitHub Tarihçe Yükleniyor...");
-                const res = await fetch(CATALOG_URL + '?t=' + Date.now());
+                const res = await fetch(HISTORY_URL + '?t=' + Date.now());
                 if (res.ok) {
-                    const ghData = await res.json();
-                    // Only keep name/code/type/history — strip ALL price fields
-                    Object.keys(ghData).forEach(key => {
-                        globalCatalog[key] = {
-                            id: key,
-                            name: ghData[key].name || key,
-                            code: ghData[key].code || key.toUpperCase(),
-                            type: ghData[key].type || 'other',
-                            history: Array.isArray(ghData[key].history) ? ghData[key].history : [],
-                            current: ghData[key].current || 0,
-                            selling: ghData[key].selling || (ghData[key].current || 0),
-                            buying: ghData[key].buying || (ghData[key].current || 0),
-                            change: ghData[key].change || 0
-                        };
+                    const histData = await res.json();
+                    Object.keys(histData).forEach(key => {
+                        if (key === '_meta') return;
+                        const h = histData[key];
+                        // history.json stores arrays — map daily array to [{price}] objects for chart compat
+                        const toObjs = arr => (Array.isArray(arr) ? arr : []).map(p => ({ price: p, date: null }));
+                        if (!globalCatalog[key]) globalCatalog[key] = { id: key };
+                        globalCatalog[key].history  = toObjs(h.daily   || []);
+                        globalCatalog[key].intraday = h.hourly  || [];
+                        globalCatalog[key].monthly  = toObjs(h.monthly || []);
+                        globalCatalog[key].yearly   = toObjs(h.yearly  || []);
                     });
-                    debugLog(`✅ Tarihçe: ${Object.keys(ghData).length} öğe yüklendi`);
+                    debugLog(`✅ Tarihçe yüklendi`);
                 }
             } catch (e) {
-                debugLog(`⚠️ GitHub bağlanamadı: ${e.message}`);
+                debugLog(`⚠️ Tarihçe alınamadı: ${e.message}`);
             }
 
-            // 2. FETCH LIVE PRICES (Truncgil + Binance)
+            // 2. FETCH LIVE PRICES from GitHub
             await fetchLivePrices();
 
             // 3. Start auto-refresh (only once)
@@ -1050,98 +1046,36 @@
         // --- LIVE DATA LOGIC ---
 
         async function fetchLivePrices() {
-            debugLog('LIVE Canlı Veri Güncelleniyor...');
-
-            const parseTR = (s) => parseFloat(String(s).replace(/[$\u20AC TL\s]/g, '').replace(/\./g, '').replace(',', '.'));
-            const parseNum = (s) => parseFloat(String(s).replace(',', '.'));
-
-            // ========================
-            // A. TRUNCGIL -- Altın & Emtia (gümüş/platin/paladyum)
-            // ========================
+            debugLog('LIVE GitHub\'dan Canlı Fiyatlar Çekiliyor...');
             try {
-                const tRes = await fetch(TRUNCGIL_URL + '?t=' + Date.now());
-                const tData = await tRes.json();
+                const res = await fetch(CURRENT_URL + '?t=' + Date.now());
+                if (!res.ok) throw new Error('HTTP ' + res.status);
+                const data = await res.json();
 
-                if (tData['USD']) usdTry = parseTR(tData['USD'].Satis);
-
-                const safeCodeMap = {
-                    'ata-altin': 'ATAALT', 'resat-altin': 'RESAT', 'hamit-altin': 'HAMIT',
-                    'besli-altin': 'BESLI', 'gremse-altin': 'GREMSE', 'gram-has-altin': 'HAS',
-                    'ceyrek-altin': 'CEYREK', 'yarim-altin': 'YARIM', 'tam-altin': 'TAM',
-                    'cumhuriyet-altini': 'CUMHUR', 'ikibucuk-altin': 'IKIBUC',
-                    '14-ayar-altin': '14AYAR', '18-ayar-altin': '18AYAR', '22-ayar-bilezik': '22AYAR',
-                    'gumus': 'GUMUS', 'gram-platin': 'PLATIN', 'gram-paladyum': 'PALADYUM', 'ons': 'ONS'
-                };
-                const nameMap = {
-                    'ata-altin': 'Ata Alt\u0131n', 'resat-altin': 'Re\u015fat Alt\u0131n', 'hamit-altin': 'Hamit Alt\u0131n',
-                    'besli-altin': 'Be\u015fli Alt\u0131n', 'gremse-altin': 'Gremse Alt\u0131n', 'gram-has-altin': 'Gram Has Alt\u0131n',
-                    'gram-platin': 'Gram Platin', 'gram-paladyum': 'Gram Paladyum', 'gumus': 'G\u00fcm\u00fc\u015f',
-                    'ons': 'Ons Alt\u0131n', 'gram-altin': 'Gram Alt\u0131n', 'ceyrek-altin': '\u00c7eyrek Alt\u0131n',
-                    'yarim-altin': 'Yar\u0131m Alt\u0131n', 'tam-altin': 'Tam Alt\u0131n', 'cumhuriyet-altini': 'Cumhuriyet Alt\u0131n\u0131',
-                    '14-ayar-altin': '14 Ayar Alt\u0131n', '18-ayar-altin': '18 Ayar Alt\u0131n',
-                    '22-ayar-bilezik': '22 Ayar Bilezik', 'ikibucuk-altin': '\u0130kibu\u00e7uk Alt\u0131n'
-                };
-
-                Object.keys(tData).forEach(key => {
-                    if (key === 'Update_Date') return;
-                    const row = tData[key];
-                    const isGold = (row.Tur === 'Altin' || row['T\u00fcr'] === 'Alt\u0131n') || key === 'ons';
-                    const isCommodity = key.includes('gumus') || key.includes('platin') || key.includes('paladyum');
-                    if (!isGold && !isCommodity) return;
-
-                    const type = isCommodity ? 'commodity' : 'gold';
-                    const satisKey = Object.keys(row).find(k => k.toLowerCase().includes('sat'));
-                    const alisKey = Object.keys(row).find(k => k.toLowerCase() === 'al\u0131\u015f' || k.toLowerCase() === 'alis');
-                    const degKey = Object.keys(row).find(k => k.toLowerCase().includes('de\u011f') || k.toLowerCase().includes('deg'));
-                    const val = parseTR(satisKey ? row[satisKey] : row.Satis || 0);
-                    const buyingVal = alisKey ? parseTR(row[alisKey]) : 0;
-                    const change = degKey ? parseNum(String(row[degKey]).replace('%', '')) : 0;
-                    const name = nameMap[key] || globalCatalog[key]?.name || key;
-                    const code = safeCodeMap[key] || globalCatalog[key]?.code || key.toUpperCase();
-                    const history = globalCatalog[key]?.history || [];
-
-                    if (!isNaN(val) && val > 0) {
-                        globalCatalog[key] = {
-                            ...globalCatalog[key],
-                            id: key, name, code, type, history,
-                            current: val, selling: val,
-                            buying: buyingVal > 0 ? buyingVal : val * 0.99,
-                            change
-                        };
-                    }
+                Object.keys(data).forEach(key => {
+                    if (key === '_meta') return;
+                    const val = data[key];
+                    if (!val || !val.current || isNaN(val.current)) return;
+                    globalCatalog[key] = {
+                        ...globalCatalog[key],   // preserve history/intraday loaded earlier
+                        id: key,
+                        name: val.name || globalCatalog[key]?.name || key,
+                        code: val.code || globalCatalog[key]?.code || key.toUpperCase(),
+                        type: val.type || globalCatalog[key]?.type || 'other',
+                        current: val.current,
+                        selling: val.selling || val.current,
+                        buying:  val.buying  || val.current,
+                        change:  val.change  || 0
+                    };
                 });
-                debugLog('OK Truncgil (Alt\u0131n/Emtia): y\u00fcklendi');
-            } catch (e) { debugLog('ERR Truncgil Hatas\u0131: ' + e.message); }
 
-            // (GenelPara Removed)
+                const updatedAt = data['_meta']?.updated_at || '';
+                debugLog(`✅ Fiyatlar yüklendi${updatedAt ? ' (' + updatedAt.slice(11,16) + ' UTC)' : ''}`);
+            } catch (e) {
+                debugLog('ERR Fiyat alınamadı: ' + e.message);
+            }
 
-
-            // ========================
-            // C. BINANCE -- Crypto only
-            // ========================
-            try {
-                const bRes = await fetch(BINANCE_URL);
-                const bData = await bRes.json();
-                if (Array.isArray(bData)) {
-                    bData.forEach(coin => {
-                        if (!coin.symbol.endsWith('USDT')) return;
-                        const code = coin.symbol.replace('USDT', '');
-                        const catKey = Object.keys(globalCatalog).find(k =>
-                            globalCatalog[k].code === code && globalCatalog[k].type === 'crypto'
-                        );
-                        if (catKey) {
-                            const priceInTRY = parseFloat(coin.lastPrice) * usdTry;
-                            globalCatalog[catKey].current = priceInTRY;
-                            globalCatalog[catKey].selling = priceInTRY;
-                            globalCatalog[catKey].change = parseFloat(coin.priceChangePercent);
-                        }
-                    });
-                }
-            } catch (e) { debugLog('WARN Binance Hatas\u0131: ' + e.message); }
-
-            // ========================
             // RENDER
-            // ========================
             if (Object.keys(globalCatalog).length > 0) {
                 processApiData(globalCatalog);
                 renderAll();
