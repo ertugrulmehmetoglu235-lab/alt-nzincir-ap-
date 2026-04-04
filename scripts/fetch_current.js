@@ -120,10 +120,13 @@ async function run() {
             const alisKey  = Object.keys(row).find(k => /al/i.test(k) && !/sat/i.test(k));
             const degKey   = Object.keys(row).find(k => /değ|deg/i.test(k));
             let satis  = parseTR(satisKey ? row[satisKey] : null);
-            const alis = parseTR(alisKey  ? row[alisKey]  : null);
+            let alis   = parseTR(alisKey  ? row[alisKey]  : null);
             const chg  = parseTR(String(degKey ? row[degKey] : 0).replace('%', ''));
             if (isNaN(satis) || satis <= 0) return;
-            if (meta.isUSD) satis = parseFloat((satis * usdTry).toFixed(2));
+            if (meta.isUSD) {
+                satis = parseFloat((satis * usdTry).toFixed(2));
+                if (!isNaN(alis) && alis > 0) alis = parseFloat((alis * usdTry).toFixed(2));
+            }
 
             current[tKey] = {
                 name: meta.name, code: meta.code, type: meta.type,
