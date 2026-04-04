@@ -734,7 +734,10 @@
                     sellingStr: (val.selling || val.current).toLocaleString('tr-TR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }),
                     change: val.change || 0.00,
                     type: displayType,
-                    history: val.history || []
+                    history:  val.history  || [],
+                    intraday: val.intraday || [],
+                    monthly:  val.monthly  || [],
+                    yearly:   val.yearly   || []
                 });
             });
 
@@ -793,44 +796,54 @@
                     values = [];
                 }
             } else {
-                // For longer periods, use History (Daily Close)
-                if (historyData.length === 0 && period !== '1D') {
-                    // No real history — do NOT show fake scaled trend, show message instead
+                // Veri kaynağı seçimi: periyoda göre doğru diziyi al
+                let sourceData = [];
+                if (period === '5Y') {
+                    // Yıllık kapanışlar → yearly, yoksa monthly fallback
+                    sourceData = (selectedItem.yearly || []).length > 0
+                        ? selectedItem.yearly
+                        : (selectedItem.monthly || []);
+                } else if (period === '1Y' || period === '1M') {
+                    // Aylık kapanışlar → monthly, yoksa daily fallback
+                    sourceData = (selectedItem.monthly || []).length > 0
+                        ? selectedItem.monthly
+                        : historyData;
+                } else {
+                    // 1W → daily
+                    sourceData = historyData;
+                }
+
+                // Daily boşsa hourly'den fallback
+                if (sourceData.length === 0) {
+                    sourceData = (selectedItem.intraday || []).map(p => ({ price: p, date: null }));
+                }
+
+                if (sourceData.length === 0) {
                     values = [];
                     labels = [];
                 } else {
-                    // Normalize History Data (Handle both old [num] and new [{price,date}] formats)
-                    let normalizedHistory = historyData.map(h => {
+                    let normalizedHistory = sourceData.map(h => {
                         if (typeof h === 'object' && h !== null) return h;
-                        return { price: h, date: null }; // Legacy number
-                    });
-
-                    // Validasyon: Bozuk veri varsa temizle
-                    normalizedHistory = normalizedHistory.filter(h => !isNaN(h.price));
+                        return { price: h, date: null };
+                    }).filter(h => !isNaN(h.price));
 
                     // Slice
                     let sliceCount = 0;
                     if (period === '1W') sliceCount = -7;
                     else if (period === '1M') sliceCount = -30;
-                    else if (period === '1Y') sliceCount = -365;
-                    // 5Y = All (sliceCount = 0)
+                    else if (period === '1Y') sliceCount = -12;  // monthly array
+                    // 5Y = all
 
                     let sliced = (sliceCount !== 0) ? normalizedHistory.slice(sliceCount) : normalizedHistory;
 
-                    // APPEND CURRENT LIVE PRICE
-                    // This fixes "Günün verisi işlenmiyor" by connecting history to now.
+                    // Canlı fiyatı sona ekle
                     if (selectedItem.current) {
-                        sliced.push({
-                            price: parseFloat(selectedItem.current),
-                            date: 'ŞU AN'
-                        });
+                        sliced.push({ price: parseFloat(selectedItem.current), date: 'ŞU AN' });
                     }
 
                     values = sliced.map(h => h.price);
-                    // Store full objects for label generation
                     labels = sliced.map((h, i) => {
                         if (h.date) return h.date;
-                        // Fallback: Back-calculate if date is null (Legacy)
                         const d = new Date();
                         const daysAgo = sliced.length - 1 - i;
                         d.setDate(d.getDate() - daysAgo);

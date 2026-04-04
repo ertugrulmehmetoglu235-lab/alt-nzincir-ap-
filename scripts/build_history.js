@@ -86,35 +86,39 @@ Object.entries(current).forEach(([key, asset]) => {
     h.hourly.push(parseFloat(price.toFixed(2)));
     if (h.hourly.length > 24) h.hourly = h.hourly.slice(-24);
 
-    // ── 2. Gece yarısı: günün kapanışını daily'e ekle ────────────────────────
+    // ── 2. İlk kez oluşturuluyorsa daily'i şimdiki fiyatla seed'le ─────────────
+    if (h.daily.length === 0) {
+        h.daily.push(parseFloat(price.toFixed(2)));
+    }
+
+    // ── 3. Gece yarısı: günün kapanışını daily'e ekle ────────────────────────
     if (isMidnight) {
         // Son hourly fiyatı = günün kapanışı
         const dailyClose = h.hourly.length > 0
             ? h.hourly[h.hourly.length - 1]
             : parseFloat(price.toFixed(2));
 
-        // Ay sonu mu? → önce monthly'e al, daily'e ekleme (foto 2: 8 gün olmasın)
+        // Ay sonu mu? → monthly'e al
         if (isMonthEnd) {
             h.monthly.push(dailyClose);
             if (h.monthly.length > 12) h.monthly = h.monthly.slice(-12);
             console.log(`  📅 [AY SONU] ${key}: ${dailyClose} → monthly`);
 
-            // Yıl sonu mu? → monthly'nin son değeri yıllık kapanış
+            // Yıl sonu mu? → yearly'e al
             if (isYearEnd) {
                 h.yearly.push(dailyClose);
                 if (h.yearly.length > 5) h.yearly = h.yearly.slice(-5);
                 console.log(`  🗓️  [YIL SONU] ${key}: ${dailyClose} → yearly`);
             }
-        } else {
-            // Normal gün: daily'e ekle
-            h.daily.push(dailyClose);
-            // Rolling 7 gün — 8. günü sil
-            if (h.daily.length > 7) h.daily = h.daily.slice(-7);
         }
+
+        // Her gün (ay sonu da dahil) daily'e ekle — son 365 gün tut
+        h.daily.push(dailyClose);
+        if (h.daily.length > 365) h.daily = h.daily.slice(-365);
 
         // Hourly'i temizle (yeni güne sıfırla)
         h.hourly = [];
-        console.log(`  🌙 [GECE] ${key}: ${dailyClose} → daily (${h.daily.length}/7)`);
+        console.log(`  🌙 [GECE] ${key}: ${dailyClose} → daily (${h.daily.length}/365)`);
     }
 
     updatedCount++;
