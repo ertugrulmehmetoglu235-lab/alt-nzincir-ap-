@@ -1,25 +1,25 @@
 {
   "_meta": {
-    "updated_at": "2026-04-27T14:25:27.036Z",
+    "updated_at": "2026-04-27T16:06:15.082Z",
     "source": "GitHub Actions / fetch_current.js"
   },
   "gram-altin": {
     "name": "Gram Altın",
     "code": "GRAM",
     "type": "gold",
-    "current": 6793.55,
-    "selling": 6793.55,
-    "buying": 6792.65,
-    "change": -0.32
+    "current": 6760.49,
+    "selling": 6760.49,
+    "buying": 6759.56,
+    "change": -0.8
   },
   "ons": {
     "name": "Ons Altın",
     "code": "ONS",
     "type": "gold",
-    "current": 211329.94,
-    "selling": 211329.94,
-    "buying": 211302.02,
-    "change": -0.35
+    "current": 210280.54,
+    "selling": 210280.54,
+    "buying": 210251.72,
+    "change": -0.83
   },
   "ceyrek-altin": {
     "name": "Çeyrek Altın",
@@ -88,10 +88,10 @@
     "name": "Gram Has Altın",
     "code": "HAS",
     "type": "gold",
-    "current": 6759.58,
-    "selling": 6759.58,
-    "buying": 6758.69,
-    "change": -0.32
+    "current": 6726.69,
+    "selling": 6726.69,
+    "buying": 6725.76,
+    "change": -0.8
   },
   "14-ayar-altin": {
     "name": "14 Ayar Altın",
@@ -124,235 +124,235 @@
     "name": "Gümüş",
     "code": "GUMUS",
     "type": "commodity",
-    "current": 109.08,
-    "selling": 109.08,
-    "buying": 108.98,
-    "change": -0.41
+    "current": 108.53,
+    "selling": 108.53,
+    "buying": 108.46,
+    "change": -0.91
   },
   "gram-platin": {
     "name": "Gram Platin",
     "code": "PLATIN",
     "type": "commodity",
-    "current": 2909,
-    "selling": 2909,
-    "buying": 2902.7,
-    "change": -0.72
+    "current": 2886.34,
+    "selling": 2886.34,
+    "buying": 2880.03,
+    "change": -1.49
   },
   "USD": {
     "name": "ABD Doları",
     "code": "USD",
     "type": "currency",
-    "current": 45.0329,
-    "selling": 45.0329,
-    "buying": 45.0214,
-    "change": 0.04
+    "current": 45.024,
+    "selling": 45.024,
+    "buying": 45.0176,
+    "change": 0.02
   },
   "EUR": {
     "name": "Euro",
     "code": "EUR",
     "type": "currency",
-    "current": 52.9019,
-    "selling": 52.9019,
-    "buying": 52.8909,
-    "change": 0.17
+    "current": 52.861,
+    "selling": 52.861,
+    "buying": 52.8476,
+    "change": 0.09
   },
   "GBP": {
     "name": "İngiliz Sterlini",
     "code": "GBP",
     "type": "currency",
-    "current": 61.0657,
-    "selling": 61.0657,
-    "buying": 61.0525,
-    "change": 0.17
+    "current": 61.0622,
+    "selling": 61.0622,
+    "buying": 61.0412,
+    "change": 0.15
   },
   "CHF": {
     "name": "İsviçre Frangı",
     "code": "CHF",
     "type": "currency",
-    "current": 57.4322,
-    "selling": 57.4322,
-    "buying": 57.3964,
-    "change": 0.11
+    "current": 57.4057,
+    "selling": 57.4057,
+    "buying": 57.3685,
+    "change": 0.06
   },
   "CAD": {
     "name": "Kanada Doları",
     "code": "CAD",
     "type": "currency",
-    "current": 33.1,
-    "selling": 33.1,
-    "buying": 33.0847,
-    "change": 0.47
+    "current": 33.0713,
+    "selling": 33.0713,
+    "buying": 33.0576,
+    "change": 0.38
   },
   "RUB": {
     "name": "Rus Rublesi",
     "code": "RUB",
     "type": "currency",
-    "current": 0.601,
-    "selling": 0.601,
-    "buying": 0.5986,
-    "change": 0.38
+    "current": 0.6016,
+    "selling": 0.6016,
+    "buying": 0.5995,
+    "change": 0.5
   },
   "AED": {
     "name": "BAE Dirhemi",
     "code": "AED",
     "type": "currency",
-    "current": 12.2659,
-    "selling": 12.2659,
-    "buying": 12.2554,
-    "change": 0.06
+    "current": 12.2637,
+    "selling": 12.2637,
+    "buying": 12.2553,
+    "change": 0.05
   },
   "AUD": {
     "name": "Avustralya Doları",
     "code": "AUD",
     "type": "currency",
-    "current": 32.3832,
-    "selling": 32.3832,
-    "buying": 32.3659,
+    "current": 32.3831,
+    "selling": 32.3831,
+    "buying": 32.3678,
     "change": 0.6
   },
   "DKK": {
     "name": "DKK",
     "code": "DKK",
     "type": "currency",
-    "current": 7.0746,
-    "selling": 7.0746,
-    "buying": 7.0709,
-    "change": 0.2
+    "current": 7.0692,
+    "selling": 7.0692,
+    "buying": 7.0662,
+    "change": 0.13
   },
   "SEK": {
     "name": "SEK",
     "code": "SEK",
     "type": "currency",
-    "current": 4.8954,
-    "selling": 4.8954,
-    "buying": 4.8923,
-    "change": 0.27
+    "current": 4.888,
+    "selling": 4.888,
+    "buying": 4.8848,
+    "change": 0.12
   },
   "NOK": {
     "name": "NOK",
     "code": "NOK",
     "type": "currency",
-    "current": 4.862,
-    "selling": 4.862,
-    "buying": 4.8566,
-    "change": 0.58
+    "current": 4.8495,
+    "selling": 4.8495,
+    "buying": 4.8465,
+    "change": 0.35
   },
   "JPY": {
     "name": "Japon Yeni",
     "code": "JPY",
     "type": "currency",
-    "current": 0.2836,
-    "selling": 0.2836,
-    "buying": 0.2828,
-    "change": 0.18
+    "current": 0.2835,
+    "selling": 0.2835,
+    "buying": 0.2826,
+    "change": 0.14
   },
   "KWD": {
     "name": "Kuveyt Dinarı",
     "code": "KWD",
     "type": "currency",
-    "current": 146.573,
-    "selling": 146.573,
-    "buying": 146.0835,
-    "change": 0.03
+    "current": 146.5886,
+    "selling": 146.5886,
+    "buying": 146.0789,
+    "change": 0.04
   },
   "ZAR": {
     "name": "ZAR",
     "code": "ZAR",
     "type": "currency",
-    "current": 2.7296,
-    "selling": 2.7296,
-    "buying": 2.7276,
-    "change": 0.2
+    "current": 2.7222,
+    "selling": 2.7222,
+    "buying": 2.7207,
+    "change": -0.06
   },
   "BHD": {
     "name": "BHD",
     "code": "BHD",
     "type": "currency",
-    "current": 119.3114,
-    "selling": 119.3114,
-    "buying": 119.2809,
-    "change": 0.07
+    "current": 119.3005,
+    "selling": 119.3005,
+    "buying": 119.2835,
+    "change": 0.06
   },
   "LYD": {
     "name": "LYD",
     "code": "LYD",
     "type": "currency",
-    "current": 7.0964,
-    "selling": 7.0964,
-    "buying": 7.0946,
-    "change": 0.1
+    "current": 7.0917,
+    "selling": 7.0917,
+    "buying": 7.0907,
+    "change": 0.04
   },
   "SAR": {
     "name": "Suudi Riyali",
     "code": "SAR",
     "type": "currency",
-    "current": 12.0203,
-    "selling": 12.0203,
-    "buying": 11.9897,
-    "change": 0.02
+    "current": 12.0182,
+    "selling": 12.0182,
+    "buying": 11.9913,
+    "change": 0.01
   },
   "IQD": {
     "name": "IQD",
     "code": "IQD",
     "type": "currency",
-    "current": 0.0344,
-    "selling": 0.0344,
-    "buying": 0.0344,
-    "change": 0
+    "current": 0.0343,
+    "selling": 0.0343,
+    "buying": 0.0343,
+    "change": -0.07
   },
   "ILS": {
     "name": "İsrail Şekeli",
     "code": "ILS",
     "type": "currency",
-    "current": 15.1031,
-    "selling": 15.1031,
-    "buying": 15.0992,
-    "change": 0.77
+    "current": 15.1173,
+    "selling": 15.1173,
+    "buying": 15.1152,
+    "change": 0.87
   },
   "INR": {
     "name": "INR",
     "code": "INR",
     "type": "currency",
-    "current": 0.4781,
-    "selling": 0.4781,
-    "buying": 0.478,
-    "change": -0.05
+    "current": 0.478,
+    "selling": 0.478,
+    "buying": 0.4779,
+    "change": -0.06
   },
   "MXN": {
     "name": "MXN",
     "code": "MXN",
     "type": "currency",
-    "current": 2.5932,
-    "selling": 2.5932,
-    "buying": 2.5925,
-    "change": 0.14
+    "current": 2.5897,
+    "selling": 2.5897,
+    "buying": 2.5893,
+    "change": 0.01
   },
   "HUF": {
     "name": "HUF",
     "code": "HUF",
     "type": "currency",
-    "current": 0.1452,
-    "selling": 0.1452,
-    "buying": 0.1452,
-    "change": 0.4
+    "current": 0.145,
+    "selling": 0.145,
+    "buying": 0.145,
+    "change": 0.23
   },
   "NZD": {
     "name": "NZD",
     "code": "NZD",
     "type": "currency",
-    "current": 26.6388,
-    "selling": 26.6388,
-    "buying": 26.632,
-    "change": 0.64
+    "current": 26.6414,
+    "selling": 26.6414,
+    "buying": 26.6376,
+    "change": 0.66
   },
   "BRL": {
     "name": "BRL",
     "code": "BRL",
     "type": "currency",
-    "current": 9.0513,
-    "selling": 9.0513,
-    "buying": 9.049,
-    "change": 0.13
+    "current": 9.0588,
+    "selling": 9.0588,
+    "buying": 9.0575,
+    "change": 0.22
   },
   "IDR": {
     "name": "IDR",
@@ -361,142 +361,142 @@
     "current": 0.0026,
     "selling": 0.0026,
     "buying": 0.0026,
-    "change": 0.2
+    "change": 0.18
   },
   "CZK": {
     "name": "CZK",
     "code": "CZK",
     "type": "currency",
-    "current": 2.1704,
-    "selling": 2.1704,
-    "buying": 2.1699,
-    "change": 0.16
+    "current": 2.1688,
+    "selling": 2.1688,
+    "buying": 2.1685,
+    "change": 0.09
   },
   "PLN": {
     "name": "PLN",
     "code": "PLN",
     "type": "currency",
-    "current": 12.4469,
-    "selling": 12.4469,
-    "buying": 12.4437,
-    "change": 0.06
+    "current": 12.4293,
+    "selling": 12.4293,
+    "buying": 12.4276,
+    "change": -0.07
   },
   "RON": {
     "name": "RON",
     "code": "RON",
     "type": "currency",
-    "current": 10.381,
-    "selling": 10.381,
-    "buying": 10.3715,
-    "change": 0.07
+    "current": 10.3765,
+    "selling": 10.3765,
+    "buying": 10.3662,
+    "change": 0.02
   },
   "CNY": {
     "name": "CNY",
     "code": "CNY",
     "type": "currency",
-    "current": 6.5997,
-    "selling": 6.5997,
-    "buying": 6.5973,
-    "change": 0.19
+    "current": 6.5961,
+    "selling": 6.5961,
+    "buying": 6.5941,
+    "change": 0.14
   },
   "ARS": {
     "name": "ARS",
     "code": "ARS",
     "type": "currency",
-    "current": 0.032,
-    "selling": 0.032,
-    "buying": 0.032,
-    "change": -0.68
+    "current": 0.0319,
+    "selling": 0.0319,
+    "buying": 0.0319,
+    "change": -1
   },
   "ALL": {
     "name": "ALL",
     "code": "ALL",
     "type": "currency",
-    "current": 0.5533,
-    "selling": 0.5533,
-    "buying": 0.5532,
-    "change": 0.43
+    "current": 0.553,
+    "selling": 0.553,
+    "buying": 0.5529,
+    "change": 0.38
   },
   "AZN": {
     "name": "Azerbaycan Manatı",
     "code": "AZN",
     "type": "currency",
-    "current": 26.4899,
-    "selling": 26.4899,
-    "buying": 26.4832,
-    "change": 0.04
+    "current": 26.4847,
+    "selling": 26.4847,
+    "buying": 26.4809,
+    "change": 0.02
   },
   "BAM": {
     "name": "BAM",
     "code": "BAM",
     "type": "currency",
-    "current": 27.0354,
-    "selling": 27.0354,
-    "buying": 27.0285,
-    "change": 0.55
+    "current": 27.0171,
+    "selling": 27.0171,
+    "buying": 27.0133,
+    "change": 0.49
   },
   "CLP": {
     "name": "CLP",
     "code": "CLP",
     "type": "currency",
-    "current": 0.0504,
-    "selling": 0.0504,
-    "buying": 0.0504,
-    "change": 0.6
+    "current": 0.0503,
+    "selling": 0.0503,
+    "buying": 0.0503,
+    "change": 0.42
   },
   "COP": {
     "name": "COP",
     "code": "COP",
     "type": "currency",
-    "current": 0.0126,
-    "selling": 0.0126,
-    "buying": 0.0126,
-    "change": -0.24
+    "current": 0.0125,
+    "selling": 0.0125,
+    "buying": 0.0125,
+    "change": -0.63
   },
   "CRC": {
     "name": "CRC",
     "code": "CRC",
     "type": "currency",
-    "current": 0.099,
-    "selling": 0.099,
-    "buying": 0.099,
-    "change": 0.29
+    "current": 0.0989,
+    "selling": 0.0989,
+    "buying": 0.0989,
+    "change": 0.23
   },
   "DZD": {
     "name": "DZD",
     "code": "DZD",
     "type": "currency",
-    "current": 0.3402,
-    "selling": 0.3402,
-    "buying": 0.3401,
-    "change": 0.2
+    "current": 0.3401,
+    "selling": 0.3401,
+    "buying": 0.34,
+    "change": 0.16
   },
   "EGP": {
     "name": "EGP",
     "code": "EGP",
     "type": "currency",
-    "current": 0.8573,
-    "selling": 0.8573,
-    "buying": 0.8571,
-    "change": 0.19
+    "current": 0.8569,
+    "selling": 0.8569,
+    "buying": 0.8568,
+    "change": 0.14
   },
   "HKD": {
     "name": "HKD",
     "code": "HKD",
     "type": "currency",
-    "current": 5.7461,
-    "selling": 5.7461,
-    "buying": 5.7447,
-    "change": 0.02
+    "current": 5.7449,
+    "selling": 5.7449,
+    "buying": 5.7441,
+    "change": 0
   },
   "ISK": {
     "name": "ISK",
     "code": "ISK",
     "type": "currency",
-    "current": 0.3682,
-    "selling": 0.3682,
-    "buying": 0.3681,
-    "change": 0.35
+    "current": 0.3684,
+    "selling": 0.3684,
+    "buying": 0.3683,
+    "change": 0.41
   },
   "KRW": {
     "name": "KRW",
@@ -505,7 +505,7 @@
     "current": 0.0306,
     "selling": 0.0306,
     "buying": 0.0306,
-    "change": 0.32
+    "change": 0.22
   },
   "KZT": {
     "name": "KZT",
@@ -514,7 +514,7 @@
     "current": 0.098,
     "selling": 0.098,
     "buying": 0.098,
-    "change": 1.17
+    "change": 1.12
   },
   "LBP": {
     "name": "LBP",
@@ -523,25 +523,25 @@
     "current": 0.0005,
     "selling": 0.0005,
     "buying": 0.0005,
-    "change": 0
+    "change": -0.06
   },
   "LKR": {
     "name": "LKR",
     "code": "LKR",
     "type": "currency",
-    "current": 0.1415,
-    "selling": 0.1415,
+    "current": 0.1414,
+    "selling": 0.1414,
     "buying": 0.1414,
-    "change": -0.24
+    "change": -0.25
   },
   "MAD": {
     "name": "MAD",
     "code": "MAD",
     "type": "currency",
-    "current": 4.8734,
-    "selling": 4.8734,
-    "buying": 4.8721,
-    "change": 0.08
+    "current": 4.8668,
+    "selling": 4.8668,
+    "buying": 4.8661,
+    "change": -0.05
   },
   "MDL": {
     "name": "MDL",
@@ -549,152 +549,152 @@
     "type": "currency",
     "current": 2.6025,
     "selling": 2.6025,
-    "buying": 2.6018,
-    "change": -0.27
+    "buying": 2.6022,
+    "change": -0.26
   },
   "MKD": {
     "name": "MKD",
     "code": "MKD",
     "type": "currency",
-    "current": 0.8574,
-    "selling": 0.8574,
-    "buying": 0.8572,
-    "change": 0.48
+    "current": 0.8578,
+    "selling": 0.8578,
+    "buying": 0.8576,
+    "change": 0.52
   },
   "MYR": {
     "name": "MYR",
     "code": "MYR",
     "type": "currency",
-    "current": 11.3938,
-    "selling": 11.3938,
-    "buying": 11.3909,
-    "change": 0.36
+    "current": 11.3916,
+    "selling": 11.3916,
+    "buying": 11.3899,
+    "change": 0.35
   },
   "OMR": {
     "name": "OMR",
     "code": "OMR",
     "type": "currency",
-    "current": 117.1207,
-    "selling": 117.1207,
-    "buying": 117.0908,
-    "change": 0.04
+    "current": 117.0975,
+    "selling": 117.0975,
+    "buying": 117.0809,
+    "change": 0.02
   },
   "PEN": {
     "name": "PEN",
     "code": "PEN",
     "type": "currency",
-    "current": 12.9108,
-    "selling": 12.9108,
-    "buying": 12.9075,
-    "change": -0.59
+    "current": 12.9009,
+    "selling": 12.9009,
+    "buying": 12.899,
+    "change": -0.66
   },
   "PHP": {
     "name": "PHP",
     "code": "PHP",
     "type": "currency",
-    "current": 0.7412,
-    "selling": 0.7412,
-    "buying": 0.741,
-    "change": -0.07
+    "current": 0.7409,
+    "selling": 0.7409,
+    "buying": 0.7408,
+    "change": -0.1
   },
   "PKR": {
     "name": "PKR",
     "code": "PKR",
     "type": "currency",
-    "current": 0.1623,
-    "selling": 0.1623,
-    "buying": 0.1607,
-    "change": 0
+    "current": 0.1622,
+    "selling": 0.1622,
+    "buying": 0.1606,
+    "change": -0.06
   },
   "QAR": {
     "name": "Katar Riyali",
     "code": "QAR",
     "type": "currency",
-    "current": 12.7605,
-    "selling": 12.7605,
-    "buying": 11.8956,
-    "change": -0.3
+    "current": 12.7524,
+    "selling": 12.7524,
+    "buying": 11.8896,
+    "change": -0.36
   },
   "RSD": {
     "name": "RSD",
     "code": "RSD",
     "type": "currency",
-    "current": 0.4511,
-    "selling": 0.4511,
-    "buying": 0.4505,
-    "change": 0.24
+    "current": 0.4508,
+    "selling": 0.4508,
+    "buying": 0.4503,
+    "change": 0.18
   },
   "SGD": {
     "name": "SGD",
     "code": "SGD",
     "type": "currency",
-    "current": 35.3615,
-    "selling": 35.3615,
-    "buying": 35.3525,
-    "change": 0.27
+    "current": 35.3462,
+    "selling": 35.3462,
+    "buying": 35.3412,
+    "change": 0.23
   },
   "SYP": {
     "name": "SYP",
     "code": "SYP",
     "type": "currency",
-    "current": 0.3899,
-    "selling": 0.3899,
+    "current": 0.3898,
+    "selling": 0.3898,
     "buying": 0.3898,
-    "change": 0.04
+    "change": 0.02
   },
   "THB": {
     "name": "THB",
     "code": "THB",
     "type": "currency",
-    "current": 1.3933,
-    "selling": 1.3933,
-    "buying": 1.3929,
-    "change": 0.15
+    "current": 1.3912,
+    "selling": 1.3912,
+    "buying": 1.391,
+    "change": 0.01
   },
   "TWD": {
     "name": "TWD",
     "code": "TWD",
     "type": "currency",
-    "current": 1.4333,
-    "selling": 1.4333,
-    "buying": 1.4329,
-    "change": 0.17
+    "current": 1.4325,
+    "selling": 1.4325,
+    "buying": 1.4323,
+    "change": 0.12
   },
   "UAH": {
     "name": "UAH",
     "code": "UAH",
     "type": "currency",
-    "current": 1.021,
-    "selling": 1.021,
-    "buying": 1.0208,
-    "change": -0.19
+    "current": 1.0208,
+    "selling": 1.0208,
+    "buying": 1.0207,
+    "change": -0.2
   },
   "UYU": {
     "name": "UYU",
     "code": "UYU",
     "type": "currency",
-    "current": 1.1318,
-    "selling": 1.1318,
-    "buying": 1.1315,
-    "change": -0.44
+    "current": 1.1313,
+    "selling": 1.1313,
+    "buying": 1.1311,
+    "change": -0.48
   },
   "GEL": {
     "name": "GEL",
     "code": "GEL",
     "type": "currency",
-    "current": 16.8033,
-    "selling": 16.8033,
-    "buying": 16.799,
-    "change": 0.23
+    "current": 16.8,
+    "selling": 16.8,
+    "buying": 16.7976,
+    "change": 0.21
   },
   "TND": {
     "name": "TND",
     "code": "TND",
     "type": "currency",
-    "current": 15.4752,
-    "selling": 15.4752,
-    "buying": 15.4713,
-    "change": 0.35
+    "current": 15.4668,
+    "selling": 15.4668,
+    "buying": 15.4647,
+    "change": 0.3
   },
   "BGN": {
     "name": "BGN",
