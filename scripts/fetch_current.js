@@ -2,8 +2,8 @@
  * fetch_current.js
  * ─────────────────────────────────────────────────────────────────────────────
  * Her 5 dakikada GitHub Actions tarafından çalıştırılır.
- * Truncgil (altın + döviz) ve CoinGecko (kripto) kaynaklarından anlık fiyatları çeker,
- * data/current.json dosyasına yazar.
+ * Altinkaynak (altın) + Truncgil (döviz) + CoinGecko (kripto) kaynaklarından
+ * anlık fiyatları çeker, data/current.json dosyasına yazar.
  *
  * App artık doğrudan API'lere istek atmaz — sadece bu dosyayı okur.
  * ─────────────────────────────────────────────────────────────────────────────
@@ -16,15 +16,13 @@ const path  = require('path');
 const OUTPUT_FILE = path.join(__dirname, '..', 'data', 'current.json');
 
 // ── Kaynak URL'leri ───────────────────────────────────────────────────────────
-const TRUNCGIL_URL   = 'https://finans.truncgil.com/today.json';
-const GENPARA_DOVIZ  = 'https://api.genelpara.com/json/?list=doviz&sembol=all';
+const TRUNCGIL_URL      = 'https://finans.truncgil.com/today.json';
+const GENPARA_DOVIZ     = 'https://api.genelpara.com/json/?list=doviz&sembol=all';
 
-// AltinAPI (eski adıyla HaremAPI) — altın için birincil kaynak
-// Ücretsiz plan: ayda 30 istek (script 5 dk'da bir = ~8640 req/ay → ücretli plan gerekir)
-// Endpoint kesinleştiğinde buraya yaz; şimdilik en olası pattern kullanılıyor.
-// Sembol adlarını doğrulamak için: node scripts/test_altinapi.js
-const ALTINAPI_KEY  = 'hapi_524b1663914e453ca777773d9c860833';
-const ALTINAPI_URL  = 'https://altinapi.com/api/v1/prices';
+// Altinkaynak REST API — ücretsiz, auth gerektirmez, ~10sn güncelleme
+// Reşat (R) ve Hamit (H) ayrı kodlar mevcut — Truncgil'den farklı olarak doğru fiyat verir
+// Alan adları (XML kökenli olabilir): Kod/kod, Alis/alis, Satis/satis
+const ALTINKAYNAK_URL   = 'https://rest.altinkaynak.com/Gold.json';
 const COINGECKO_IDS = [
     'bitcoin', 'ethereum', 'binancecoin', 'solana', 'ripple', 'dogecoin',
     'avalanche-2', 'litecoin', 'cardano', 'polkadot', 'chainlink', 'tron',
@@ -137,63 +135,62 @@ async function run() {
     let current = {};
     try { current = JSON.parse(fs.readFileSync(OUTPUT_FILE, 'utf8')); } catch {}
 
-    // ── 1a. AltinAPI (Altın - Birincil) ─────────────────────────────────────
-    // Truncgil Ata/Reşat/Hamit için aynı fiyatı döndürüyor; AltinAPI ayrı fiyat verir.
-    // Sembol adları test_altinapi.js çıktısına göre güncellenmeli (TODO).
-    // Şu an bilinen semboller: ALTIN22=gram, ONS, CEYREK_YENI, CEYREK_ESK,
-    //   YARIM_YENI, TAM_YENI, CUMHURIYET, ATA_YENI, ATA_ESK, ATA5_YENI, GREMSE_YENI
-    // ⚠️ Reşat ve Hamit AltinAPI'de ayrı sembol olarak YOK olabilir.
-    const ALTINAPI_GOLD_MAP = {
-        'ALTIN22':      'gram-altin',
-        'ONS':          'ons',
-        'CEYREK_YENI':  'ceyrek-altin',
-        'YARIM_YENI':   'yarim-altin',
-        'TAM_YENI':     'tam-altin',
-        'CUMHURIYET':   'cumhuriyet-altini',
-        'ATA_YENI':     'ata-altin',
-        'RESAT':        'resat-altin',
-        'HAMIT':        'hamit-altin',
+    // ── 1a. Altinkaynak (Altın - Birincil) ──────────────────────────────────
+    // Ücretsiz, auth gerektirmez, ~10sn güncelleme.
+    // Truncgil'den farklı olarak Reşat(R) ve Hamit(H) için ayrı fiyat döndürür.
+    // Alan adları XML kökenli: Kod/kod, Alis/alis, Satis/satis (büyük/küçük her ikisi denenir)
+    const ALTINKAYNAK_MAP = {
+        'GA':  'gram-altin',
+        'ONS': 'ons',
+        'C':   'ceyrek-altin',
+        'Y':   'yarim-altin',
+        'T':   'tam-altin',
+        'A':   'ata-altin',
+        'R':   'resat-altin',
+        'H':   'hamit-altin',
+        '18':  '18-ayar-altin',
+        '14':  '14-ayar-altin',
+        'B':   '22-ayar-bilezik',
     };
 
-    console.log('⬇️  AltinAPI altın çekiliyor...');
+    console.log('⬇️  Altinkaynak altın çekiliyor...');
     let altinApiOk = false;
-    const haData = await fetchJson(ALTINAPI_URL, { 'Authorization': `Bearer ${ALTINAPI_KEY}` });
+    const akData = await fetchJson(ALTINKAYNAK_URL);
 
-    if (haData && typeof haData === 'object' && !haData.error) {
-        // AltinAPI yanıtı: { ALTIN22: { buying, selling, changeRate }, ... }
-        // veya dizi formatı olabilir — endpoint kesinleşince uyarla
-        const rows = Array.isArray(haData) ? haData : Object.entries(haData).map(([code, v]) => ({ code, ...v }));
+    if (Array.isArray(akData) && akData.length > 0) {
         let count = 0;
-        rows.forEach(item => {
-            const internalKey = ALTINAPI_GOLD_MAP[item.code];
+        akData.forEach(item => {
+            const code = item.Kod ?? item.kod ?? item.code ?? item.Code ?? '';
+            const internalKey = ALTINKAYNAK_MAP[String(code).trim()];
             if (!internalKey) return;
             const meta = GOLD_MAP[internalKey];
             if (!meta) return;
-            const satis = parseFloat(item.selling ?? item.satis ?? item.sell ?? 0);
-            const alis  = parseFloat(item.buying  ?? item.alis  ?? item.buy  ?? 0);
-            const chg   = parseFloat(item.changeRate ?? item.change ?? item.degisim ?? 0);
-            if (!satis || satis <= 0) return;
+            const satis = parseTR(item.Satis ?? item.satis ?? item.Sell  ?? item.sell  ?? item.selling ?? 0);
+            const alis  = parseTR(item.Alis  ?? item.alis  ?? item.Buy   ?? item.buy   ?? item.buying  ?? 0);
+            if (isNaN(satis) || satis <= 0) return;
             current[internalKey] = {
                 name: meta.name, code: meta.code, type: meta.type,
                 current: satis, selling: satis,
-                buying:  alis > 0 ? alis : parseFloat((satis * 0.995).toFixed(2)),
-                change:  chg
+                buying:  !isNaN(alis) && alis > 0 ? alis : parseFloat((satis * 0.995).toFixed(2)),
+                change:  0
             };
+            // Ata Altın ile Cumhuriyet Altını aynı fiziksel sikke — aynı fiyatı kopyala
+            if (internalKey === 'ata-altin') current['cumhuriyet-altini'] = { ...current['ata-altin'], ...GOLD_MAP['cumhuriyet-altini'] };
             count++;
         });
         if (count > 0) {
             altinApiOk = true;
-            console.log(`  ✅ AltinAPI: ${count} altın işlendi`);
+            console.log(`  ✅ Altinkaynak: ${count} altın işlendi`);
         } else {
-            console.warn('  ⚠️ AltinAPI bağlandı ama veri eşleşmedi — sembol adları kontrol edilmeli (test_altinapi.js)');
+            console.warn('  ⚠️ Altinkaynak bağlandı ama sembol eşleşmedi');
         }
     } else {
-        console.warn('  ⚠️ AltinAPI verisi alınamadı');
+        console.warn('  ⚠️ Altinkaynak verisi alınamadı');
     }
 
     // ── 1b. Truncgil (Altın + Döviz — Yedek) ────────────────────────────────
-    // AltinAPI başarısız olursa altın için Truncgil devreye girer.
-    // Döviz her zaman Truncgil'den alınır (AltinAPI döviz sunmuyor).
+    // Altinkaynak başarısız olursa altın için Truncgil devreye girer.
+    // Döviz her zaman Truncgil'den alınır.
     console.log(altinApiOk ? '⬇️  Truncgil döviz çekiliyor...' : '⬇️  Truncgil (yedek) altın + döviz çekiliyor...');
     const tData = await fetchJson(TRUNCGIL_URL);
     let usdTry = current['USD']?.current || 38;
@@ -205,7 +202,7 @@ async function run() {
             if (!isNaN(u) && u > 0) usdTry = u;
         }
 
-        // Altın — sadece AltinAPI başarısız olduysa yaz
+        // Altın — sadece Altinkaynak başarısız olduysa yaz
         if (!altinApiOk) {
             Object.entries(GOLD_MAP).forEach(([tKey, meta]) => {
                 const row = tData[tKey];
@@ -228,7 +225,7 @@ async function run() {
                     change:  !isNaN(chg) ? chg : 0
                 };
             });
-            console.warn('  ⚠️ Truncgil yedek altın kullanıldı');
+            console.warn('  ⚠️ Truncgil yedek altın kullanıldı (Altinkaynak başarısız)');
         }
 
         // Döviz — her zaman Truncgil'den
