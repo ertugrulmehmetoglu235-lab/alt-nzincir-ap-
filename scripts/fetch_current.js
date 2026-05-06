@@ -18,6 +18,13 @@ const OUTPUT_FILE = path.join(__dirname, '..', 'data', 'current.json');
 // ── Kaynak URL'leri ───────────────────────────────────────────────────────────
 const TRUNCGIL_URL   = 'https://finans.truncgil.com/today.json';
 const GENPARA_DOVIZ  = 'https://api.genelpara.com/json/?list=doviz&sembol=all';
+
+// AltinAPI (eski adıyla HaremAPI) — altın için birincil kaynak
+// Ücretsiz plan: ayda 30 istek (script 5 dk'da bir = ~8640 req/ay → ücretli plan gerekir)
+// Endpoint kesinleştiğinde buraya yaz; şimdilik en olası pattern kullanılıyor.
+// Sembol adlarını doğrulamak için: node scripts/test_altinapi.js
+const ALTINAPI_KEY  = 'hapi_524b1663914e453ca777773d9c860833';
+const ALTINAPI_URL  = 'https://altinapi.com/api/v1/prices';
 const COINGECKO_IDS = [
     'bitcoin', 'ethereum', 'binancecoin', 'solana', 'ripple', 'dogecoin',
     'avalanche-2', 'litecoin', 'cardano', 'polkadot', 'chainlink', 'tron',
@@ -29,12 +36,13 @@ const COINGECKO_URL  = `https://api.coingecko.com/api/v3/simple/price`
     + `?ids=${COINGECKO_IDS}&vs_currencies=usd&include_24hr_change=true`;
 
 // ── Yardımcı fonksiyonlar ─────────────────────────────────────────────────────
-function fetchJson(url) {
+function fetchJson(url, extraHeaders = {}) {
     return new Promise(resolve => {
         const req = https.get(url, {
             headers: {
                 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)',
-                'Accept': 'application/json,*/*'
+                'Accept': 'application/json,*/*',
+                ...extraHeaders
             }
         }, res => {
             if (res.statusCode >= 300 && res.statusCode < 400 && res.headers.location) {
@@ -129,8 +137,64 @@ async function run() {
     let current = {};
     try { current = JSON.parse(fs.readFileSync(OUTPUT_FILE, 'utf8')); } catch {}
 
-    // ── 1. Truncgil (Altın + Döviz) ──────────────────────────────────────────
-    console.log('⬇️  Truncgil çekiliyor...');
+    // ── 1a. AltinAPI (Altın - Birincil) ─────────────────────────────────────
+    // Truncgil Ata/Reşat/Hamit için aynı fiyatı döndürüyor; AltinAPI ayrı fiyat verir.
+    // Sembol adları test_altinapi.js çıktısına göre güncellenmeli (TODO).
+    // Şu an bilinen semboller: ALTIN22=gram, ONS, CEYREK_YENI, CEYREK_ESK,
+    //   YARIM_YENI, TAM_YENI, CUMHURIYET, ATA_YENI, ATA_ESK, ATA5_YENI, GREMSE_YENI
+    // ⚠️ Reşat ve Hamit AltinAPI'de ayrı sembol olarak YOK olabilir.
+    const ALTINAPI_GOLD_MAP = {
+        'ALTIN22':      'gram-altin',
+        'ONS':          'ons',
+        'CEYREK_YENI':  'ceyrek-altin',
+        'YARIM_YENI':   'yarim-altin',
+        'TAM_YENI':     'tam-altin',
+        'CUMHURIYET':   'cumhuriyet-altini',
+        'ATA_YENI':     'ata-altin',
+        'RESAT':        'resat-altin',
+        'HAMIT':        'hamit-altin',
+    };
+
+    console.log('⬇️  AltinAPI altın çekiliyor...');
+    let altinApiOk = false;
+    const haData = await fetchJson(ALTINAPI_URL, { 'Authorization': `Bearer ${ALTINAPI_KEY}` });
+
+    if (haData && typeof haData === 'object' && !haData.error) {
+        // AltinAPI yanıtı: { ALTIN22: { buying, selling, changeRate }, ... }
+        // veya dizi formatı olabilir — endpoint kesinleşince uyarla
+        const rows = Array.isArray(haData) ? haData : Object.entries(haData).map(([code, v]) => ({ code, ...v }));
+        let count = 0;
+        rows.forEach(item => {
+            const internalKey = ALTINAPI_GOLD_MAP[item.code];
+            if (!internalKey) return;
+            const meta = GOLD_MAP[internalKey];
+            if (!meta) return;
+            const satis = parseFloat(item.selling ?? item.satis ?? item.sell ?? 0);
+            const alis  = parseFloat(item.buying  ?? item.alis  ?? item.buy  ?? 0);
+            const chg   = parseFloat(item.changeRate ?? item.change ?? item.degisim ?? 0);
+            if (!satis || satis <= 0) return;
+            current[internalKey] = {
+                name: meta.name, code: meta.code, type: meta.type,
+                current: satis, selling: satis,
+                buying:  alis > 0 ? alis : parseFloat((satis * 0.995).toFixed(2)),
+                change:  chg
+            };
+            count++;
+        });
+        if (count > 0) {
+            altinApiOk = true;
+            console.log(`  ✅ AltinAPI: ${count} altın işlendi`);
+        } else {
+            console.warn('  ⚠️ AltinAPI bağlandı ama veri eşleşmedi — sembol adları kontrol edilmeli (test_altinapi.js)');
+        }
+    } else {
+        console.warn('  ⚠️ AltinAPI verisi alınamadı');
+    }
+
+    // ── 1b. Truncgil (Altın + Döviz — Yedek) ────────────────────────────────
+    // AltinAPI başarısız olursa altın için Truncgil devreye girer.
+    // Döviz her zaman Truncgil'den alınır (AltinAPI döviz sunmuyor).
+    console.log(altinApiOk ? '⬇️  Truncgil döviz çekiliyor...' : '⬇️  Truncgil (yedek) altın + döviz çekiliyor...');
     const tData = await fetchJson(TRUNCGIL_URL);
     let usdTry = current['USD']?.current || 38;
 
@@ -141,32 +205,33 @@ async function run() {
             if (!isNaN(u) && u > 0) usdTry = u;
         }
 
-        // Altın & Emtia
-        Object.entries(GOLD_MAP).forEach(([tKey, meta]) => {
-            const row = tData[tKey];
-            if (!row) return;
-            const satisKey = Object.keys(row).find(k => /sat/i.test(k));
-            const alisKey  = Object.keys(row).find(k => /al/i.test(k) && !/sat/i.test(k));
-            const degKey   = Object.keys(row).find(k => /değ|deg/i.test(k));
-            let satis  = parseTR(satisKey ? row[satisKey] : null);
-            let alis   = parseTR(alisKey  ? row[alisKey]  : null);
-            const chg  = parseTR(String(degKey ? row[degKey] : 0).replace('%', ''));
-            if (isNaN(satis) || satis <= 0) return;
-            if (meta.isUSD) {
-                satis = parseFloat((satis * usdTry).toFixed(2));
-                if (!isNaN(alis) && alis > 0) alis = parseFloat((alis * usdTry).toFixed(2));
-            }
+        // Altın — sadece AltinAPI başarısız olduysa yaz
+        if (!altinApiOk) {
+            Object.entries(GOLD_MAP).forEach(([tKey, meta]) => {
+                const row = tData[tKey];
+                if (!row) return;
+                const satisKey = Object.keys(row).find(k => /sat/i.test(k));
+                const alisKey  = Object.keys(row).find(k => /al/i.test(k) && !/sat/i.test(k));
+                const degKey   = Object.keys(row).find(k => /değ|deg/i.test(k));
+                let satis  = parseTR(satisKey ? row[satisKey] : null);
+                let alis   = parseTR(alisKey  ? row[alisKey]  : null);
+                const chg  = parseTR(String(degKey ? row[degKey] : 0).replace('%', ''));
+                if (isNaN(satis) || satis <= 0) return;
+                if (meta.isUSD) {
+                    satis = parseFloat((satis * usdTry).toFixed(2));
+                    if (!isNaN(alis) && alis > 0) alis = parseFloat((alis * usdTry).toFixed(2));
+                }
+                current[tKey] = {
+                    name: meta.name, code: meta.code, type: meta.type,
+                    current: satis, selling: satis,
+                    buying:  !isNaN(alis) && alis > 0 ? alis : parseFloat((satis * 0.995).toFixed(2)),
+                    change:  !isNaN(chg) ? chg : 0
+                };
+            });
+            console.warn('  ⚠️ Truncgil yedek altın kullanıldı');
+        }
 
-            current[tKey] = {
-                name: meta.name, code: meta.code, type: meta.type,
-                current: satis,
-                selling: satis,
-                buying:  !isNaN(alis) && alis > 0 ? alis : parseFloat((satis * 0.995).toFixed(2)),
-                change:  !isNaN(chg) ? chg : 0
-            };
-        });
-
-        // Döviz
+        // Döviz — her zaman Truncgil'den
         Object.entries(tData).forEach(([sym, row]) => {
             if (!row || row['Tür'] !== 'Döviz') return;
             const satis  = parseTR(row['Satış'] || row['Satis']);
@@ -181,7 +246,7 @@ async function run() {
                 change:  !isNaN(chg) ? chg : 0
             };
         });
-        console.log(`  ✅ Truncgil: altın + döviz işlendi`);
+        console.log(`  ✅ Truncgil: döviz işlendi`);
     } else {
         console.warn('  ⚠️ Truncgil verisi alınamadı, mevcut fiyatlar korunuyor');
     }
