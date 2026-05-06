@@ -208,6 +208,8 @@ async function run() {
     }
 
     // ── 2. CoinGecko (Kripto) ────────────────────────────────────────────────
+    // NOT: Daha önce Binance (api.binance.com) kullanıldı; GitHub Actions ortamında
+    // 3 ayrı denemede coğrafi blok nedeniyle hiç veri gelmedi. Binance'e geri dönülmemeli.
     console.log('⬇️  CoinGecko kripto çekiliyor...');
     const cgData = await fetchJson(COINGECKO_URL);
     if (cgData && typeof cgData === 'object') {
