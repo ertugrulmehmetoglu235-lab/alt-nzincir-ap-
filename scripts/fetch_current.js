@@ -18,9 +18,15 @@ const OUTPUT_FILE = path.join(__dirname, '..', 'data', 'current.json');
 // ── Kaynak URL'leri ───────────────────────────────────────────────────────────
 const TRUNCGIL_URL   = 'https://finans.truncgil.com/today.json';
 const GENPARA_DOVIZ  = 'https://api.genelpara.com/json/?list=doviz&sembol=all';
-const COINGECKO_URL  = 'https://api.coingecko.com/api/v3/simple/price'
-    + '?ids=bitcoin,ethereum,binancecoin,solana,ripple,dogecoin,avalanche-2,litecoin'
-    + '&vs_currencies=usd&include_24hr_change=true';
+const COINGECKO_IDS = [
+    'bitcoin', 'ethereum', 'binancecoin', 'solana', 'ripple', 'dogecoin',
+    'avalanche-2', 'litecoin', 'cardano', 'polkadot', 'chainlink', 'tron',
+    'shiba-inu', 'matic-network', 'cosmos', 'near', 'stellar', 'monero',
+    'ethereum-classic', 'the-open-network', 'injective-protocol', 'sui',
+    'aptos', 'arbitrum', 'optimism', 'uniswap', 'pepe', 'filecoin', 'hedera',
+].join(',');
+const COINGECKO_URL  = `https://api.coingecko.com/api/v3/simple/price`
+    + `?ids=${COINGECKO_IDS}&vs_currencies=usd&include_24hr_change=true`;
 
 // ── Yardımcı fonksiyonlar ─────────────────────────────────────────────────────
 function fetchJson(url) {
@@ -86,14 +92,35 @@ const CURRENCY_NAMES = {
 
 // İzlenecek kriptolar (CoinGecko ID → varlık anahtarı)
 const CRYPTO_MAP = {
-    'bitcoin':      { key: 'btc',  name: 'Bitcoin',   code: 'BTC',  type: 'crypto' },
-    'ethereum':     { key: 'eth',  name: 'Ethereum',  code: 'ETH',  type: 'crypto' },
-    'binancecoin':  { key: 'bnb',  name: 'BNB',       code: 'BNB',  type: 'crypto' },
-    'solana':       { key: 'sol',  name: 'Solana',    code: 'SOL',  type: 'crypto' },
-    'ripple':       { key: 'xrp',  name: 'XRP',       code: 'XRP',  type: 'crypto' },
-    'dogecoin':     { key: 'doge', name: 'Dogecoin',  code: 'DOGE', type: 'crypto' },
-    'avalanche-2':  { key: 'avax', name: 'Avalanche', code: 'AVAX', type: 'crypto' },
-    'litecoin':     { key: 'ltc',  name: 'Litecoin',  code: 'LTC',  type: 'crypto' },
+    'bitcoin':             { key: 'btc',  name: 'Bitcoin',    code: 'BTC',  type: 'crypto' },
+    'ethereum':            { key: 'eth',  name: 'Ethereum',   code: 'ETH',  type: 'crypto' },
+    'binancecoin':         { key: 'bnb',  name: 'BNB',        code: 'BNB',  type: 'crypto' },
+    'solana':              { key: 'sol',  name: 'Solana',     code: 'SOL',  type: 'crypto' },
+    'ripple':              { key: 'xrp',  name: 'XRP',        code: 'XRP',  type: 'crypto' },
+    'dogecoin':            { key: 'doge', name: 'Dogecoin',   code: 'DOGE', type: 'crypto' },
+    'avalanche-2':         { key: 'avax', name: 'Avalanche',  code: 'AVAX', type: 'crypto' },
+    'litecoin':            { key: 'ltc',  name: 'Litecoin',   code: 'LTC',  type: 'crypto' },
+    'cardano':             { key: 'ada',  name: 'Cardano',    code: 'ADA',  type: 'crypto' },
+    'polkadot':            { key: 'dot',  name: 'Polkadot',   code: 'DOT',  type: 'crypto' },
+    'chainlink':           { key: 'link', name: 'Chainlink',  code: 'LINK', type: 'crypto' },
+    'tron':                { key: 'trx',  name: 'TRON',       code: 'TRX',  type: 'crypto' },
+    'shiba-inu':           { key: 'shib', name: 'Shiba Inu',  code: 'SHIB', type: 'crypto' },
+    'matic-network':       { key: 'matic',name: 'Polygon',    code: 'MATIC',type: 'crypto' },
+    'cosmos':              { key: 'atom', name: 'Cosmos',     code: 'ATOM', type: 'crypto' },
+    'near':                { key: 'near', name: 'NEAR',       code: 'NEAR', type: 'crypto' },
+    'stellar':             { key: 'xlm',  name: 'Stellar',    code: 'XLM',  type: 'crypto' },
+    'monero':              { key: 'xmr',  name: 'Monero',     code: 'XMR',  type: 'crypto' },
+    'ethereum-classic':    { key: 'etc',  name: 'ETH Classic',code: 'ETC',  type: 'crypto' },
+    'the-open-network':    { key: 'ton',  name: 'Toncoin',    code: 'TON',  type: 'crypto' },
+    'injective-protocol':  { key: 'inj',  name: 'Injective',  code: 'INJ',  type: 'crypto' },
+    'sui':                 { key: 'sui',  name: 'Sui',        code: 'SUI',  type: 'crypto' },
+    'aptos':               { key: 'apt',  name: 'Aptos',      code: 'APT',  type: 'crypto' },
+    'arbitrum':            { key: 'arb',  name: 'Arbitrum',   code: 'ARB',  type: 'crypto' },
+    'optimism':            { key: 'op',   name: 'Optimism',   code: 'OP',   type: 'crypto' },
+    'uniswap':             { key: 'uni',  name: 'Uniswap',    code: 'UNI',  type: 'crypto' },
+    'pepe':                { key: 'pepe', name: 'Pepe',       code: 'PEPE', type: 'crypto' },
+    'filecoin':            { key: 'fil',  name: 'Filecoin',   code: 'FIL',  type: 'crypto' },
+    'hedera':              { key: 'hbar', name: 'Hedera',     code: 'HBAR', type: 'crypto' },
 };
 
 // ── Ana fonksiyon ─────────────────────────────────────────────────────────────
