@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "updated_at": "2026-09-18T21:03:42.664Z",
+    "updated_at": "2026-09-18T23:13:16.731Z",
     "source": "GitHub Actions / fetch_current.js"
   },
   "gram-altin": {
@@ -151,9 +151,9 @@
     "name": "Euro",
     "code": "EUR",
     "type": "currency",
-    "current": 56.1088,
-    "selling": 56.1088,
-    "buying": 56,
+    "current": 56.1083,
+    "selling": 56.1083,
+    "buying": 55.9992,
     "change": -0.08
   },
   "GBP": {
@@ -205,10 +205,10 @@
     "name": "Avustralya Doları",
     "code": "AUD",
     "type": "currency",
-    "current": 34.7665,
-    "selling": 34.7665,
-    "buying": 34.7326,
-    "change": 0.29
+    "current": 34.7568,
+    "selling": 34.7568,
+    "buying": 34.7179,
+    "change": 0.25
   },
   "DKK": {
     "name": "DKK",
@@ -349,10 +349,10 @@
     "name": "BRL",
     "code": "BRL",
     "type": "currency",
-    "current": 9.4906,
-    "selling": 9.4906,
-    "buying": 9.484,
-    "change": -0.15
+    "current": 9.4908,
+    "selling": 9.4908,
+    "buying": 9.4842,
+    "change": -0.14
   },
   "IDR": {
     "name": "IDR",
@@ -712,7 +712,7 @@
     "current": 0.0019,
     "selling": 0.0019,
     "buying": 0.0019,
-    "change": 0.1
+    "change": 0.11
   },
   "btc": {
     "name": "Bitcoin",
