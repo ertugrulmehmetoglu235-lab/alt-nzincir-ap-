@@ -1,96 +1,376 @@
 {
   "_meta": {
-    "updated_at": "2026-09-21T07:02:31.843Z",
+    "updated_at": "2026-09-21T14:27:29.944Z",
     "count": 50,
     "source": "Google News RSS / NewsAPI fallback"
   },
   "items": [
     {
       "id": "aHR0cHM6Ly9uZXdz",
-      "title": "21 Eylül 2026, Altın Fiyatları: SJC altın fiyatı ons başına 143,6 - 146,6 milyon VND'ye düştü. - Vietnam.vn",
-      "source": "Vietnam.vn",
-      "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxPdF9VYjZhWWdDRHlUcE93dWE0TV9sNFJEaFpsZVZnZFZ2dFdsdDNESmkzNEJoOEJweHNpQjlvdVRaTnBKYkJ6a283NmVWUTdXS0RkQVZjR2pFWlF0RUFWYjUxOVJJcHE3a2ZocXd6dENHUTU2bEtDVmQxYlFUeGNrc3pHXzB5d21XUk81bGdDVnN6T2I1QktiREhmRTRXQQ?oc=5",
-      "publishedAt": "2026-09-21T06:48:10.000Z",
-      "category": "general"
-    },
-    {
-      "id": "aHR0cHM6Ly9uZXdz",
-      "title": "Bitcoin tokenize hisse hamlesiyle 82 bin dolara tırmanıyor - Investing.com Türkiye",
-      "source": "Investing.com Türkiye",
-      "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxQcEZnUnRjZmZwdW95OGwxRnpnVEh5QkFkYVpYN25yelNYMTA2NWNTUlBLQ2wxMnNNN1dOYzhmc01NNFNxSG5QREJsY1d0eklybTcySDdyTEJhYUlxMVhaYkUza3MxQlp4dmJIV01iUURJVmczUkhmNE9rOVVMdzl2bG5Lb19rZkhPSWdkRkZMcjE0YWtkTTdvSXJiX1JQUGV2eXlUWllWRXZuTUE3X0NGdGk1TDU?oc=5",
-      "publishedAt": "2026-09-21T06:44:40.000Z",
-      "category": "general"
-    },
-    {
-      "id": "aHR0cHM6Ly9uZXdz",
-      "title": "21 Eylül 2026 ALTIN FİYATLARI: Cumhuriyet altını, gram altın, çeyrek altın ve ons altın bugün kaç lira? - 24 Saat Gazetesi Ankara",
-      "source": "24 Saat Gazetesi Ankara",
-      "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxNWk9CV0RQMHVBM1pnZHBibzhidFFBTjZmSW0xR2N2NE15VTMtNjFmcGdhS3NycDN6ZVdCeHkwTDhoSUZPUm1aVUFaZFVVdU5ZVlZQaXBPaC05V0hpMm42M1NjZ3hweXdEdTBVS25SZ2hkb3gtampXcURpVnRZY1dYQUtONzVGVGV6alkyZ1h2Vm5RMjlWZy1OT3ctd1FZdG5tVDBWY2tjdkhBS1NUTzdyNDFDbEpDTDNOam5uMk52dnJaRkdKZDByakV3?oc=5",
-      "publishedAt": "2026-09-21T06:44:00.000Z",
-      "category": "general"
-    },
-    {
-      "id": "aHR0cHM6Ly9uZXdz",
-      "title": "Bitcoin yükselişini sürdürdü: 82 bin dolara yaklaştı - Ekonomim",
-      "source": "Ekonomim",
-      "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxNWWd0aTdIR1h1eENJOFBNei12SENCSnhDUjloLTA3bktsVk8xT1hLNHpKV3lZQzJqR0wxWnZvbW5XWmI0SkgzeFlJWlVweG5BdE1xUnNUUEhGNF9hNk0wTGYxUlhhUGNOMkl4ams0NGo5YkM5UmhSay0zM0VkU3JTNGtzeW5odXBtVkhvVm9uQXdSZUZBaF80NHlweVhKV01YYWVmYUZFN0RSMF9hbXfSAbMBQVVfeXFMT3Fwb09VY0sxakFKeUxoVVZSXzFLdDV6T0RrazVsbGhFMGt1djVoMlJ6SkpPc3ZNYkZqVDllNU1ORS1zZXdNSHZ0ZFl4WDhObU04dUtzY1NtMVN2LWJGcEUwdXpEcEZZYzVud2UwZFVmV1ZLWnlsZXV2eFh2ZDVwLTFXb1FUUnhOQWl1Q01hZ2pmRU12cEJvbkR1bnFvTWlmNE9CNGlnOXhEQnhXUGdfWnp0dk0?oc=5",
-      "publishedAt": "2026-09-21T06:43:00.000Z",
-      "category": "general"
-    },
-    {
-      "id": "aHR0cHM6Ly9uZXdz",
-      "title": "Saylor'dan yeni Bitcoin alımı sinyali - Son Dakika",
+      "title": "Kriptonun iki devinden yeni alım hamlesi - Son Dakika",
       "source": "Son Dakika",
-      "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxQR0IxS0p5UGRxbHNzaWo4YmJmSmNqRC1nMDJfOFBDaDAybFlXcS13cUJTb0JTSzJwWUdkU0FYWkYxanJhSlBHN2w1Zl9Mc3RGdVdGUkpvdldSdTNmN3prTmdlX2ZzX1c0VmRqdG93WXlfWlhEU0laRG52WWxSWFlzZzRqUUQtSlVCQnpOanU0YkkxaENm0gGKAUFVX3lxTE1iSi1FblpVc3QxS09PX2NNU3FGVUxrQ041RWxYVDBYYktfWUU5dERYS0tJWEhod3pMMlBCMDZTNXhtQmtBVFRheEV2a29Nbkg2YkxDcHk3STRFQTV6UEFIZDUxYXNhRjVjV3BvYXJnVExSQ3ZiN0djYm05dGFoanhKLWFJSHoxZzJvUQ?oc=5",
-      "publishedAt": "2026-09-21T06:41:57.000Z",
+      "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxPYnVYckNNNjlxRnVWQWkzUW9hV3VfVTREMXhKRHoydzUyUlBUbzNIUGVzNFNhSkVHTjRUX3NvX3FnbU50NkFGcWh1UVZUdHhKX3EwWEZaM0tvemtEeTBGQ3lQU19NMG1IYjBSYnlpN3NkNm9nU2dHdFNGMkp3NkFNRjBiLXJ2T3NBSUczZ1VZclBCVkpLRU5Bc3ln?oc=5",
+      "publishedAt": "2026-09-21T14:09:34.000Z",
       "category": "general"
     },
     {
       "id": "aHR0cHM6Ly9uZXdz",
-      "title": "21 Eylül Kayseri altın fiyatları açıklandı! Gram ve çeyrekte son durum - Kayseri Olay Haber",
-      "source": "Kayseri Olay Haber",
-      "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxPN0xPRFhkY2d6dlFOV3pMNEF6YVZ5NzhIellLUXNCdnJ3SkZFOGdLeklTVVJMRWZlMFNLN2ZrU1RzMWl3MWU0MW9QeC1FODYzcXZBNzZUTUxuUGkyclFTMXdOZHlUanBiTFlsZEV0cEJXY2tjS2F0ZUZ5dlBnYlkzbFJyNzMyYWp1cFJuRUhsd3NXdWx2SGNlS0h1UlZXLVpXTUl4eTZ1cFg?oc=5",
-      "publishedAt": "2026-09-21T06:38:57.000Z",
+      "title": "Bitmine Immersion Technologies hissesi neden yükseliyor? - Investing.com Türkiye",
+      "source": "Investing.com Türkiye",
+      "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxPaTRHQzJPb0RNaTR5bUp3bEs4MGljZTZnS3kybHRmamcyWTd6WFRhUUwyOFlZSFowb25MQ1A0RU1WajBvdktUM1JCUVMyMEt5RnNGZVEtVlZ1RFdSWlpucWZHeGk2TUdhZVFuTkxvbVhWZkNGVWFCWG0walVMeExwbUJYVko5SnFNQ0ZRZGtyRzd2Y0RialRYcklFdTRZSjgxRldBc1JDZUtBQUloNG4temoxWFpBTUE?oc=5",
+      "publishedAt": "2026-09-21T14:05:51.000Z",
       "category": "general"
     },
     {
       "id": "aHR0cHM6Ly9uZXdz",
-      "title": "Gram altın haftaya düşüşle başladı: İşte günün ilk fiyatı - Manşet Haber",
+      "title": "Altın fiyatlarında gerileme: Gözler Orta Doğu’daki gelişmelerde - Paratic Haber",
+      "source": "Paratic Haber",
+      "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxNV0NHdEVzc19fUXB3VFRQTXY1X0pZQUVfSEFrNzdVVVJObjVMbHljYmQwTnNUVDlmTVFiTFFoemVtNXNoNUE3VE9PRk9aMk4yR3ptMlZpQXlwS2hWMHNVU0lEUnBIX0VXZEY3NVlWSWswZGJqQ2Noc29tYkxxNXZtWTJKajl0OEplNVE?oc=5",
+      "publishedAt": "2026-09-21T14:02:56.000Z",
+      "category": "general"
+    },
+    {
+      "id": "aHR0cHM6Ly9uZXdz",
+      "title": "Bitcoin'de sert yükseliş: 85 bin dolar geçildi - Manşet Haber",
       "source": "Manşet Haber",
-      "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxPYlkwdWExMDRiWTZfYVlaVEtJTGxadHBWWVoycVV2VENVMlRYZVM1UFAxbTRzZnJxSFBBeFVnMTNhdDVKSUVMQms4S2Y4aTZkcVB6SzdfaWFKcEVjRGZXdkc0bWlRSEZEUUx3d00tTkJNYUF1UFFyRDJSUE9zV2tLdHJpbGpURm92UUNrVVJRZWNiQQ?oc=5",
-      "publishedAt": "2026-09-21T06:29:00.000Z",
+      "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxQQVYxY00xcTdOOFRRU1hRRzFSSUZHYS1IbXd1VEFwaU0ycTJ5ODJsNE54LUpDVzBXNi1ma3lWa1M5aTRONUhPbkpKWFROZ05LOE51WmptTVRRMHc5SEdPdm9KNHRUTzIyMEFXZTNlRVJwNm9ubkppWmFuTHNBMHoxS3pR?oc=5",
+      "publishedAt": "2026-09-21T13:52:00.000Z",
       "category": "general"
     },
     {
       "id": "aHR0cHM6Ly9uZXdz",
-      "title": "Döviz ve Kripto Parada 21 Eylül Tablosu - Samsun İlk Haber",
-      "source": "Samsun İlk Haber",
-      "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE1LZVhiZnFfU1Z0ZmJZTmFHUzhoclp3Q1c2dXNYSkpSV0U3VFdGdFVMemFpTlNQRDgzbVFJY1FRcXpDWUhuMVQxTTdIazR0SFM0bjExemt0ZVZwM2cxLWs5ZEtkdzdBaDJ5RGRNazBadjdWcTc4UFdpMUF6c2Jhdw?oc=5",
-      "publishedAt": "2026-09-21T06:28:20.000Z",
+      "title": "Bitcoin 85 bin doları aşarken ETF alımları yükselişi destekledi - COINTURK",
+      "source": "COINTURK",
+      "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxOb3Z5ZjNYUTZRYWNjejlUQ0pPT3hVNFA5NUtqVE1xMl9zUmpHc2NteGtJemNtVC1QemNWRFBiRnRQWEdZVktPbDhSZVlTc0xkanRJYzN6MXJMc1VuX3Zxc0c2QnVSbFc3V1Vwb2pzV2c1QXFfZDI0eUZfZlZMVkZ0bnVQa19Wd3lnSTc4S1V3?oc=5",
+      "publishedAt": "2026-09-21T13:51:39.000Z",
       "category": "general"
     },
     {
       "id": "aHR0cHM6Ly9uZXdz",
-      "title": "Gram altın haftaya düşüşle başladı, 6 bin 833 lirayı gördü - Ekonomi Dünya",
-      "source": "Ekonomi Dünya",
-      "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxNWDV4OUZGRUtwZVptSTJWaVVPNFdOZXJ2Y0JnZ3BLM3QwWjMtWXQwV01BdnZTS3AxeVA4dzlaT004bEdrUkVKM3ZySVg2UVhuSHhrd0o1aURlUndWaVJJWnNpTjdtN29uZ09JLTVCY2RqdDBsY3NyQ3RpTzZYRzJLelhjRDVJWF9BZTlkWFhnbzlJTEdOenFkVQ?oc=5",
-      "publishedAt": "2026-09-21T06:27:10.000Z",
+      "title": "Altın fiyatları bugün, 21 Eylül'de, genel olarak keskin bir düşüşle kapandı. - Vietnam.vn",
+      "source": "Vietnam.vn",
+      "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxNNnBNWHZzcTVrWFVIR05wN3E5OFg0bUw4aUlrM2NxcldPaWV1cURJaUhkTW1rdElYZERNZlB2RWRWeE5DY0pqZmhzZ2w5RXhsdjlhQnlSczVfXzZWTjc4NTFaRERZUmd0cHF5ZW9lWVdWZU9ZTDJXV3Z1M3p1UGFyWWZqcw?oc=5",
+      "publishedAt": "2026-09-21T13:47:41.000Z",
       "category": "general"
     },
     {
       "id": "aHR0cHM6Ly9uZXdz",
-      "title": "21 Eylül 2026 Kayseri altın fiyatları - kayserihaber.com",
-      "source": "kayserihaber.com",
-      "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE1YYUE3QkhUcVhkM21QQTAxSHBKSFFLWE9MbHE4ZHIyVG1zLURpSW1PcXMzdDBRRjJSYU9lSEdIUWRodjJ0QW5HUk1tenRydEY4NjQ1YzJDOWpsd2lwQmxid1BhNldMaXdRRGQtLUo3MmlKMGNN?oc=5",
-      "publishedAt": "2026-09-21T06:26:00.000Z",
+      "title": "Sota Watanabe: Ekim Beklentisi Yüksek, Bitcoin Boğa’ları 100.000 Dolar’lık Bahislerle Hazır - BeInCrypto",
+      "source": "BeInCrypto",
+      "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxNNC1UbVhCYWtoVm4wYnpQYW1SVWktYnB6dExQVFBwVWV3NTVSLXROdC1pVC1OTi1fRVBRcGNhSWE0NTYzdmZCaF9nRjdaM1Bob2Q1RzhQR0JhNm5WS0JYZllfQ1ZQRjVfZ1BWNWZjUG1qRmlwdDNNMEc4NFpvTVJvVnVjZXg3LTA?oc=5",
+      "publishedAt": "2026-09-21T13:29:47.000Z",
       "category": "general"
     },
     {
       "id": "aHR0cHM6Ly9uZXdz",
-      "title": "Kalshi, bir eleştirmenin aynı $5.500 tutarındaki işlemleri işaret etmesiyle 'sahte kripto hacmi' iddialarıyla karşı karşıya - CoinDesk",
+      "title": "Bitcoin Ocak 2026'dan Bu Yana İlk Kez 85 Bin Doların Üzerinde - borsagundem.com.tr",
+      "source": "borsagundem.com.tr",
+      "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxPZ3hZWGxaZ1Y2SFlUX2VLU3BRcWNqSklIclhnRG5HZFBRVnRDejVwRnZ3OWNEZnpqZ3EwWWlXTnVTS0FoSVRWMEwzbmxnUk9TOTVwR0NsLVFIUjM0M2VXLW5FempVbU1kUXM4ZUdTMTFiTTBSR3JuUGhTalUxa0FUR2hsQnVTbUliamVTLXZ3TU5rcXAxc1E?oc=5",
+      "publishedAt": "2026-09-21T13:21:00.000Z",
+      "category": "general"
+    },
+    {
+      "id": "aHR0cHM6Ly9uZXdz",
+      "title": "Ethereum haberi: Bitmine (BMNR) 75 milyon dolarlık ETH satın aldı, Tom Lee ise kurumların kripto para konusunda düşük pozisyonda olduğunu belirtti - CoinDesk",
       "source": "CoinDesk",
-      "url": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxONjdrR2NSam8tc2RWeFd6cW1lbTZaOHdiTEctYWRMX0ZoN0VHVzhLYjlteDBLaWRUSkJ5WG9DUDE2d3FDTDVUTFNDaWF5dUhFbE16ekJDSERPTjhoeVdYMTE3dWNPQnpXQkhuQVh4M2doRlRTVmhJUjBYb3NwOXFzMDZHUWlnSHhXWjE1NTlad25sVXI1ODhkM0dvMWFDZ3hoaEZxTkFDcWhsTjVGaGQ4dXRvbGJyMmFmNWo2cXRNNWRTemNUR1Y5czZOcFhIZzhkWGp2dU1aQ0NHQmJtSDBEaTRjMEhLT1dv?oc=5",
-      "publishedAt": "2026-09-21T06:24:35.000Z",
+      "url": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxPbGV4MzRJRUFKVmhmbWhEaFhTaEZqVUVXa2p0Sk1qeFNab1RLc2lxNFFjeUNjRm8yLWYwaFVIUjBuYzRhLWszeUhuOE9fSTZiVkRhaWR6MnZJR3RJaU5JTGdCOVMxVk9VVW9wTmEydk1rMkxkVnI5Ykh6ekZTYzUyYzctV2hxVUJ1aVVYbWdGZ2tkMkJER3B2Y3FaQThZdW9hWm52dkIyaWRySk1neHVxdnR4bXp2aDZ3amplQXJDVGs4RUpiRkc5dWlPM1g5Q3g3X0dHWlpKMA?oc=5",
+      "publishedAt": "2026-09-21T13:15:24.000Z",
+      "category": "general"
+    },
+    {
+      "id": "aHR0cHM6Ly9uZXdz",
+      "title": "Bitcoin yedi ayın zirvesine ulaşırken kripto hisseleri yükseldi - Investing.com Türkiye",
+      "source": "Investing.com Türkiye",
+      "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxOUmExQzdtektfbWxybnp2d19zSGpTenJDSjBRbS1laTJxRHp4TXRtVDhSZnN4bE56aGJZbWhJT09vVmlFQXRrNG9tbXVUZllncmZoeEI1enpfNE5EdkNFdnJmOGFmUk4zc0VreUh3Rmk1T2hZeERxNFJqa2JNMnJjanlsSmI3ekdPd25wODlQR3JiWEo1LXJ3VzU5cXBpTTZxY2RzRExCbl85ZFo5T1oxa2hWMTF1QU5sUzFDX2NvQQ?oc=5",
+      "publishedAt": "2026-09-21T13:13:43.000Z",
+      "category": "general"
+    },
+    {
+      "id": "aHR0cHM6Ly9uZXdz",
+      "title": "Bitcoin Neden Yükseliyor? BTC 85 Bin Doları Aştı - CryptoPotato",
+      "source": "CryptoPotato",
+      "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxNVl9uaTVucEExY3BvR1NrbFhvN3FJM1dqbHZJdDk0a2hkdWxNUzQ4TjUxNlNoNVByZmN4N3JPa2IwaHFmLVNwZTIxM2ZjNkNXZ285MGF4TEFBM0lRSk8zMGlodTRpXzFkMVY4MkhGSFlGeHRLYmU0ZXJYN2licjBQOWh3?oc=5",
+      "publishedAt": "2026-09-21T13:12:23.000Z",
+      "category": "general"
+    },
+    {
+      "id": "aHR0cHM6Ly9uZXdz",
+      "title": "Hazine Bakanı, 10 yıllık getiri %5’e ulaşırken iyimser ekonomik verileri güçlendiriyor - CoinDesk",
+      "source": "CoinDesk",
+      "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxOXzBqeUxfbGlvczdnaktrYXpqZDNLV1ZjaWhYeUdXNXBrcDlUNkNseVNIRkF4dVZoaW5JcFN3dVRRb2M4di0wYWR3TEhKV3M5YzhIWU5laFppYUhMTjRyc3BBVTZKZVUzVWtIN0N5ZkFPR0tqMTgyTzkzcDhKVHNHcXFuUkxjNWc0emktVlVCSENWaDlqaTdaT2J6cmVBdlJVTl9zTVR2TF9XNkR6cTVkekI3M3JFOEtNR0R4T0dRNms2SlE?oc=5",
+      "publishedAt": "2026-09-21T13:12:17.000Z",
+      "category": "general"
+    },
+    {
+      "id": "aHR0cHM6Ly9uZXdz",
+      "title": "Kripto piyasasında 8,5 ayın rekoru - Yeniçağ Gazetesi",
+      "source": "Yeniçağ Gazetesi",
+      "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxQZzlnVkJILTFpOGFCbFNGNzUzMk9TZ2x5ZTRudkQtR0YzMS1qRl9tM05XU2laOTFGZkVWMTlxWHJEaHhhX2hjUVcxWnJaY0YxbXhwT0NrVHNnQVBSbUZldmlmbW1SME9QYjl2b3RydGdmMWNYVGFvbGo2MFNFdTNhUFg5N1g?oc=5",
+      "publishedAt": "2026-09-21T13:11:46.000Z",
+      "category": "general"
+    },
+    {
+      "id": "aHR0cHM6Ly9uZXdz",
+      "title": "Kriptoda sert yükseliş Bitcoin 85 bin dolar sınırında - Akyazı Haber Akyazı'nın Bir Numaralı Haber Sitesi",
+      "source": "Akyazı Haber Akyazı'nın Bir Numaralı Haber Sitesi",
+      "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxQODk5M1I3VkNrcnQtTmxqdVcyRGZuM1c5bTU0Ui10UjlfbktXcy11WmZ0UXNHNDk4V1M0ZmJfVThhT2tqekIweFpMc0d5WVdoSG5wVjJBVlNTSkltS2V5NGZwN3VrTzFMa0VHS0NiT0tJb3pmY1UwZTc2NkJYWVdabE4wZkR6SnB5eXk0VGZKcWg3Qlk?oc=5",
+      "publishedAt": "2026-09-21T13:11:00.000Z",
+      "category": "general"
+    },
+    {
+      "id": "aHR0cHM6Ly9uZXdz",
+      "title": "Bitcoin, ETF girişleri ve makroekonomik gelişmelerle 8 ayın en yüksek seviyesine çıktı - Anadolu Ajansı",
+      "source": "Anadolu Ajansı",
+      "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxQMFZqcGZZQlFsaEhONGhYeTVNRkctU3FtTXBVd2pIQ25CR3B3cnVGSUFHSE0ybVVDWGZvOVdMUDFRSzFqNE05T1Bmc3EzQkc3aU5keXBmLUhDNEQycjFGTTQtZGxwSGEyOFdaTUViQTZxWnh5SHNHWDdJOG9VY01LQU01eDIwTDM1UThVX2dfaFl0UWtTTnhCM0JtWVdOajZNV2I4SkdpN3lIelNYNGt4elhhck9KRXRjMFEyT1IwVmNDem1R?oc=5",
+      "publishedAt": "2026-09-21T13:07:21.000Z",
+      "category": "general"
+    },
+    {
+      "id": "aHR0cHM6Ly9uZXdz",
+      "title": "Kriptodaki yükseliş düşüş bekleyenleri vurdu - Son Dakika",
+      "source": "Son Dakika",
+      "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxNZnowb09qNmU5dVd3Nzh1M3AzcjZlbnNaVV83ZU41Y09GTGFhRG0xVWU5Qm93aDJ2R3FSQ2FJTHZuQnJRQ1V6TnZWekZQVzBRQjlIVkFIeXNicDFibGdWWWlMWVJCZUlzZGFQcmJEZ2ZPeTlKQkZBMk9fcmhXS2F1bEI4Y3kycVRaT3ctbE1hVVNoYzVJUWpTTjVlLWgtS1E?oc=5",
+      "publishedAt": "2026-09-21T13:00:17.000Z",
+      "category": "general"
+    },
+    {
+      "id": "aHR0cHM6Ly9uZXdz",
+      "title": "Bitcoin'de yükseliş hızlandı: 84 bin dolarla 8,5 ayın zirvesini gördü - 24 Saat Gazetesi Ankara",
+      "source": "24 Saat Gazetesi Ankara",
+      "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxQTU9JdTRVMGt4YllfaE9yWC10TGpLZmpfekM4aEllc255M1pEaU9KYkNRSEE0SUZPMnQ5eFhfdENnR0dUMENHeFlWdHhTN1pkUHJha2ZDejhuNkU5dVpOU2NvWnBGZXdwcEplMVVwWmxlMnlTcmtoRE4yM3ZXWms2cWNIUjdVNHFPdG5wQmZ0cHVRVk45NmZtT3lxTk4zZw?oc=5",
+      "publishedAt": "2026-09-21T12:57:00.000Z",
+      "category": "general"
+    },
+    {
+      "id": "aHR0cHM6Ly9uZXdz",
+      "title": "Litecoin 10% oranında yükseldi - Investing.com Türkiye",
+      "source": "Investing.com Türkiye",
+      "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxQWXlqWVJIZmxlZlc1STNrZXM5SGNVQ295SjM5OU1KdzFmcGJxQl9wU25KdFZYX1ZOUF9DcWNMZ2QtakN1VGdEcHhoUkdXSHpjX2lEaVA2U1B3TVpMVVI3cEc4S3NvU3pOX1diWV8ydmhPekM1NEhCR1NHSmM2QnZvYXcySEdON0Rhc1U1V1l1bw?oc=5",
+      "publishedAt": "2026-09-21T12:47:10.000Z",
+      "category": "general"
+    },
+    {
+      "id": "aHR0cHM6Ly9uZXdz",
+      "title": "FED'e rağmen neden düşmedi? - A Para",
+      "source": "A Para",
+      "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE9XbUFGSHNqT1lzd1o1ZjUtU2UzcXZZTHNIeXYzSXRhd250MTdTYmZrMjRVem1iUmZYQmNrcTBod1VMQk01dVRTbnR6M0dlcUp2ZDZPeHFEV2Z6N3FGdi1WdWlleTB1ZS1QSXdjM1U2X0FKZ2RIWDJuZw?oc=5",
+      "publishedAt": "2026-09-21T12:34:30.000Z",
+      "category": "general"
+    },
+    {
+      "id": "aHR0cHM6Ly9uZXdz",
+      "title": "Google ve Apple, Büyük Teknoloji şirketleri stabilcoin altyapısına yönelirken dijital varlık yetenekleri arıyor - CoinDesk",
+      "source": "CoinDesk",
+      "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxOT1UxeTdqVXh0MXNpUW5FRWpJb25IM09xMnphZ3BQQXBoREhnVUVvNl9GY0p6TDg2WHdFVXMzU1VvYkxBaWx1V2xYRjkxSE1ZRWZCLU5RVEQ4emNyaUExcDZJUkFKeUh3OXBnaW9aVkhpNUkycWFESHN2QTY0d1E3U0lTalA5RVJWLXlxdHNZQk9xUXBXa3pJaEVhU0c0VWM1WTJoQ2Q3Y25UNVBESWZ1SVQwNkZWZ0FxbmpPUy1MMTk1eldoVFBoQXBqT21rSzg?oc=5",
+      "publishedAt": "2026-09-21T12:20:13.000Z",
+      "category": "general"
+    },
+    {
+      "id": "aHR0cHM6Ly9uZXdz",
+      "title": "Zirvelerde aşırı ısınma ve PMI: Bir trader, Bitcoin ve Ethereum fiyat hareketi için senaryoları değerlendirdi - incrypted",
+      "source": "incrypted",
+      "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxQNTNDWWozN19jZHZYUURBZlBtX2wzTEROZnFQOEhqN0NKRlFZS0EwM3pHT2FiUjY1LVJIOUZ0VFlES0FJUGhtdUFsSEEybEw4dGMwS2VTUWVFbk5oaC1TY09icGRsaUhnSG85RGo5N3JYVVJoMmdTNjZjQ1ViMXZRZDJ5VVVNdm1tTm5fWlJrYVRBRThYaGN1OVlTY3BwY1BUUUh6TDg1VEU3c1BKckNsWHd5b08wVUVsNE96WG90c0RNejNsUXRKR0k1OWY4QQ?oc=5",
+      "publishedAt": "2026-09-21T12:15:27.000Z",
+      "category": "general"
+    },
+    {
+      "id": "aHR0cHM6Ly9uZXdz",
+      "title": "Strateji, BTC'nin 84.500 $'a yükselmesiyle birlikte bitcoin alımlarına yeniden başladı - CoinDesk",
+      "source": "CoinDesk",
+      "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxPRUdrd1R5Qms0cTI5M2lXZmRxaE9ZNWdtUGFOTkJveDJGOXNjM0VBcDdQejNYZTlzVkR4TW9Pdnp0V25TYk1qVU5ydS1xUEh6X3kybXBGWmZMaG12RTFrSktCaUh4QUJTb0NyQ0pqRkY4U3Z2bHVZS1dURjU1aFlkVi1HRTd4QUZjc0RaMkltbzZkZ1FuaGc4dGNsZi1ZdGI5RjRnT250cFZQRWw2TFJBTkdpUHdHa0Z4?oc=5",
+      "publishedAt": "2026-09-21T12:11:48.000Z",
+      "category": "general"
+    },
+    {
+      "id": "aHR0cHM6Ly9uZXdz",
+      "title": "Bitcoin 85 bin dolara yaklaştı - kibrisgercek.com",
+      "source": "kibrisgercek.com",
+      "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE5seU15R3BkU0lybkN3Z0lRUDhMYTU1eThyZDRXWU9nckRuUWZZQTlCa20tM2tBOEhsaS1nTGw3ZE5ETGhIRDRvVVRnVEVrNTNhV3QwVXVoUmhFWVl4LVdzR01acmd1cWdlYzdZ?oc=5",
+      "publishedAt": "2026-09-21T12:04:00.000Z",
+      "category": "general"
+    },
+    {
+      "id": "aHR0cHM6Ly9uZXdz",
+      "title": "Bitcoin'de yükseliş sürecek mi? - Son Dakika",
+      "source": "Son Dakika",
+      "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxOOUdrTVVwM2plRnBBTk5wM2hEajZlUUNJekpUVDdESWh4TWwyc0FBRkJVRG00UTZmNmRId2JhanZNbGRpaENCOTZ0MWNWQ3J5aWhNaG1fWVFXQWtiVk4zUjZQZXVlSmZmRDc3TVNNZmpldGRsa0V4bDhIZUZqb1NVS1J4cW15MGZKM2xj0gGAAUFVX3lxTE41STZ1RlNsTGFOS1BPby1vTHJiY1p0UjJVYVFGaTRDai1wTlFPeWwtVDdzbC10c1hfb01wTndHLVJwMG8xSmJXaXdnRHYxUU5keExmUTVlTEEwOGxudUozRWtURjRENVdHemNnVEk2YjdlUTJabkpVOXpUal9BUU9t?oc=5",
+      "publishedAt": "2026-09-21T12:00:19.000Z",
+      "category": "general"
+    },
+    {
+      "id": "aHR0cHM6Ly9uZXdz",
+      "title": "Dünya gümüş fiyatları toparlanıyor. - Vietnam.vn",
+      "source": "Vietnam.vn",
+      "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE41RjdiLWQzTmVUMzlvYjZnZ1Q3dWhrY3pIdXdUQ05kb0RKd2lZWklub2tXRTFENDhwMVItUFdDUVNOZU5Na05FUUxwaEVycWhzeXh5QWlleXJucTAxRFBIVg?oc=5",
+      "publishedAt": "2026-09-21T11:51:29.000Z",
+      "category": "general"
+    },
+    {
+      "id": "aHR0cHM6Ly9uZXdz",
+      "title": "Piyasa öncesi hareketler: kripto, yapay zeka hisseleri yükseldi - Investing.com Türkiye",
+      "source": "Investing.com Türkiye",
+      "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxPSHd3WDY5ODVKMnB3LWtoRmJlZUE4YXR5Y1FOcE9yN3hONzh0V182bjZxYk1HM0gtMVdKN1ZqN25XeW1rM19KX1hnU19NOXJDbzdtSS1RcDluQURjcEh4ZW1kcEZQUGVGeDFYWk56TV9RckNnUXRneXpiejNYYjQ0R1VpbmtVRmQyeXhzYnNvY0VndkQ0NTJPZzZndlhKN1VVLVNqbkN3dE5NT3p6UWVWcWZueFF1dnRv?oc=5",
+      "publishedAt": "2026-09-21T11:47:40.000Z",
+      "category": "general"
+    },
+    {
+      "id": "aHR0cHM6Ly9uZXdz",
+      "title": "Sezer Taştemel Koyun | Bitcoin 85 Binde: Manşet Zirve, Grafik Hala Ekside - Ekonomi Dünya",
+      "source": "Ekonomi Dünya",
+      "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxNdncyQW5BT3N4THFkM2pCLUFicHFET1NHRmlmdk5jRTl6UHJ3RzBrYW82UGtMQ0V1YkVBbmQwdDJwbGZZWVl1ai1ubFRmVEh1N25HaXBxXzlFLTRKaE14TzZRUDM0RGI5aG4wUWdHOWMxLURGSHc2S2tzcG1JWGR4eVJnQlgxZ2dGd1NNbEFTTDlqMUgxemI2cVBqVFd0UkZxWWNJcDdxZWZXLVpmc19taG1KeUg?oc=5",
+      "publishedAt": "2026-09-21T11:47:40.000Z",
+      "category": "general"
+    },
+    {
+      "id": "aHR0cHM6Ly9uZXdz",
+      "title": "Bitcoin'de yükseliş hızlandı: 8,5 ayın en yüksek seviyesinde - Cumhuriyet",
+      "source": "Cumhuriyet",
+      "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxOVGpVVFhUMjhwbEtzeHhyV1B4YjZ2RktPb1lBQVl5dmczRno4ZjdJQ2Q4WER3bDIxS3hZZmx0Yl9SY1psSmRSRk9YWXRRR0hxRDM0blcyWmRJUjlFU0tWc0t1ZlU0Qk5FVUM3UlAwb3dtZmxaZDZZTGVmY2p5eExrQ1g5dUdIdXdBYzMxUHFUR1ZjLXVDSWdzUWVZQ1VtY3dpXzVPaV9XWWg?oc=5",
+      "publishedAt": "2026-09-21T11:44:00.000Z",
+      "category": "general"
+    },
+    {
+      "id": "aHR0cHM6Ly9uZXdz",
+      "title": "Bitcoin'in (BTC) üçüncü çeyrekte %44'lük kazancı tam anlamıyla bir kripto boğa koşusunun habercisi: Crypto Daily - CoinDesk",
+      "source": "CoinDesk",
+      "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxPbUQ1dlQ5dVNYS2d0c19JTkRENmpmc3Z3UlowcGdOdUYzRDJSR05VN2kwdzhNQmZHaTVxb05kZVF1MWFlcVl3Z0Z4ZlVLMnBXOElIUVhjNktHNUNWUXVUNGN1TUNyY0oxY2RMdXMwT28zN3A2YXBnYVRJdmR6bE9oclZQM0h4YWdyQ3FLWENCMExyZHNRR0hjTG1JRzNzS3pjVl9FLTN3VUxRdk9ObzdNQTE3aGRwSnZpVEE?oc=5",
+      "publishedAt": "2026-09-21T11:40:08.000Z",
+      "category": "general"
+    },
+    {
+      "id": "aHR0cHM6Ly9uZXdz",
+      "title": "ABD’de Kripto Sahiplik Oranı Sert Düştü: Yatırımcıların Yalnızca Yüzde 11’i Kripto Tutuyor - CryptoPotato",
+      "source": "CryptoPotato",
+      "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxPYWd4eHdyMHN2aHI1ckozd1Q4dzZvanFfX0ZTZEQzWXpSUThFclRFN2V4S0tIRG9QTm5qcXpyV1kzcUd0RE55ajB4WUM2MEc0NTNob0JxdkJfdmdJdGo2TkRLckNsdnQ3em1BY003c00wVlEyVEtSd2tmYU9CN3U1QTY2bzhTdUFlUDN5ZUVPbjUtV3gybVRYRDFmY2h2SVdPU1REeFdxRVdvVGd5bXdPM0pSbjRjRWs?oc=5",
+      "publishedAt": "2026-09-21T11:39:33.000Z",
+      "category": "general"
+    },
+    {
+      "id": "aHR0cHM6Ly9uZXdz",
+      "title": "'Bitcoin VIX'e bağlı Perp vadeli işlemleri Hyperliquid'de tanıtıldı - CoinDesk",
+      "source": "CoinDesk",
+      "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxPVjlYNUZhdnNmVGNPUWdfQmNRUDZkemNadE9yOENyLWFHWHFCR2lIbEN2WXA0UzdiX1U5R2kxdVFaN045VnppclBJODk5ZlItZG16OHZ5ODhmUXdBcVdLdUFoLUI0Rzk1MExLcXNTdDU4N0MwNS15bFBCSXE4eElfTXZpaVhwLWNfS1gxZmk5c1duOTlZdEY0VFdkUmo3WlhvN1VGZQ?oc=5",
+      "publishedAt": "2026-09-21T11:35:07.000Z",
+      "category": "general"
+    },
+    {
+      "id": "aHR0cHM6Ly9uZXdz",
+      "title": "Coinbase hissesi bugün neden yükseliyor? - Investing.com Türkiye",
+      "source": "Investing.com Türkiye",
+      "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxNMzlnc0lLQXA5ZTdxWV92dXFaN0c0Q2xpdUwtT2FjMFYwWmU0ZlpDc2RVSjJVVUJ6ZVBZR3gtV25VbEkySWN0OGVqczJLQUZBbzRKdUlpY3RhRjlZQmQzSkFwYlZ4b2pxaWx1WDBYd0pBTm5QajV5ZDF0eUQ0akdLWDJVSFNBc2FCdU9LMkxqOGxya1hOdEptZ2NlQzdsSTJlN1E?oc=5",
+      "publishedAt": "2026-09-21T11:34:36.000Z",
+      "category": "general"
+    },
+    {
+      "id": "aHR0cHM6Ly9uZXdz",
+      "title": "Bitcoin'de 8 ay sonra bir ilk! Kritik eşik aşıldı - Son Dakika",
+      "source": "Son Dakika",
+      "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxNWkcwYnBIa0ZWNlFoOGVJTXotdGNQMGtsQ3ZQaGVQYU5VZ3N1aXRBZ2twQ085REVObjY4Q0E4R3habkRwdWpYaTJtM2hlS0h4aDI3eFJxeHh3U1AzUENqR3RpQlg0V3lmY2VPLTRabC1vZUpsdXVoOXROanVpSDNFNXJFX1pWNk1FUHdfRXFpU05tUmhnMXZaQXQyVdIBmAFBVV95cUxOdDNKZ0Y1TkFTamxTRlFtTFJjcmZlaVdPQXIzUEdRazRsU0F5WFY4YmxISUxYdGNaYW05NUxxLWlOU1dESkFvVGR0eGxmdFZwazNETjNqSFlDaDg5aFVianIxcWdILTRucklaLWtpUENhcVZMXzZoQ0RGd3lFR1BobDc5UF9ZLTZaOUdoNk9HbF9hR281N2JvOA?oc=5",
+      "publishedAt": "2026-09-21T11:19:03.000Z",
+      "category": "general"
+    },
+    {
+      "id": "aHR0cHM6Ly9uZXdz",
+      "title": "Altın fiyatları haftaya satıcılı seyirde başladı! Ortadoğu’daki gerilim ve faiz beklentileri altın fiyatlarını baskılıyor - bigpara.hurriyet.com.tr",
+      "source": "bigpara.hurriyet.com.tr",
+      "url": "https://news.google.com/rss/articles/CBMihwJBVV95cUxNdkxqREJHWU1SM0J0ZnlvaWotOTdLZWU1Uzk5NHhHZkRtYWVOQ3NYRUdnTERTcktBd25EaDFtQmd5S1l2Q2pqSzhhZWFFR2tFWGFkdEdwT2kwTDZ3RHN2bXAxbG93cnR2X3R0WmdMTDVVRlhJbndKTXB0Zi1CbTlOWGJwcnd2TW5qQU02NFktVlFMenFrUXhzV1RCdktOaXU1aFc4Y29zT0RFQ2p1dXdpaks1eXJNWnBCM2d1ZnRiWjVyWVUtTnFwN0tlNXN0ZjN1VlJTcHJLcFFDXzJSdVJTRmdoTWFJdU9Gdy1MbHRaSV9Va1EyY3FWd2ZiUWNkM2hiNVo5X1RXZw?oc=5",
+      "publishedAt": "2026-09-21T11:18:25.000Z",
+      "category": "general"
+    },
+    {
+      "id": "aHR0cHM6Ly9uZXdz",
+      "title": "Bitcoin 85 bin doları aştı: Yükselişin arkasında ne var? - Coinkolik",
+      "source": "Coinkolik",
+      "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxNRHZLSDhXSm5KYTZfTTA2Q283NGtPbmdWSEgzQk8zdHJsaEZ3VGdTX0RsRVZEckhoNUVncHB3X2NILWRGc3J2ZXVDYWppSmxyMmRZRWRiQWIxb3c2YzI0ZXFfcEw3M0lZY1RrdUJFdU1DUmJna1dvLVRqTWczQjdDZXpMQzhpd0xq?oc=5",
+      "publishedAt": "2026-09-21T11:17:33.000Z",
+      "category": "general"
+    },
+    {
+      "id": "aHR0cHM6Ly9uZXdz",
+      "title": "Bitcoin sekiz ayın zirvesini gördü - MarineDeal News",
+      "source": "MarineDeal News",
+      "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE9lZV90a3phVlRaMnBTUXJYOFRVaWVZcnRhY0xCQjlaMS1zRG5tVmhqb1V1dDJkYUZMZjM3dktyYkYzcTU2OVVRRmdYYWkxZTdYaTRMb3oxNF9rRV9DTlNfSFBycndlQks1OW5BOW1aV0RXdTBW?oc=5",
+      "publishedAt": "2026-09-21T11:16:46.000Z",
+      "category": "general"
+    },
+    {
+      "id": "aHR0cHM6Ly9uZXdz",
+      "title": "Riot Platforms hisseleri neden yükselişte? - Investing.com Türkiye",
+      "source": "Investing.com Türkiye",
+      "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxOSU9sMEsyRElsbG01Rm1UcXVHSUVEMnVCT001MVItYmgyZVZzSVh5cEE4TmUxbHUzdC1tbE0xUlJtMUFkNXlzRkJKeloxd0paOWp4cllSMGhaanVwNFN2NVM4V0VBdUh0Wi0yc2xBdXA3VW1aVHNEdUpuOWxaVVhsaWY2NHRnZURRRGFQQVE3bjZSUUlKaEhWTUFDSVJsaTI3Zi04Rg?oc=5",
+      "publishedAt": "2026-09-21T11:15:09.000Z",
+      "category": "general"
+    },
+    {
+      "id": "aHR0cHM6Ly9uZXdz",
+      "title": "Ne altın ne gümüş ne de dolar! Cüzdanları dolduracak tahmin geldi - Sözcü Gazetesi",
+      "source": "Sözcü Gazetesi",
+      "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxPeFZ2bjJGSUxYOEk5QW91VnMxaEJXVUZHZ2k2clJRVmdmRXJIS2RCa1lDU0UyOW1PUnFxMEVLLXZhVEFIU3lmQ0tYclVoSkFfN2RsU3V5R1p0RUVEckRzX3k1TlhVTE9mZ1MtY2hPa1RUdW03eHJ5TW96ak5QSFFPeEdVOEIwV0JRYl80Vmg4SFluck93cDNUTEc3NjVSUQ?oc=5",
+      "publishedAt": "2026-09-21T11:04:48.000Z",
+      "category": "general"
+    },
+    {
+      "id": "aHR0cHM6Ly9uZXdz",
+      "title": "Bitcoin'de dikkat çeken hareket! 81 bin doları yeniden aştı - Bursada Bugün",
+      "source": "Bursada Bugün",
+      "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxPUGI3NTlkZGxDbkU0RGgxY3JkYlRFbjktNzlhcUg4NENJcldyUEkxYXZEMkhkbHhHT2xQZUlOZ2RaMnF3R2dNZXF5aWQ4QVZhVC1jeXFiS0VVYkRUWjI2ZUdiUlJXQkNzMmtGUnFYeDBfVmJoR0lmbFpsQXNEYURXRFpYX0lBVU94TlROZ3RYQ3kyNUIwU3FHQ05IcFNEQkRvLUZGc0o3dVdkZ9IBrAFBVV95cUxQNFRyd3hESTRqRUpYcXBVNmdIeG51cE5UeUNteGtKQS1vWWV0WkQwRFdQa3U0b0dTa0Y3UmlpbnZMV1lzY1B5cjgtWjlISl9uNTc4VUF5TXN1TlRZVDdnbU1kRURNb0pXcmhPaFl1YkdfUzd5VVhjaFdKWV9kMFNEWExtR0pOcU9MSXJRVVAwdVFKWXdFU19lNEoxUDhBQUdUVnNJUUVqNmFZTXRY?oc=5",
+      "publishedAt": "2026-09-21T11:04:12.000Z",
+      "category": "general"
+    },
+    {
+      "id": "aHR0cHM6Ly9uZXdz",
+      "title": "Bitcoin 81 bin doları aştı: Boğa piyasası için hangi seviyeler izleniyor? - CNN Türk",
+      "source": "CNN Türk",
+      "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPNV9vRHNrd1duVHZLZjY4R0piUWh0OE1tUHpxWmx3c2JvN2s1UGlkaEVvemhGOHNzbDJnQlRSeUN4MmZCMExfNmVEVlkzaWRtM1FKamZpR0VuTVE2RVpQbGpPWGJ2WGV5Nm5FYWx0cjZqWDFvQ3RTejBCMG5BcDBGR0RhNWZMc3Q4YWZsUnBza1VGQldRN0lYcEg5SUNJQkZIb3p5ZHpnUmF0OVpKb0lERERabw?oc=5",
+      "publishedAt": "2026-09-21T10:59:00.000Z",
+      "category": "general"
+    },
+    {
+      "id": "aHR0cHM6Ly9uZXdz",
+      "title": "BİTCOİN’DE DEV YÜKSELİŞ! | 84 bin Dolar aşıldı, son 8 ayın zirvesi geldi - Kanal 3 Tv",
+      "source": "Kanal 3 Tv",
+      "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxQOXFoWENLbW1tekRfVVZfOUlXeHpnTkdTaUcyWFhqRF93RUFmSHUzVGg3dk9pNFdsNWhYX29rWl9EeGZfR2VoWlhDaVF2YWI2cHh6YnZJQ0k3WWpLR2Y0ZWp4UjZkeHFJdk5mX0xyN0F1bHJCeWpiNGJKSHpyMHB2VlhZS0w3OTNkdWFoQTZydW5FV282bFZQY0h3?oc=5",
+      "publishedAt": "2026-09-21T10:57:08.000Z",
+      "category": "general"
+    },
+    {
+      "id": "aHR0cHM6Ly9uZXdz",
+      "title": "Yurtiçi altın fiyatları bu öğleden sonraki işlem seansında 1 milyon VND düştü. - Vietnam.vn",
+      "source": "Vietnam.vn",
+      "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxPb1VjVlJDaE5tX2E2cmlqQnF6bDZkbko4VFNGUGRwMUVvRUVLemhXMC04bjVnVk81eVdpay1NLXNUd0NhTDRrWlJxYjBYRV9GUnRETTRYNkRuZEtIdW1WQ1pEaXdFaklvMmh2YW85MWdUYmdRbWpyaGQyQU9UT1BWUXMwaFVEYWdLQzNxa05ORlFwUF9RTzl0cHRIdw?oc=5",
+      "publishedAt": "2026-09-21T10:50:41.000Z",
+      "category": "general"
+    },
+    {
+      "id": "aHR0cHM6Ly9uZXdz",
+      "title": "Altın fiyatları 21 Eylül öğleden sonra ons başına 1 milyon VND düştü. - Vietnam.vn",
+      "source": "Vietnam.vn",
+      "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE9sdmNlSWJEVEVzT2NkendxNWZfNlprQWRlWXZLSm9jODdoYmhtbXFuZEh4NF9FRmtSUVVSRUhYakhEN2NrdDRwLVdDZFdEdnpjUmhYY25XTHZmVkFCenlyQWdWdkV5SUVXVmVaekRwSVJfQzItYjdZVQ?oc=5",
+      "publishedAt": "2026-09-21T10:45:55.000Z",
+      "category": "general"
+    },
+    {
+      "id": "aHR0cHM6Ly9uZXdz",
+      "title": "Strategy hissesi bugün neden yükseliyor? - Investing.com Türkiye",
+      "source": "Investing.com Türkiye",
+      "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxPTTZNTGVmME5walNfTkpGRml3NkhzMVdvLUFaRkZmeDBNZFd3cXFGcmZLbFpvaHdnaHNQdk54TlVBWDBJNHZjMDFrVFRGaERvaVBaX185c2w1THhYSDNfWS11eTFKX1RiSmFhNkhka05zZTZJWS0wQW1xTXI5N0NUcVFpUE1wbDV6WERkVHZJQVpzUlBmM0VMUHk4azRWRjJFdXc?oc=5",
+      "publishedAt": "2026-09-21T10:44:36.000Z",
+      "category": "general"
+    },
+    {
+      "id": "aHR0cHM6Ly9uZXdz",
+      "title": "Altın yüzükler neden altın külçeleri kadar pahalı? - Vietnam.vn",
+      "source": "Vietnam.vn",
+      "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE1UeDI4RVdSa2xPUFRVaGxtS3E5cU9sa2ZDNHVTS2lxM0VDZW9QRUFRdWw4bWFObUxiN2hUcTl5cUxfaXVkdXdhdWJQVVFwUnJSektUc052NEIzOFJkWjEzVEs4UVFIcEREUGdrdGFrRGdjYU9nbWc?oc=5",
+      "publishedAt": "2026-09-21T10:37:59.000Z",
+      "category": "general"
+    },
+    {
+      "id": "aHR0cHM6Ly9uZXdz",
+      "title": "Bitcoin, 648 milyon dolarlık düşüş pozisyonlarının zorla kapatılmasıyla 85.000 dolara yükseldi - CoinDesk",
+      "source": "CoinDesk",
+      "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxNMENsdy1XdkFZUDQ1YTRsalBlRUdVMmZqcFpob3lBMjBmLTlXUWdjSnpucW82LXdzNUZTNEpYSlg5ck43QVNFbjAyQzV2bXJUOWZvakcyLWdZbTgtTWY1NTNBQjc1ZEU1T1hpX0U3eFBvblR6YlpFVEdOM3h6d3Z6N3h1MFI0SnItenF4OXdJb3lsWkgxSEd5M3p2NnJwMTE1blF5U1Q5QmNkUWI3ejhFVFVLSDRGV0s5b2dQakRtRnNJQmFaanpZ?oc=5",
+      "publishedAt": "2026-09-21T10:35:02.000Z",
       "category": "general"
     },
     {
@@ -98,311 +378,31 @@
       "title": "Bitcoin 81.000’e Nasıl Yükseldi? | Nasdaq Fed’i Neden Takmadı? - Investing.com Türkiye",
       "source": "Investing.com Türkiye",
       "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxPZTU4LVRDcjQ2WjJDQ1RRaEppNzJGUTZaMDNGQTFmWGpUNzBsdHRmOGZmQ2I1QXhvQUdsdnFtUUowajdJSlpoaUNOdFFRakF4U2NJbTRZeEpVUGd6VkxLVms0WjNHX3Rwby0wMExlTDZRc1J0ZnpTaGpVbWJjQXMtbWVwQXRvWEVmdVI4cnJmNFZyM3QxTW5HQVFadHNweDQ?oc=5",
-      "publishedAt": "2026-09-21T06:22:38.000Z",
+      "publishedAt": "2026-09-21T10:31:45.000Z",
       "category": "general"
     },
     {
       "id": "aHR0cHM6Ly9uZXdz",
-      "title": "Altın fiyatları yatay seyirle yeni haftaya başladı - Ege Alternatif",
-      "source": "Ege Alternatif",
-      "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxPYmpOeXN3em5telBkM0d0M0tnMjE1VWFMcFBoSjdUMGRYYXVQNmQta1lVLUhVWXg4NkxkTlN0bUxPRTlxUkQ3N1g4TkE1M1Y1dU1rSjE1WWltdW1rMmFhSnBuS2VzYUxXMTBDRnN3MHJ1RkFsRy1scERTa3NxVThNUEFteVhaQlc4MzZYQkt1czVKWFV6OVNoUA?oc=5",
-      "publishedAt": "2026-09-21T06:00:00.000Z",
+      "title": "Bitcoin yedi ayın zirvesine çıktı, kripto hisseleri yükseldi - Investing.com Türkiye",
+      "source": "Investing.com Türkiye",
+      "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxPTk1qRDRyZnpUTm51c3NtZWl4WFFoNmQtUjZrRU9xS1hZOE1aREY4UDBudmNVZWo2Y2ljdXVZSThLV1dEVkw3Qnc0TklaYkQtUS0yNG1HTGh2UGlOUTI5QzdHaURVMkJoVENkNnBRb0ppSUNNRTZJOXk1T1ZYRkgxTTg2UVFEenVUbThCRTQ2VVF4aGdKd3cxNFpTODFGbFBQSlhaTFpXM3ZaN3RkUmVqc0ZMNGM?oc=5",
+      "publishedAt": "2026-09-21T10:21:51.000Z",
       "category": "general"
     },
     {
       "id": "aHR0cHM6Ly9uZXdz",
-      "title": "Bitcoin 82 bine koşarken petrol düşüşte, dolar 49 TL sınırında - İlke TV",
-      "source": "İlke TV",
-      "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxOanBnc21JZzIxdmFZUFJmWTlIQWIxRUFyblhiUXctS0dGanhsTWpsSEpMb0c1TXpNa3RPUGdvN2Z2dDB2N1lCSEFsRlBDVmdpOW1KNUtxMnlrOUZhcFMweG9LeWJQNlJsVUZCZGZoZE5CS3FiRldLWWZENXNKSDVteFk2U2lCamJSY3JreQ?oc=5",
-      "publishedAt": "2026-09-21T05:58:40.000Z",
-      "category": "general"
-    },
-    {
-      "id": "aHR0cHM6Ly9uZXdz",
-      "title": "Trabzon hasır seti ne kadar? 2026 Trabzon hasır set fiyatları ve guncel altın kuru - Karadeniz Gazetesi",
-      "source": "Karadeniz Gazetesi",
-      "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxNWm1udEVEaFNxcGFoY2lmN095cS1CdU5hNU9SazBaMXJXeXFzUmdORXdEM29hOXlyOFR2ZjluQmxMZ2prQVg2eWdZcXFpTGt4UWttMVNJdWRxXzk1NEhTVFpneTFPdHpEYkprSXMyQzJrb0pWcjAwbGN6NlkwM195cmFoMWtaUjZhOHhRS0pWeFpFWmpKODlRcHgyYmlmRkZwdEF1bnFYZkpDb2hRLVd2aTZoUlM4Vmx0SG15TEhBTW9wUWI5dnc?oc=5",
-      "publishedAt": "2026-09-21T05:53:00.000Z",
-      "category": "general"
-    },
-    {
-      "id": "aHR0cHM6Ly9uZXdz",
-      "title": "21 Eylül Güncel Altın Fiyatları: Gram ve Çeyrek Kaç TL Oldu? - Muğla Yenigün",
-      "source": "Muğla Yenigün",
-      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE5SVWQzNkVJSEx2WWhIRUZDU3FlUkJsS0Y5aXVvYldRUnhwZUJTSjJrQ1ktbF82N0QtR3JxU3djbzQ5ZURBMmJhTHVBOG9LNmZPc2JNelAzYndjMDFFNENuak1NWWJHbXlQV1VJZUVR?oc=5",
-      "publishedAt": "2026-09-21T05:51:31.000Z",
-      "category": "general"
-    },
-    {
-      "id": "aHR0cHM6Ly9uZXdz",
-      "title": "Bitcoin için 45 hafta sonra kritik sinyal: Ayı piyasas�� sona mı erdi? - COINTURK",
-      "source": "COINTURK",
-      "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxPVlJLRXYweTg2OE51SXVaTU1DUHdhdWZkaW8zcFY1UHZEZFV0ZDM4dWpwNXhRM0hIZi1FSzdRaHlEakFPaG5UaG5PdkE3WkRwZ21JMkVqU0ttMElwb18xcURQUkhmWHowV1MwcnpQVF9LckNYVVJpc09WYTZfS2NNeW9XVDFBbDdWRW9IZlctdGJUckE?oc=5",
-      "publishedAt": "2026-09-21T05:51:19.000Z",
-      "category": "general"
-    },
-    {
-      "id": "aHR0cHM6Ly9uZXdz",
-      "title": "Bitcoin 81.000 Doların Üzerinde: Büyük Hareket Yakın mı? - Coin Mühendisi",
-      "source": "Coin Mühendisi",
-      "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxQRW03Wnlick9NeWhwa3ZJUFMyMHFBNnllTV9sWGh4RTlmRWlGVDBKTkRIOFZmWkpqc2ZIUGZSTHlZMHhvNTZSc0ZMWXpXeTNHSklmYjNtSV9rLWxiZGU4WFo1V1ZlRnRVbDA5ZVhXXzJRMV9JeGxrVFhhMGlyeHpqalNtTEdIdS1peDNkWENSVQ?oc=5",
-      "publishedAt": "2026-09-21T05:49:21.000Z",
-      "category": "general"
-    },
-    {
-      "id": "aHR0cHM6Ly9uZXdz",
-      "title": "Altın yeni haftaya nasıl başladı? Fed ve Orta Doğu kıskacında son durum - İlke TV",
-      "source": "İlke TV",
-      "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxOTVFqRy1FSWNvLXFPa1plTmpzRWhhUEFmcExHOTh2TVRCeWRhaVM4aEdmcjZ3OThmVzRfSU9GWHZ2VEswaHpmLXBDMWhaUmtCVHBnZWdJX2NJSHF2UHVIWllSWXppUVRESW5hVzlHa1V4UjJCRWFzdmYtR05TQkhQdEd6ZlMwQ0IydEtMWElMSmdyWExuTzdxQw?oc=5",
-      "publishedAt": "2026-09-21T05:48:38.000Z",
-      "category": "general"
-    },
-    {
-      "id": "aHR0cHM6Ly9uZXdz",
-      "title": "Fed şahinleşti, Bitcoin 82 bin dolara koşuyor - Ege'de Sonsöz",
-      "source": "Ege'de Sonsöz",
-      "url": "https://news.google.com/rss/articles/CBMifEFVX3lxTFB5ejJCQy1uYnB0ZllrVUFlbTQ1RVJqaVJYOV9WekRHSmhjb2tJZWc0cjVudVljdEEtbkI4bTRXc3NuOTFOaEx4MHRCcUFQSDdoUWNndU9pZHV3bTFPdzQzM01Jc2NEd29VV0FrejVJRHJNakhqSElwU09TRkU?oc=5",
-      "publishedAt": "2026-09-21T05:24:00.000Z",
-      "category": "general"
-    },
-    {
-      "id": "aHR0cHM6Ly9uZXdz",
-      "title": "Bitcoin yeniden yükseldi: İki haftanın ardından 81 bin dolar aşıldı - ekotürk",
-      "source": "ekotürk",
-      "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxPNzkzN2J2SkFza1hPZ05fUEp6ZjZYdmJwaUpHaF9QOFhpVHBjNng1dWRYYlhraXQxTTlqS2xiYjU5SGFBQTlZdVpCbHZPZWRpUk5qeWRkbWQ2aC1INGl3OXJXNnAxM1ZiNXg5RER4bksxQ2V0N01oQVJxV0N2SDRoUnFFVmt2Z3FTeVhtcUJNNjhZbDJNcHlsNUY1YzBwejVWeHc?oc=5",
-      "publishedAt": "2026-09-21T05:22:41.000Z",
-      "category": "general"
-    },
-    {
-      "id": "aHR0cHM6Ly9uZXdz",
-      "title": "Bitcoin’de büyük hareketin sinyali mi? Hedef seviyeler belli oldu - Dünya Gazetesi",
-      "source": "Dünya Gazetesi",
-      "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxNNEdOM1J2d0FnY0pwV2pXaXlOeUhGLVliLUVJYlZSSEFpOHlHcC1Ub3ptRnNrYWY1V3g3cnhqaFBqTURMdDVuWFYzWTZqd0w4Q3hPejQ0dkUxamVtSW4ydkMyUEtOM0V6QWFGMXQ2QkFPSXMtU1JGYkY1ME1aRUF4YmlEUXJ6SDMyLVdJczRxZ2xOdWczZ0huRXlmNVZTbW5EY0F6WGRnVmktNUVpck1od3Fqc3FOZGxZRk5F?oc=5",
-      "publishedAt": "2026-09-21T05:22:00.000Z",
-      "category": "general"
-    },
-    {
-      "id": "aHR0cHM6Ly9uZXdz",
-      "title": "İşte Güncel Altın Fiyatları - Yeşilyurt Gazetesi",
-      "source": "Yeşilyurt Gazetesi",
-      "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE55aXJ1QlVWd01CbXhhVUlSM0NjcTJ5d1NkMVRCSkdmNGVkTHpWekFoWElRNWZQTkt5NGVhLXlvRnJiQUE5bDN6dWR4NVZpamlZdzU5UnY2RHE2NzJFdlFoaUlsaFJib0RsOFNRTURva00tZ0Jw?oc=5",
-      "publishedAt": "2026-09-21T05:15:06.000Z",
-      "category": "general"
-    },
-    {
-      "id": "aHR0cHM6Ly9uZXdz",
-      "title": "21 Eylül 2026 gram altın ne kadar? Ons, çeyrek ve Cumhuriyet altını güncel fiyatları - Kalenin Sesi",
-      "source": "Kalenin Sesi",
-      "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxQSG15TVFwOHdGbW5EeGNHb3hhMTl2MWdpUUZpWlRqWUZZZkJndGpNQVd6YmtockdkcENCODVvenhzck9IVnkySDk5dkpUX1Q0cGR1OXRTX3BGbEdINFJrNVZ1Q3RFUEhaWEF1NmNUdXlmSjZxTEFibG1xNnVCcEZMbHFPVVdnZktVeHY4WXZoYlE2YUNKdnBURmlsN0dpdWxYYi1IS2NRNS14Z1I2aExZ0gG0AUFVX3lxTE42eGE3Vk81N2JjRFZNekFJRVNFbmlhX3FSZElDaFBWQ0hkcGNWOWtKU2JMNGowZzhFR0dUMHlJNjMyMHQ0RzZmZExveXJSTEZHN1dJZl9qX2hnVmRaWTN6eU1QMnBUSFRHVWgwRHZ3aHFKdFFYQkFzZFY1aTdKY1FILTdwRVBfRU1iVWthLW9fclJlNGZtSy1kTnBYTnRFNlVEbXFWaFU2R3k2Q1FTQUhhVmRBTA?oc=5",
-      "publishedAt": "2026-09-21T05:10:00.000Z",
-      "category": "general"
-    },
-    {
-      "id": "aHR0cHM6Ly9uZXdz",
-      "title": "Gram altın 21 Eylül 2026 fiyatı: Çeyrek, yarım, tam altın ne kadar oldu? - Güneydoğu Ekspres",
-      "source": "Güneydoğu Ekspres",
-      "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxQcHp1WWQ0elVOdWFla2F2N3ZrbkFZRW53MGlNWmN1RWxnT3JJLVVnZnZFRmN3Tm9mUFlvZ2pCdGJfd0JWOUtsQ1d4MVpxdGd4OC1yZDkzOE5yTUthekR0ejFFYjdObHRhZjk0dER5UVVkaWxGa1lUWGh3bkN6dXYwbFpqN1U4UWVndmt0aVh2elY1UkRaN0xNX1lCc1VfMmpmY1Bn?oc=5",
-      "publishedAt": "2026-09-21T05:09:00.000Z",
-      "category": "general"
-    },
-    {
-      "id": "aHR0cHM6Ly9uZXdz",
-      "title": "Altın fiyatları haftaya satıcılı seyirde başladı! Ortadoğu’daki gerilim ve faiz beklentileri altın fiyatlarını baskılıyor - Bigpara",
-      "source": "Bigpara",
-      "url": "https://news.google.com/rss/articles/CBMihwJBVV95cUxNdkxqREJHWU1SM0J0ZnlvaWotOTdLZWU1Uzk5NHhHZkRtYWVOQ3NYRUdnTERTcktBd25EaDFtQmd5S1l2Q2pqSzhhZWFFR2tFWGFkdEdwT2kwTDZ3RHN2bXAxbG93cnR2X3R0WmdMTDVVRlhJbndKTXB0Zi1CbTlOWGJwcnd2TW5qQU02NFktVlFMenFrUXhzV1RCdktOaXU1aFc4Y29zT0RFQ2p1dXdpaks1eXJNWnBCM2d1ZnRiWjVyWVUtTnFwN0tlNXN0ZjN1VlJTcHJLcFFDXzJSdVJTRmdoTWFJdU9Gdy1MbHRaSV9Va1EyY3FWd2ZiUWNkM2hiNVo5X1RXZw?oc=5",
-      "publishedAt": "2026-09-21T05:06:00.000Z",
-      "category": "general"
-    },
-    {
-      "id": "aHR0cHM6Ly9uZXdz",
-      "title": "Altın fiyatlarında yön arayışı: Kritik bant işaret edildi - Ekonomim",
-      "source": "Ekonomim",
-      "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxOdTE1RWVPeURMeThYRFF0T1NSTjV1Y3hzaVdjV3NNWE1MRFoyOEZTMU0xR0xMOHBUZWtlTl9LU2syS2wwdGxUTUtxZ2U5SVlNNW9SWGs0RGczeXVha1VsbTFiWGlLdDZ6OEZEQloyYzhGZE0wTm1uQnpmbDVnVDd0TzR6bExuXzZBLTZGaU1ZTU5KYVhSYU1VbE5UVnBVNWo0R3hOM1NB?oc=5",
-      "publishedAt": "2026-09-21T05:03:00.000Z",
-      "category": "general"
-    },
-    {
-      "id": "aHR0cHM6Ly9uZXdz",
-      "title": "Fed Şahinleşti, Bitcoin 82 Bin Dolara Koşuyor - Memurlar.Net",
-      "source": "Memurlar.Net",
-      "url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxNSHFBVU40UXZJQWJGX0x3VXhXQXJkdFZNTmxQZ1lqRERrZFowNlMyeHVsX3BLNG51OXFQTW43NC01em9qZVhiQS1WdjNZYmNUZ0FhdENrM0xpcWVuQWNlM1dDWFhyZDROY3BMUlAyQWQ5TThsOVlLVWoyNGN3SW5XQll4bHN0QTk3T3czajlvaHhsSFctUnU0OFk1MFlqdjRNcV80cy0wazM0bl9IaWdvLU50QkN4QzJGalVPOFliTUZabzQ1bEF1TTVNYlJMNFdHUTROSjQzMmM2ZE5O?oc=5",
-      "publishedAt": "2026-09-21T05:03:00.000Z",
-      "category": "general"
-    },
-    {
-      "id": "aHR0cHM6Ly9uZXdz",
-      "title": "Bitcoin 50 günlük ortalamayı aştı: Boğa piyasası başlıyor mu? Uzmanlardan kritik yorum - CNBC-e",
-      "source": "CNBC-e",
-      "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxPSktQTEVlbTU5NkZpbzAtWTRHT2lFcEZBU3hkWTNQemQtN2JWR0hDNUFoeW40MEVkZ3Q2eTZ3QUNZa2Q3MDByQ00zMHExZ2tWSWFxQ3ZDS0MwajdlcnVkQTkyT08tbVZxbXpHaWwzdVR3OURzLXUwbXJWMm1YbDZCU2ZWN3QtVExZT3RleWpPZHJsVDlkMFJOU0JPblVZRnpQaDF6c09jYzBlNjV3Y19weUxVNVBZV2tPNWFDVQ?oc=5",
-      "publishedAt": "2026-09-21T04:54:25.000Z",
-      "category": "general"
-    },
-    {
-      "id": "aHR0cHM6Ly9uZXdz",
-      "title": "21 Eylül 2026 Altın Fiyatları: Gram, çeyrek ve Cumhuriyet altını ne kadar, kaç lira oldu? Yeni haftanın ilk rakamları... - Bigpara",
-      "source": "Bigpara",
-      "url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxOYkdXdFZjT0FsVmUtdXpVUk5idjVaa2ZSWkNBOHBaN2ZfOXB5dzNmdFdHREN2Q3hSeWFmRTVoRFloZks2QnN2VWcxYkhVaE04Yk05N3lnMEVZcmlNXzBkT3dVVkhWQ0tacFQ3Rk03dHlpWllCSnRvNmtlMUxrWmwza09YU19PelY2bkROX0ZlcmN6UnBfYVEwZnFlaElpbGtreTlnb3J4VUhNRUFVT1JpYXgyRmVuVldBT3RXUXhKWW1kb0V3Qk9qcHh0ZmpLUDZ6VWZUaEZaR25iNnJlOFo1UTN3S2M5Zw?oc=5",
-      "publishedAt": "2026-09-21T04:54:00.000Z",
-      "category": "general"
-    },
-    {
-      "id": "aHR0cHM6Ly9uZXdz",
-      "title": "Altın fiyatları bu sabah, 21 Eylül 2026: Düşüşe geçiyor. - Vietnam.vn",
-      "source": "Vietnam.vn",
-      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE8yMU9kYUliOHZQeUxlX1BYNmE0enMtQ1RVMksxbXFaRnB5eV90UW5RcG5VTUZVbEkyRXN6cjIycEI3dl83anZyM1ZVYklNdW1jVG5oRnAxbXotUU1JUmtxUXpPNjQ0VE1qakJSMVA3MkdYbGZ4Vlp4VTJTQQ?oc=5",
-      "publishedAt": "2026-09-21T04:46:48.000Z",
-      "category": "general"
-    },
-    {
-      "id": "aHR0cHM6Ly9uZXdz",
-      "title": "Altında ibre tersine mi dönüyor? - Ege'de Sonsöz",
-      "source": "Ege'de Sonsöz",
-      "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTFBvS0FodldLdjdFMV9uMTdfMlp2ZGxNYlRJX0xRLXpPTjA1WE50emFzUWtMSmxzemlOWF9ZcjVFTE9mSUFCOWp1RUhrNGRrSjVuUWFVd2pld0xBTklPTWZzU2huVDlMZEUtbWF6Z3hDTTZWU1M1b2ptdGhB?oc=5",
-      "publishedAt": "2026-09-21T04:41:00.000Z",
-      "category": "general"
-    },
-    {
-      "id": "aHR0cHM6Ly9uZXdz",
-      "title": "Dolar yükseldi, euro geriledi: 21 Eylül döviz kurları - ekotürk",
-      "source": "ekotürk",
-      "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxNb01weGtPVWl2SGM0dWV1dWVzN0J3RFZka254ek5BSGdIZVlWanZfNGFic2x1VVZwVDl0V0tYelRXWE9vQ3Vma01zYVZIdzlCY0hqRmZacTEtR2cyTjRoX0RVdlBpcjZkZWR3NUdLWDRtczd3U1NPYW9sZ0xCdnJremdCUGk0MndUUkE?oc=5",
-      "publishedAt": "2026-09-21T04:22:19.000Z",
-      "category": "general"
-    },
-    {
-      "id": "aHR0cHM6Ly9uZXdz",
-      "title": "Altın fiyatları güne düşüşle başladı: Çeyrek ve gram altın ne kadar? - ekotürk",
-      "source": "ekotürk",
-      "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxOTl9CU0VxdUtpeExjMzdqQmtBUXVfT20xeVluMjBGb3lEbkl1X3I1bU96c0phbWpjX1h5OVNMWFBzSXAtODMxOW51N1NFUXZvLWxjLUxPTFVJUllZcC1jWTlOWXBBRzBWeDJmOTUwaElhbW1TdG1RUEVHcHZwV1lDU3lVZEQwMGZkV1F2MGpHV1I2UVF6VWw3VGdteG12WUpfSHc?oc=5",
-      "publishedAt": "2026-09-21T04:16:46.000Z",
-      "category": "general"
-    },
-    {
-      "id": "aHR0cHM6Ly9uZXdz",
-      "title": "21 Eylül tarihli altın fiyatı güncellemesi: Keskin bir artış beklenmiyor, Fed'in baskı unsuru olmaya devam etmesi, peki piyasayı etkileyen başlıca faktörler neler? - Vietnam.vn",
-      "source": "Vietnam.vn",
-      "url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxOZElJU0UtU0VXLTlBNm13VmRscm9HTXoxX3ljVWdOQUs5LUNoUEN2WWJIcDNJeExjRUlER3EyV2tyclFYZ01COENBU25yOTVtTkdlemFnVUxFR1BXNk44S1dNNG1iU0RMdHBmejUwNi0zTEp3aEVrRjlYc1JFOHRlZllkYncwcWZSUlE1cG94R2NyQ0Nvb1FHODUtVXQ0Zmlvc1NIaEU0eFdVaW11RVRMRlV6elNiVEp4dGtETzFCbm1kQk1HQldBQnFHM2hvdnJxMTBCZkJsZDhIUkdmWGJCVw?oc=5",
-      "publishedAt": "2026-09-21T04:14:32.000Z",
-      "category": "general"
-    },
-    {
-      "id": "aHR0cHM6Ly9uZXdz",
-      "title": "Merkez bankaları faiz kılıcını çekti: Altın yeni haftaya kayıpla başladı - Halk TV",
-      "source": "Halk TV",
-      "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxPX0RVTTZSTno3ajYzWDNNM1Y3VUJXLUpfZmNjLUxsUGl5OTJ3eHhQYWluREllNzNwcG5ENDV1bG5xT0xyLU5vbXN2WE9zS0ZsTjZxOHlnbmxWTDcwcGhIWllkcDNkZ0FkZDN5VUZlWjFjeDl4RE5QaTZvX2tGcUJnUlZKajVMSVhhbUoyM2pzWXRtQUp2bnlOVFZiVVVOV0lkRTI0ZlBNVQ?oc=5",
-      "publishedAt": "2026-09-21T04:07:33.000Z",
-      "category": "general"
-    },
-    {
-      "id": "aHR0cHM6Ly9uZXdz",
-      "title": "BTC, ETH fiyat haberleri: Bitcoin 81.000 $ üzerinde, NEAR ZEC takas trafiği ile %23 sıçrama yaptı - CoinDesk",
+      "title": "X, sahte bitcoin haber bot çiftliği işleten kendi kullanıcılarına dava açtı - CoinDesk",
       "source": "CoinDesk",
-      "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxPbnBpRlJHRmg0Vl9qaWxnZ0VDSHVMLTVRVHMyakxQYU1aNFFWUzVqbEI1ZEdWWGhNeWY2QkJ0ZWlCQW4ta3Q0Y0xUMjlQRGlMbUhxOF9sc0s1eVBVTXZ1NGY1NDMzYzBfQUh0R2ROdTBpRlZQSmRMRnAxcVpNMUlvVWNhSmNub3ZDU25tek9OQm1XbHhpU0o2WWplM292MjNObE9jOGdxcWtVMWpFcW5zckJqdEZsRTdWUGc?oc=5",
-      "publishedAt": "2026-09-21T04:07:30.000Z",
+      "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxOTjFiLUpMQWdieDdlWHRpNkpPUy01a1F1UlZjNFBxZUpoY2EyYmhBSXZxSlpIV3c2dXFrN1gtZHo3WlZKTEZVNUF1T3NhUW1iRXZWbzJOd1Zqd2NfaXJSMXBFYkxNYmQyR080SldoT1FiR3FaWVc1R3lVenNnZnVBVXB6bmJJVEFLc3Y4bmtNeEZ1REI2UmRQQTFYWmpHX1FCeXJRRTZUelFuRUZa?oc=5",
+      "publishedAt": "2026-09-21T10:21:20.000Z",
       "category": "general"
     },
     {
       "id": "aHR0cHM6Ly9uZXdz",
-      "title": "Bitcoin fiyatı bugün, 21 Eylül 2026: 81.000 dolar seviyesinin üzerinde kalmaya devam ediyor. - Vietnam.vn",
-      "source": "Vietnam.vn",
-      "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxNRi00M3JNUTVrbHVZUXNYakVyUE9pRm1fZXFaUzNtenRwWnhlekpoZGlXVlRQaDlvZDFoMWZmR3pyYXZoZ2dTV0VvSjh4a0xNaVlmREsxdlJTQ0VpT0lwNDNpNGp0MUNiUEF3QWJDQWtWWUUwWmhBaF84LVplYmJKYkNtN0FkaTFNS21R?oc=5",
-      "publishedAt": "2026-09-21T04:04:26.000Z",
-      "category": "general"
-    },
-    {
-      "id": "aHR0cHM6Ly9uZXdz",
-      "title": "Bitcoin’in fiyatı, tarihsel olarak büyük boğa koşullarının öncesinde görülen kritik bir engeli aşmıştır - CoinDesk",
-      "source": "CoinDesk",
-      "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxPVHpNVXlfN0VBWm9rcjVHVm5mM3RPMzRlaUJxU0VKTTJxd0pWOG5kU2NhX1lXMjNCczQ1MC1JR0Q4dW9YVkJnNm1BSndISW5EOGJaQkhPMldRRjhIc0lUbEFJaERsTmxFeUlZX216aXZzZUkwMXQ4cDB1VllFQVViMlVoYzAzTm85OUtyTXpNOWFEb3hSa3FYYmE3NUdsWGduVW01dkdNM2hfLXNBOEJlQXl5ZlY2bHY2eUJaXzdZNDg2RUZFX0xlSThIdUVnNWs?oc=5",
-      "publishedAt": "2026-09-21T03:59:21.000Z",
-      "category": "general"
-    },
-    {
-      "id": "aHR0cHM6Ly9uZXdz",
-      "title": "Altın fiyatları istikrarlı seyrini sürdürüyor. - Vietnam.vn",
-      "source": "Vietnam.vn",
-      "url": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE84c0tSNWQzelM0Q3ZuUk1KWUNWd3Z6T1I1QW43Qzc3MENfUWFCaGlvZ05ZMENQOFE5dmFNeHZDZnpueU93d2ZQZVBpaXlZVjJheEhQanNaYw?oc=5",
-      "publishedAt": "2026-09-21T03:53:20.000Z",
-      "category": "general"
-    },
-    {
-      "id": "aHR0cHM6Ly9uZXdz",
-      "title": "Altın fiyatları bugün, 21 Eylül: İstikrarlı - Vietnam.vn",
-      "source": "Vietnam.vn",
-      "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE1Pck1KWFBNOTRtRFZ1QmxQUDV2NlNaVFdEZmtscE1yWndCLUljTndWdWdUUWtmcTY2NjIwOEQwZXhoSUxoQUFRUkJqOFBMSkhIRE01WE5BdWdObGNFMEdUNldTeWNZTFE?oc=5",
-      "publishedAt": "2026-09-21T03:20:41.000Z",
-      "category": "general"
-    },
-    {
-      "id": "aHR0cHM6Ly9uZXdz",
-      "title": "Altın fiyatlarında yeni denklem: Fed, Çin ve petrol neyi değiştirecek? - Dünya Gazetesi",
-      "source": "Dünya Gazetesi",
-      "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxQckVZMUNpT0N4QkhkTjBFSnNWQTczVFVfdEY0aXVxRms2WFM1T1pGR1N6YzdjRUxLQlU2UWVxbVR2Y3d6TVQ3SS1kRUdicXAtSUJrZTZHcXpzYnd6cjJfXzkxUWZVb2ZWTVZlQmc4bVpCUXJPTEJXVHNzczgzX1NfOHpoaW1oUU5ONFotaDJFZTh0Ukp3SU0yTEYzUy1TSElpQnBXZVdsVDdLOUJJMlB4NDZQZUNaNm5GQm9EZlhMZmw?oc=5",
-      "publishedAt": "2026-09-21T03:13:00.000Z",
-      "category": "general"
-    },
-    {
-      "id": "aHR0cHM6Ly9uZXdz",
-      "title": "21 Eylül, bugünkü altın fiyatı: Altının ons başına 4.590 dolara ulaşmasına hangi senaryolar yol açabilir? - Vietnam.vn",
-      "source": "Vietnam.vn",
-      "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxPOVA2RHFBMmlPSzBlZGExbDlhdVQ2Mmlua0Q5aWp2ZmdQTXlRUk5GY20tVEpFQmY2SmJNakVXeWVLYTFScHJ1UVNaQkNRQjZLRm9UMzdCWV9lMjVFYUpqeDdIOEZQN2FnV2QzbVZOSmh4R2cxN0EtXzFaZnFyUTJZXzBYNU01ajRvaHdyRVNtODJBZw?oc=5",
-      "publishedAt": "2026-09-21T02:52:12.000Z",
-      "category": "general"
-    },
-    {
-      "id": "aHR0cHM6Ly9uZXdz",
-      "title": "Yurtiçi altın fiyatları istikrarlı seyrini koruyarak 147,6 milyon VND civarında işlem gördü. - Vietnam.vn",
-      "source": "Vietnam.vn",
-      "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxPVmJpLXk2T1NET2E4clpHQ0hURVpsTjdNaEFoVVZUc19GcUVHdHNyaTgyMUNWbHNEYm1ma1VCalBmWVpJbnZ3ZjZwMGRWc18wNngzV3VjLW9aSHpMREV4UmNRTVpHWE1TLUxFYU54ZlNhRjI5NWViUHpIeDBCMTFVbkwxdllvbjhXeWtLcWdicFRjX09Vdnc?oc=5",
-      "publishedAt": "2026-09-21T02:52:12.000Z",
-      "category": "general"
-    },
-    {
-      "id": "aHR0cHM6Ly9uZXdz",
-      "title": "ABD Merkez Bankası'nın (Fed) hamlesinin ardından altın fiyatları 21 Eylül sabahı istikrarlı seyrini korudu. - Vietnam.vn",
-      "source": "Vietnam.vn",
-      "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxPeG9TbG0tZWJnVC1BS1l5bS1mYnZqcjZZeGk1VTE5RkxVZ2tjQVZfdEFSQ21DM1Y5a1lVcGVQODZKMGE0YXJRR3ZVNmNKUC1YcXhjaURqWDVXYmkyT29KM1pxRlVKS0dNLWlvYUZqYnRCbVoxVmN6QmFNTk5YTzFPMUJoYU1KaVJ5REpB?oc=5",
-      "publishedAt": "2026-09-21T02:52:09.000Z",
-      "category": "general"
-    },
-    {
-      "id": "aHR0cHM6Ly9uZXdz",
-      "title": "Kısa güncelleme 21-9: Altın ve petrol fiyatları düştü, hisse senetleri ise genel olarak yükseldi. - Vietnam.vn",
-      "source": "Vietnam.vn",
-      "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxNN2c1SlZZazRMaVRmZmJWSHBhM204bGxxSFp5NGJTVEFJcy1EMDl1OHRpZ2tBNEdjX0ZSc1IyTkVDVWZSQkR6X1BRdjZOUThoV0FXX1Q5cGVfN3I4RVAxVUFTWjkxY1ZCSlBNelFSclhGM1A0UmdQdTk3ajV6S2pWSHZ5ekIxR1B1SUJCTS1HTGRrbHU0SmNRbW9B?oc=5",
-      "publishedAt": "2026-09-21T02:28:05.000Z",
-      "category": "general"
-    },
-    {
-      "id": "aHR0cHM6Ly9uZXdz",
-      "title": "Altın fiyatı güncellemesi, 21 Eylül 2026 sabahı: SJC düz halkalar, BTMC, DOJI, Phu Quy, Pazartesi. - Vietnam.vn",
-      "source": "Vietnam.vn",
-      "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxOYkRsS3ZRejltaEFjbC13ZWxPSy1pMklEeU5PYlpsOVdPa1pTWU85Z3BOck1lUU5qQTJCUVA3ZGY3UVdEY0czX1IzazJDTGZtRExrQjNESllsY3RNa1BORF95bnFqNjB3cjZkdTcyc0pMd1NaTG41SUF6ZllXVVFEaTM0NVJGSTdjYXB0RFN6YXc4bzhoMUYwa2t2S2lrOFk?oc=5",
-      "publishedAt": "2026-09-21T02:26:03.000Z",
-      "category": "general"
-    },
-    {
-      "id": "aHR0cHM6Ly9uZXdz",
-      "title": "21 Eylül'deki altın fiyatları: Yerli altın, gümüş ve değerli taş şirketlerinin fiyat listesi. - Vietnam.vn",
-      "source": "Vietnam.vn",
-      "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxPc3hFaXBCVHZjSG5weDFNa2FqMmdHMlZNYV81dzFwTnNFTHEzVi1OLXRYMG1XX0xMamxxT0JvQnV6Ump3azZMbjg5cHJPSnA3M2c0M01DN3gwMlpNUXN1R0pldS1HM2p1bFZtVkFJbW9fVk1UdWRIU3owcXA0U1dQOC1jVDZBeTJLYUVIZE1zMlV0emN0VkNfVWc0RGM?oc=5",
-      "publishedAt": "2026-09-21T01:51:53.000Z",
-      "category": "general"
-    },
-    {
-      "id": "aHR0cHM6Ly9uZXdz",
-      "title": "Asya piyasalarında altın fiyatları ons başına yaklaşık 4.375 dolar seviyesinde istikrarlı kaldı. - Vietnam.vn",
-      "source": "Vietnam.vn",
-      "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxON1JVMG5oa0ZPWnUzOEVFWk1sQy1LMU9WbjFGN0xxUm9LSWFhcG9fLVZJamx1ZWZSbVdmNHJiRE1VU0dVZHozYXJETng2MEc5X05LQm44dE5ZWTIxOF9MNnczaEZiQ3pINDJqVVJuV1lRbjBUeXFrek42WWlsSzhnM0N5VWFON2tpWC1UVHljcWVXTVItU2F3bTB2MDJBTVk?oc=5",
-      "publishedAt": "2026-09-21T01:51:53.000Z",
-      "category": "general"
-    },
-    {
-      "id": "aHR0cHM6Ly9uZXdz",
-      "title": "Dünya altın fiyatları, bir haftalık toparlanmanın ardından hafifçe geriledi. - Vietnam.vn",
-      "source": "Vietnam.vn",
-      "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE5lQVREMW53V3dPQlNTUDktdHY0MjBheXB6QTlxa1NDZUk4cHJWRkVZMkpndEVSOUwyOTlaaWR1TXZib0c3dFY1TWI0WHJnVWNPN3JaaUdPMjdTWTZYOFFkRHpadkRub0oteFktR1JUdy1sSUFqaGFfWlFR?oc=5",
-      "publishedAt": "2026-09-21T01:06:38.000Z",
+      "title": "EOS 15% oranında yükseldi - Investing.com Türkiye",
+      "source": "Investing.com Türkiye",
+      "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxOZlpOaDRFeUE2ZjQ4c24xcV9QdUhWVVRSdHhMczBTREQ4eWEtZTk1TExNSkQ4eHlETXN5VS1PVFhBQUpFNUtrMFlEeUdwcFRDMW1MZmlSdXVLSTFIdjl5c1FtMFl3ak1YdnpsaEJnY0lxRERoUEVCSElGcEhKTlJNM2dEUDRtdFd3?oc=5",
+      "publishedAt": "2026-09-21T10:17:42.000Z",
       "category": "general"
     }
   ]
